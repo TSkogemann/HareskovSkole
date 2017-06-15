@@ -34,19 +34,19 @@ public class CreateUserFragment extends Fragment {
     @BindView(R.id.create_user_button)
     Button createUserButton;
 
-    @BindView(R.id.select_school_ll)
+    @BindView(R.id.select_school_LL)
     LinearLayout selectSchoolLL;
     @BindView(R.id.select_SchoolClass_LL)
     LinearLayout selectSchoolClassLL;
     @BindView(R.id.create_user_auth_code_LL)
     LinearLayout createUserAuthCodeLL;
-    @BindView(R.id.create_user_email_ll)
+    @BindView(R.id.create_user_email_LL)
     LinearLayout emailLL;
-    @BindView(R.id.create_user_confirm_email_ll)
+    @BindView(R.id.create_user_confirm_email_LL)
     LinearLayout confirmEmailLL;
-    @BindView(R.id.create_user_first_name_ll)
+    @BindView(R.id.create_user_first_name_LL)
     LinearLayout createUserFirstNameLL;
-    @BindView(R.id.create_user_last_name_ll)
+    @BindView(R.id.create_user_last_name_LL)
     LinearLayout createUserLastNameLL;
     @BindView(R.id.create_user_auth_code_validation_LL)
     LinearLayout createUserAuthCodeValidationLL;
