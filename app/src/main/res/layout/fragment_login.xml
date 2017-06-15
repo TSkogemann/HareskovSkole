@@ -132,12 +132,18 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_orange_dark"
+        />
+
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="_Login"
         android:textColor="@color/white"
-        android:layout_gravity="bottom"
         />
 </LinearLayout>
