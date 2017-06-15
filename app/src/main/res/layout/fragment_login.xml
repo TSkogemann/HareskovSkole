@@ -5,34 +5,41 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <!--  login name -->
+    <!--  login email -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingTop="24dp"
+        android:paddingTop="48dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:weightSum="100">
+        android:weightSum="6"
+        >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/blue"
-            android:text="_Navn"
+            android:text="_Email"
             android:textSize="18dp"
             android:textColor="@color/black"
-            android:layout_weight="50"
+            android:layout_weight="3"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
             />
         <EditText
-            android:id="@+id/loginNameEt"
-            android:layout_width="match_parent"
+            android:id="@+id/loginEmailEt"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="_Navn input her"
             android:background="@color/yellow"
             android:textColor="@color/black"
-            android:layout_weight="50"
+            android:layout_weight="2"
             />
 
     </LinearLayout>
@@ -40,98 +47,38 @@
     <!-- login password -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="96dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingTop="16dp"
+        android:paddingTop="48dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:weightSum="100"
+        android:weightSum="6"
         >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/blue"
             android:text="_Password"
             android:textSize="18dp"
             android:textColor="@color/black"
-            android:layout_weight="50"
+            android:layout_weight="3"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
             />
         <EditText
             android:id="@+id/loginPasswordEt"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="_Password input her"
             android:background="@color/yellow"
             android:textColor="@color/black"
-            android:layout_weight="50"
-            />
-
-    </LinearLayout>
-
-    <!-- login email -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingTop="16dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:weightSum="100"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/blue"
-            android:text="_Email"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_weight="50"
-            />
-        <EditText
-            android:id="@+id/loginEmailEt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="_Email input her"
-            android:background="@color/yellow"
-            android:textColor="@color/black"
-            android:layout_weight="50"
-            />
-
-    </LinearLayout>
-
-    <!-- login confirm email -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingTop="16dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:weightSum="100"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/blue"
-            android:text="_Confirm email"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_weight="50"
-            />
-        <EditText
-            android:id="@+id/loginEmailConfirmEt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="_confirm email input her"
-            android:background="@color/yellow"
-            android:textColor="@color/black"
-            android:layout_weight="50"
+            android:layout_weight="2"
             />
 
     </LinearLayout>

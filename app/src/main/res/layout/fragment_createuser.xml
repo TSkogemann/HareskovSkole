@@ -1,130 +1,442 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green">
+    android:background="@color/green"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="96dp"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:paddingTop="48dp"
+        android:orientation="horizontal"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
+        android:paddingTop="48dp"
         android:weightSum="6">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:text="_vælg skole"
-            android:textSize="18dp"
             android:background="@color/blue"
             android:gravity="center"
+            android:text="_jeg er"
+            android:textSize="18dp"
 
             />
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_dark"
-            />
-
-        <Spinner
-            android:id="@+id/school"
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingTop="48dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:weightSum="6">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="_vælg klasse"
-            android:textSize="18dp"
-            android:background="@color/blue"
-            android:gravity="center"
-
-            />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_dark"
-            />
-
-        <Spinner
-            android:id="@+id/schoolClass"
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingTop="48dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:weightSum="6">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="_Jeg er:"
-            android:textSize="18dp"
-            android:background="@color/blue"
-            android:gravity="center"
-
-            />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_dark"
-            />
+            android:background="@android:color/holo_orange_dark" />
 
         <Spinner
             android:id="@+id/userType"
-            android:layout_weight="2"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="2"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/holo_orange_dark"
-        />
 
-    <Button
+    <LinearLayout
+        android:id="@+id/select_school_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/createUserButton"
-        android:text="_Forsæt"
-        />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="48dp"
+        android:weightSum="6">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="_vælg Skole"
+            android:textSize="18dp"
+
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark" />
+
+        <Spinner
+            android:id="@+id/school"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_SchoolClass_LL"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="48dp"
+        android:weightSum="6">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="_Vælg klasse"
+            android:textSize="18dp"
+
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark" />
+
+        <Spinner
+            android:id="@+id/school_class"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="_Indtast bruger info her" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--  create user first name -->
+            <LinearLayout
+                android:id="@+id/create_user_first_name_ll"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_fornavn"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/createUserFirstNameEt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_Navn input her"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <!--  create user last name -->
+            <LinearLayout
+                android:id="@+id/create_user_last_name_ll"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_efternavn"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/createUserLastNameEt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_Navn input her"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <!-- login password -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_Password"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/createUserPasswordEt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_Password input her"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+            <!-- create user confirm password password -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_Password"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/createuUserConfirmPasswordEt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_Password input her"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <!-- login email -->
+            <LinearLayout
+                android:id="@+id/create_user_email_ll"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_Email"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/loginEmailEt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_Email input her"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <!-- login confirm email -->
+            <LinearLayout
+                android:id="@+id/create_user_confirm_email_ll"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_Confirm email"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/loginEmailConfirmEt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_confirm email input her"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!--  create user authcode -->
+            <LinearLayout
+                android:id="@+id/create_user_auth_code_LL"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_AuthCode"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/createUserAuthCodeEt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_Navn input her"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+            <!--  create user authcode validation -->
+            <LinearLayout
+                android:id="@+id/create_user_auth_code_validation_LL"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="48dp"
+                android:weightSum="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/blue"
+                    android:text="_AuthCode validation"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <EditText
+                    android:id="@+id/create_user_auth_code_validation_Et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/yellow"
+                    android:text="_Navn input her"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/create_user_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="_Forsæt" />
 
 
 </LinearLayout>

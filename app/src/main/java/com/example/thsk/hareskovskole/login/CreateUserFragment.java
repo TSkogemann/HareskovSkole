@@ -5,8 +5,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.thsk.hareskovskole.R;
@@ -24,18 +26,36 @@ public class CreateUserFragment extends Fragment {
 
     @BindView(R.id.school)
     Spinner schoolSpinner;
-    @BindView(R.id.schoolClass)
+    @BindView(R.id.school_class)
     Spinner schoolClassSpinner;
     @BindView(R.id.userType)
     Spinner userTypeSpinner;
-    @BindView(R.id.createUserButton)
+
+    @BindView(R.id.create_user_button)
     Button createUserButton;
+
+    @BindView(R.id.select_school_ll)
+    LinearLayout selectSchoolLL;
+    @BindView(R.id.select_SchoolClass_LL)
+    LinearLayout selectSchoolClassLL;
+    @BindView(R.id.create_user_auth_code_LL)
+    LinearLayout createUserAuthCodeLL;
+    @BindView(R.id.create_user_email_ll)
+    LinearLayout emailLL;
+    @BindView(R.id.create_user_confirm_email_ll)
+    LinearLayout confirmEmailLL;
+    @BindView(R.id.create_user_first_name_ll)
+    LinearLayout createUserFirstNameLL;
+    @BindView(R.id.create_user_last_name_ll)
+    LinearLayout createUserLastNameLL;
+    @BindView(R.id.create_user_auth_code_validation_LL)
+    LinearLayout createUserAuthCodeValidationLL;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createuser, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         init();
 
         return view;
@@ -58,6 +78,7 @@ public class CreateUserFragment extends Fragment {
     }
 
     private void initUserTypeSpinner() {
+        // these are tied to the switch in onItemSelected. Should be changed later on to a safer structure
         ArrayList<String> userTypeList = new ArrayList<>();
         userTypeList.add("elev");
         userTypeList.add("forældre");
@@ -67,6 +88,59 @@ public class CreateUserFragment extends Fragment {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         userTypeSpinner.setAdapter(dataAdapter);
+
+        userTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0: {
+                        System.out.println("elev");
+                        //skole, klasse, navn, email, auth kode
+                        selectSchoolLL.setVisibility(View.VISIBLE);
+                        selectSchoolClassLL.setVisibility(View.VISIBLE);
+                        createUserAuthCodeLL.setVisibility(View.VISIBLE);
+                        createUserAuthCodeValidationLL.setVisibility(View.VISIBLE);
+                        createUserFirstNameLL.setVisibility(View.GONE);
+                        createUserLastNameLL.setVisibility(View.GONE);
+                        emailLL.setVisibility(View.GONE);
+                        confirmEmailLL.setVisibility(View.GONE);
+                        break;
+                    }
+                    case 1: {
+                        System.out.println("forældre");
+                        // navn, email
+                        selectSchoolLL.setVisibility(View.GONE);
+                        selectSchoolClassLL.setVisibility(View.GONE);
+                        createUserAuthCodeLL.setVisibility(View.GONE);
+                        createUserAuthCodeValidationLL.setVisibility(View.GONE);
+                        createUserFirstNameLL.setVisibility(View.VISIBLE);
+                        createUserLastNameLL.setVisibility(View.VISIBLE);
+                        emailLL.setVisibility(View.VISIBLE);
+                        confirmEmailLL.setVisibility(View.VISIBLE);
+                        break;
+                    }
+                    case 2: {
+                        System.out.println("lærer");
+                        //skole, klasse, navn, email, auth kode
+                        selectSchoolLL.setVisibility(View.VISIBLE);
+                        selectSchoolClassLL.setVisibility(View.VISIBLE);
+                        createUserAuthCodeLL.setVisibility(View.VISIBLE);
+                        createUserAuthCodeValidationLL.setVisibility(View.VISIBLE);
+                        createUserFirstNameLL.setVisibility(View.GONE);
+                        createUserLastNameLL.setVisibility(View.GONE);
+                        emailLL.setVisibility(View.GONE);
+                        confirmEmailLL.setVisibility(View.GONE);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initSchoolClassSpinner() {
@@ -98,8 +172,6 @@ public class CreateUserFragment extends Fragment {
         schoolClassList.add("9a");
         schoolClassList.add("9b");
         schoolClassList.add("9c");
-
-
 
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, schoolClassList);
