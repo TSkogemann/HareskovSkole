@@ -7,7 +7,7 @@ import android.os.AsyncTask;
  * Created by thsk on 15/06/17.
  */
 
-public class getSchoolsListTask  {
+public class GetSchoolsListTask {
 
 
 }

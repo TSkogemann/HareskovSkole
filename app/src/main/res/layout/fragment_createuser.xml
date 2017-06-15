@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="48dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="6">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="_vælg skole"
+            android:textSize="18dp"
+            android:background="@color/blue"
+            android:gravity="center"
+
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            />
+
+        <Spinner
+            android:id="@+id/school"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="48dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="6">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="_vælg klasse"
+            android:textSize="18dp"
+            android:background="@color/blue"
+            android:gravity="center"
+
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            />
+
+        <Spinner
+            android:id="@+id/schoolClass"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="48dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="6">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="_Jeg er:"
+            android:textSize="18dp"
+            android:background="@color/blue"
+            android:gravity="center"
+
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            />
+
+        <Spinner
+            android:id="@+id/userType"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_orange_dark"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/createUserButton"
+        android:text="_Forsæt"
+        />
+
+
+</LinearLayout>
