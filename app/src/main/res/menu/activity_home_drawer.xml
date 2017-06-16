@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_Messages"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Beskeder" />
+        <item
+            android:id="@+id/nav_hareskovDollars"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Hareskov dollars" />
+        <item
+            android:id="@+id/nav_Temp"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Temp" />
+        <item
+            android:id="@+id/nav_Settings"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Indstillinger" />
+    </group>
+
+</menu>

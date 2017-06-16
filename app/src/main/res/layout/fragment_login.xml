@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/side_nav_bar">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/side_nav_bar"
         />
 
 
@@ -27,24 +27,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/side_nav_bar"
         />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <EditText
             android:id="@+id/loginPasswordEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="_Password" />
+            android:hint="_Password"
+            />
     </android.support.design.widget.TextInputLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/side_nav_bar"
         />
 
     <Button

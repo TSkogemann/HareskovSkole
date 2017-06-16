@@ -37,14 +37,15 @@ public class MainActivity extends FragmentActivity {
     private void init() {
 
         topBarLoginTv.setClickable(false);
-        topBarLoginTv.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+        topBarLoginTv.setBackgroundResource(R.drawable.side_nav_bar);
         topBarNewUserTv.setClickable(true);
         topBarNewUserTv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
         topBarLoginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 topBarLoginTv.setClickable(false);
-                topBarLoginTv.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                topBarLoginTv.setBackgroundResource(R.drawable.side_nav_bar);
                 topBarNewUserTv.setClickable(true);
                 topBarNewUserTv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -59,7 +60,7 @@ public class MainActivity extends FragmentActivity {
                 topBarLoginTv.setClickable(true);
                 topBarLoginTv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                 topBarNewUserTv.setClickable(false);
-                topBarNewUserTv.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                topBarNewUserTv.setBackgroundResource(R.drawable.side_nav_bar);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(fragmentResource, new CreateUserFragment());
                 ft.commit();
