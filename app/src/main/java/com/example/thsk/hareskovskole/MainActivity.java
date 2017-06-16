@@ -75,16 +75,4 @@ public class MainActivity extends FragmentActivity {
         ft.commit();
     }
 
-
-    // onclicks
-    @OnClick(R.id.topBarLogin)
-    public void onTopBarLoginClick(View view) {
-
-
-    }
-
-    @OnClick(R.id.topBarNewUser)
-    public void onTopBarNewUserClick(View view) {
-
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.thsk.hareskovskole.login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.thsk.hareskovskole.HomeFragmentActivity;
 import com.example.thsk.hareskovskole.R;
 
 import butterknife.BindView;
@@ -38,6 +40,9 @@ public class LoginFragment extends Fragment {
         @Override
         public void onClick(View v) {
             System.out.println("sdlkfjsf");
+            // going straight to homefragmentactivity like the api call succeded
+            Intent intent = new Intent(getActivity(), HomeFragmentActivity.class);
+            startActivity(intent);
         }
     });
     }
