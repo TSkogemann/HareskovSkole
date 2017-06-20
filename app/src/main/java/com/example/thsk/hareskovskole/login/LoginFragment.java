@@ -32,7 +32,6 @@ public class LoginFragment extends Fragment {
         ButterKnife.bind(this,view);
         init();
         return view;
-
     }
 
     private void init() {

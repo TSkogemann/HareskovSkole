@@ -1,9 +1,10 @@
 package com.example.thsk.hareskovskole;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.thsk.hareskovskole.login.LoginFragment;
+import com.example.thsk.hareskovskole.messages.MessageActivity;
+import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
+import com.example.thsk.hareskovskole.news.NewsFragments;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,16 +32,16 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.nav_top_left_secondary_text)
     TextView topLeftSecondaryText;
 
+    private int fragmentResource = R.id.home_main_content;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         initFloatingBar();
-
-
+        applyFirstFragment();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -45,6 +51,14 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    private void applyFirstFragment() {
+        //not adding this transaction to backStack
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(fragmentResource, new NewsFragments());
+        ft.addToBackStack(LoginFragment.class.getSimpleName());
+        ft.commit();
     }
 
     private void initTopbar() {
@@ -105,13 +119,21 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_Messages) {
-            // Handle the camera action
+
+            Intent intent = new Intent(this, MessageActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_hareskovDollars) {
+
+            Intent intent = new Intent(this, MoneyTransferActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_Temp) {
 
         } else if (id == R.id.nav_Settings) {
 
+            Intent intent = new Intent(this, MoneyTransferActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
