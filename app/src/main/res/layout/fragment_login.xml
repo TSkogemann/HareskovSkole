@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar">
+    android:background="@drawable/main_app_background">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4"
-        android:background="@drawable/side_nav_bar"
+        android:background="@drawable/main_app_background"
         />
 
 
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        android:background="@drawable/side_nav_bar"
+        android:background="@drawable/main_app_background"
         />
 
     <android.support.design.widget.TextInputLayout
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:background="@drawable/side_nav_bar"
+        android:background="@drawable/main_app_background"
         />
 
     <Button

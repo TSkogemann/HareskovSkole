@@ -1,18 +1,26 @@
 package com.example.thsk.hareskovskole.news;
 
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.thsk.hareskovskole.HomeActivity;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.utils.Utility;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 /**
  * Created by thsk on 20/06/2017.
@@ -20,30 +28,60 @@ import butterknife.ButterKnife;
 
 public class NewsFragments extends Fragment {
 
+    @BindView(R.id.news_titel)
+    TextView newsFeedTitleTv;
+    @BindView(R.id.news_feed_text)
+    TextView newsFeedTextTv;
+    @BindView(R.id.news_feed_picture)
+    ImageView newsFeedPictureIv;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
-        ArrayList<NewsItem> newsList  = getRandomNewsList();
+        final ArrayList<NewsItem> newsList = getRandomNewsList();
 
-        ListView newsView = (ListView)getActivity().findViewById(R.id.news_list);
+        ListView newsView = (ListView) getActivity().findViewById(R.id.news_list);
         newsView.setAdapter(new NewsListAdapter(getActivity(), newsList));
+
+        newsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String temp = "position " + position;
+                System.out.println(temp);
+                Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                intent.putExtra("item", newsList.get(position));
+                startActivity(intent);
+
+            }
+        });
 
         return view;
     }
 
     private ArrayList<NewsItem> getRandomNewsList() {
-        String imageurl = "http://asset.dr.dk/imagescaler/?file=/images/other/2017/06/20/scanpix-20170620-153302-l.jpg&server=www.dr.dk&w=620&h=349&scaleAfter=crop&quality=75&ratio=16-9";
+        // This function is only used to generate random newslists
         ArrayList<NewsItem> newsList = new ArrayList<>();
-        newsList.add(new NewsItem("title1", "maintext1","feedtext1", imageurl));
-        newsList.add(new NewsItem("title2", "maintext2","feedtext2", imageurl));
-        newsList.add(new NewsItem("title3", "maintext3","feedtext3", imageurl));
-        newsList.add(new NewsItem("title4", "maintext4","feedtext4", imageurl));
-        newsList.add(new NewsItem("title5", "maintext5","feedtext5", imageurl));
-        newsList.add(new NewsItem("title6", "maintext6","feedtext6", imageurl));
+
+        newsList.add(getRandomNewsItem());
+        newsList.add(getRandomNewsItem());
+        newsList.add(getRandomNewsItem());
+        newsList.add(getRandomNewsItem());
+        newsList.add(getRandomNewsItem());
+        newsList.add(getRandomNewsItem());
+        newsList.add(getRandomNewsItem());
         return newsList;
+    }
+
+    private NewsItem getRandomNewsItem() {
+
+        String title = Utility.randomText(4, 1);
+        String mainText = Utility.randomText(400, 0);
+        String feedText = Utility.randomText(150, 0);
+        String picture = Utility.randomPicture();
+        return new NewsItem(title, mainText, feedText, picture);
     }
 
 

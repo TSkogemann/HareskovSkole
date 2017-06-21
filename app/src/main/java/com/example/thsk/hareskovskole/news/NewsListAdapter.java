@@ -1,6 +1,8 @@
 package com.example.thsk.hareskovskole.news;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +25,7 @@ public class NewsListAdapter extends BaseAdapter {
     private LayoutInflater myLayoutInflater;
     private Context context;
 
-    public NewsListAdapter(Context newsFragment, ArrayList<NewsItem> results){
+    public NewsListAdapter(Context newsFragment, ArrayList<NewsItem> results) {
         newsItemArrayList = results;
         context = newsFragment;
         myLayoutInflater = LayoutInflater.from(context);
@@ -45,14 +47,14 @@ public class NewsListAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         ViewHolder holder;
 
-        if(convertView == null){
+        // Binding views
+        if (convertView == null) {
             convertView = myLayoutInflater.inflate(R.layout.fragment_news, null);
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.news_titel);
-            holder.maintext = (TextView) convertView.findViewById(R.id.news_main_text);
+            holder.feedtext = (TextView) convertView.findViewById(R.id.news_feed_text);
             holder.feedpicture = (ImageView) convertView.findViewById(R.id.news_feed_picture);
 
             convertView.setTag(holder);
@@ -60,8 +62,14 @@ public class NewsListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        // Setting text, font and text size
         holder.title.setText(newsItemArrayList.get(position).getTitle());
-        holder.maintext.setText(newsItemArrayList.get(position).getMainText());
+        holder.title.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+        holder.title.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 36);
+        holder.feedtext.setText(newsItemArrayList.get(position).getFeedText());
+        holder.feedtext.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
+        holder.feedtext.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+        // Setting picture
         Glide.with(context)
                 .load(newsItemArrayList.get(position).getFeedpicture())
                 .error(R.drawable.ic_menu_send)
@@ -70,8 +78,9 @@ public class NewsListAdapter extends BaseAdapter {
 
         return convertView;
     }
-    static class ViewHolder{
-        TextView title, maintext,feedtext;
+
+    static class ViewHolder {
+        TextView title, feedtext;
         ImageView feedpicture;
     }
 }

@@ -1,10 +1,12 @@
 package com.example.thsk.hareskovskole.news;
 
+import java.io.Serializable;
+
 /**
  * Created by thsk on 20/06/2017.
  */
 
-public class NewsItem {
+public class NewsItem implements Serializable {
 
     String title;
     String mainText;
