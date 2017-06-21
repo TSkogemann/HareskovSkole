@@ -25,7 +25,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    //Butterknife
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
@@ -35,4 +34,8 @@ dependencies {
 
     //Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    // Urban Airship SDK
+    compile 'com.urbanairship.android:urbanairship-sdk:8.6.+'
+    compile 'com.google.android.gms:play-services-gcm:11.0.1'
 }

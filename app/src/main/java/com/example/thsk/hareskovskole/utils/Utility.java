@@ -44,7 +44,7 @@ public class Utility {
         return rand.nextInt(max) + min;
     }
     private static String randomWord(){
-        List<String> words = Arrays.asList("fox","two","mercurial","master", "event","todo","version","ok","run","android","monitor");
+        List<String> words = Arrays.asList("fox","two","mercurial","master", "event","todo","version","ok","run","android","monitor", "Ole");
         return words.get(randomNumber(words.size()-1 , 0));
     }
 }

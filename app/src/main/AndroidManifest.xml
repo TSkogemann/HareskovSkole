@@ -4,6 +4,8 @@
 
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -33,8 +35,28 @@
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".news.NewsDetailActivity"
-            android:label="newsDetailActivity"
+            android:label="ne"
             android:theme="@style/AppTheme"></activity>
+
+        <!-- Urban Airship -->
+        <meta-data
+            android:name="com.urbanairship.autopilot"
+            android:value="com.example.thsk.hareskovskole.utils.urbanairship.CodeConfigAutopilot" />
+
+        <!-- OPTIONAL, if you want to receive push, push opened and registration completed intents -->
+        <!-- Replace the receiver below with your package and class name -->
+        <receiver android:name=".utils.urbanairship.UAirshipReceiver"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="com.urbanairship.push.CHANNEL_UPDATED" />
+                <action android:name="com.urbanairship.push.OPENED" />
+                <action android:name="com.urbanairship.push.RECEIVED" />
+                <action android:name="com.urbanairship.push.DISMISSED" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

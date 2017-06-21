@@ -20,6 +20,11 @@ import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 import com.example.thsk.hareskovskole.news.NewsFragments;
+import com.urbanairship.Autopilot;
+import com.urbanairship.UAirship;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +55,35 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //setup urbanairship
+        initUrbanAirship();
+
+    }
+
+    private void initUrbanAirship() {
+
+        Autopilot.automaticTakeOff(this);
+
+        //setting user notifications = true
+        UAirship.shared().getPushManager().setUserNotificationsEnabled(true);
+        UAirship.shared().getInAppMessageManager().setAutoDisplayEnabled(true);
+
+        //Enabling in-app messaging
+        UAirship.shared().getInAppMessageManager().setAutoDisplayEnabled(true);
+
+
+        //subscribing to tags
+        Set<String> tags = new HashSet<>();
+        tags.add("All");
+        UAirship.shared().getPushManager().setTags(tags);
+
+        //setting sound
+        UAirship.shared().getPushManager().setSoundEnabled(true);
+
+        //printing out channelID
+        String channelId = UAirship.shared().getPushManager().getChannelId();
+        System.out.println("Urban Airship Application channel ID: " + channelId);
 
     }
 

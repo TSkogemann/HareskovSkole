@@ -2,6 +2,7 @@ package com.example.thsk.hareskovskole.news;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.widget.TextView;
 
 import com.example.thsk.hareskovskole.R;
@@ -29,6 +30,9 @@ public class NewsDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         currentItem = (NewsItem) getIntent().getSerializableExtra("item");
         newsDetailTitleTv.setText(currentItem.getTitle());
+        if(currentItem.getTitle().length()%2 == 0) {
+            newsDetailTitleTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 76);
+        }
         newsDetailMainTextTv.setText(currentItem.getMainText());
     }
 }

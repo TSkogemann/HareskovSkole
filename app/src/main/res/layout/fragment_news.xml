@@ -18,13 +18,14 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="160dp"
+
         />
     <TextView
         android:id="@+id/news_feed_text"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="_news fragment"
+        android:text="_feed text"
         >
     </TextView>
 

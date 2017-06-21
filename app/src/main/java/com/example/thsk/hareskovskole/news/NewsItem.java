@@ -13,6 +13,7 @@ public class NewsItem implements Serializable {
     String feedText;
     String feedpicture;
 
+
     public NewsItem(String title, String mainText, String feedText, String feedpicture) {
         this.title = title;
         this.mainText = mainText;

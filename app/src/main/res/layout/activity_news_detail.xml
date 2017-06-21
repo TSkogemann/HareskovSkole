@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/news_detail_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/yellow"/>
+        android:background="@color/yellow"
+        android:text="_title"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:src="@drawable/ic_menu_send"
+        android:background="@color/blue"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        />
+
     <TextView
         android:id="@+id/news_detail_main_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green"/>
+        android:background="@color/green"
+        android:text="_main text"
+        android:textSize="36dp"/>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -38,7 +38,6 @@ public class LoginFragment extends Fragment {
     loginButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println("sdlkfjsf");
             // going straight to homefragmentactivity like the api call succeded
             Intent intent = new Intent(getActivity(), HomeActivity.class);
             startActivity(intent);
