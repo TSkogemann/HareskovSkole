@@ -41,7 +41,7 @@ public class NewsFragments extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, view);
 
-        final ArrayList<NewsItem> newsList = getRandomNewsList();
+        final ArrayList<NewsItem> newsList = getRandomNewsList(15);
 
         ListView newsView = (ListView) getActivity().findViewById(R.id.news_list);
         newsView.setAdapter(new NewsListAdapter(getActivity(), newsList));
@@ -61,24 +61,20 @@ public class NewsFragments extends Fragment {
         return view;
     }
 
-    private ArrayList<NewsItem> getRandomNewsList() {
+    private ArrayList<NewsItem> getRandomNewsList(int numberOfItems) {
         // This function is only used to generate random newslists
         ArrayList<NewsItem> newsList = new ArrayList<>();
 
-        newsList.add(getRandomNewsItem());
-        newsList.add(getRandomNewsItem());
-        newsList.add(getRandomNewsItem());
-        newsList.add(getRandomNewsItem());
-        newsList.add(getRandomNewsItem());
-        newsList.add(getRandomNewsItem());
-        newsList.add(getRandomNewsItem());
+        for (int i=0; i<numberOfItems; i++) {
+            newsList.add(getRandomNewsItem());
+        }
         return newsList;
     }
 
     private NewsItem getRandomNewsItem() {
 
         String title = Utility.randomText(4, 1);
-        String mainText = Utility.randomText(1600, 400);
+        String mainText = Utility.randomText(400, 4);
         String feedText = Utility.randomText(150, 0);
         String picture = Utility.randomPicture();
         return new NewsItem(title, mainText, feedText, picture);

@@ -28,11 +28,11 @@ public class Utility {
 
     public static String randomPicture(){
         List<String> urls = Arrays.asList(
-                "http://asset.dr.dk/imagescaler/?file=/images/other/2017/06/20/scanpix-20170620-153302-l.jpg&server=www.dr.dk&w=620&h=349&scaleAfter=crop&quality=75&ratio=16-9",
-                "http://www.dr.dk/cmsimages/dynimage.drxml?w=620&amp;h=349&amp;file=https://prod-public-files-cms-dr-dk.s3.amazonaws.com/images/crop/2017/06/20/1497988897_scanpix-20170620-220005-l.jpg&amp;scaleAfter=crop",
-                "http://www.dr.dk/cmsimages/dynimage.drxml?w=300&amp;h=169&amp;file=https://prod-public-files-cms-dr-dk.s3.amazonaws.com/images/crop/2017/06/20/1497984248_scanpix-20170619-170411-l.jpg&amp;scaleAfter=crop",
-                "http://www.dr.dk/cmsimages/dynimage.drxml?w=300&amp;h=169&amp;file=https://prod-public-files-cms-dr-dk.s3.amazonaws.com/images/crop/2017/06/20/1497987685_scanpix-20170620-101715-4.jpg&amp;scaleAfter=crop"
-                );
+                "http://www.dr.dk/cmsimages/dynimage.drxml?w=300&amp;h=169&amp;file=https://prod-public-files-cms-dr-dk.s3.amazonaws.com/images/other/2017/06/21/scanpix-20170619-164519-4.jpg&amp;scaleAfter=crop",
+                "http://www.dr.dk/cmsimages/dynimage.drxml?w=300&amp;h=169&amp;file=http://www.dr.dk/images/other/2017/06/21/scanpix-20170620-180021-a_0.jpg&amp;scaleAfter=crop",
+                "http://www.dr.dk/cmsimages/dynimage.drxml?w=620&amp;h=349&amp;file=https://prod-public-files-cms-dr-dk.s3.amazonaws.com/images/article/2017/06/21/9369685_eetj_sven_udbytteskat_kam3-00.00.31.05.jpeg&amp;scaleAfter=crop",
+                "errorLink"
+        );
         return urls.get(randomNumber(urls.size()-1 , 0));
     }
 
