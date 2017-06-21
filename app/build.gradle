@@ -11,10 +11,40 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("keystore/debug.jks")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+
+        release {
+            storeFile file("keystore/release.jks")
+            storePassword "eT7qne1oIj"
+            keyAlias "fun.skole.dk"
+            keyPassword "eT7qne1oIj"
+        }
+    }
+
     buildTypes {
+        def formattedDate = new Date().format('dd/MM HH:mm')
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix ""
+            versionNameSuffix ""
+            signingConfig signingConfigs.release
+            debuggable true
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix ".debug"
+            versionNameSuffix " debug $formattedDate"
+            signingConfig signingConfigs.debug
+            debuggable true
         }
     }
 }
