@@ -17,10 +17,10 @@ public class CodeConfigAutopilot extends Autopilot {
 
     private String gcmCode = "1069682797347";
     private boolean inProduction = true;
-    private String productionAppKey = "";
-    private String productionAppSecret = "";
-    private String developmentAppKey = "";
-    private String developmentAppSecret = "";
+    private String productionAppKey = "RM5XqGBVTzyEWzZv58qwvA";
+    private String productionAppSecret = "KqO_Z7xnTcGKek6ITyo41g";
+    private String developmentAppKey = "RM5XqGBVTzyEWzZv58qwvA";
+    private String developmentAppSecret = "KqO_Z7xnTcGKek6ITyo41g";
 
     @Nullable
     @Override

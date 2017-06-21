@@ -67,5 +67,5 @@ dependencies {
 
     // Urban Airship SDK
     compile 'com.urbanairship.android:urbanairship-sdk:8.6.+'
-    compile 'com.google.android.gms:play-services-gcm:11.0.1'
+    compile 'com.google.android.gms:play-services-gcm:10.0.1'
 }
