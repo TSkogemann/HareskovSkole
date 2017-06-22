@@ -8,17 +8,27 @@ import java.io.Serializable;
 
 public class NewsItem implements Serializable {
 
-    String title;
-    String mainText;
-    String feedText;
-    String feedpicture;
+    private String title;
+    private String author;
+    // Used in the news feed along with the title
+    private String feedText;
+    private String feedpicture;
+    // used in the news detail activity along with the title
+    private String mainText;
+    private String mainPicture;
+    private String mainPictureText;
+    private String headline;
 
-
-    public NewsItem(String title, String mainText, String feedText, String feedpicture) {
+    public NewsItem(String title, String feedText, String feedpicture,
+                    String mainText, String mainPicture, String mainPictureText, String headline, String author) {
         this.title = title;
-        this.mainText = mainText;
         this.feedText = feedText;
         this.feedpicture = feedpicture;
+        this.mainText = mainText;
+        this.mainPicture = mainPicture;
+        this.mainPictureText = mainPictureText;
+        this.headline = headline;
+        this.author = author;
     }
 
     public String getTitle() {
@@ -27,14 +37,6 @@ public class NewsItem implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getMainText() {
-        return mainText;
-    }
-
-    public void setMainText(String mainText) {
-        this.mainText = mainText;
     }
 
     public String getFeedText() {
@@ -51,5 +53,45 @@ public class NewsItem implements Serializable {
 
     public void setFeedpicture(String feedpicture) {
         this.feedpicture = feedpicture;
+    }
+
+    public String getMainText() {
+        return mainText;
+    }
+
+    public void setMainText(String mainText) {
+        this.mainText = mainText;
+    }
+
+    public String getMainPicture() {
+        return mainPicture;
+    }
+
+    public void setMainPicture(String mainPicture) {
+        this.mainPicture = mainPicture;
+    }
+
+    public String getMainPictureText() {
+        return mainPictureText;
+    }
+
+    public void setMainPictureText(String mainPictureText) {
+        this.mainPictureText = mainPictureText;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
     }
 }

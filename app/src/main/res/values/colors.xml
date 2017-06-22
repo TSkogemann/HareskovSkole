@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#05ff99</color>
     <color name="colorAccent">#ff3399</color>
 
+    <color name="appBackgroundColor">#ffffff</color>
+
     <color name="yellow">#f5e747</color>
     <color name="blue">#0000ff</color>
     <color name="green">#4bb131</color>

@@ -77,7 +77,11 @@ public class NewsFragments extends Fragment {
         String mainText = Utility.randomText(400, 4);
         String feedText = Utility.randomText(150, 0);
         String picture = Utility.randomPicture();
-        return new NewsItem(title, mainText, feedText, picture);
+        String mainPicture = Utility.randomPicture();
+        String mainPictureText = Utility.randomText(250,0);
+        String headline = Utility.randomText(6,2);
+        String author = Utility.randomText(8,2);
+        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author);
     }
 
 

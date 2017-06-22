@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity
 
         //subscribing to tags
         Set<String> tags = new HashSet<>();
-        tags.add("All1");
+        tags.add("All12432test");
         UAirship.shared().getPushManager().setTags(tags);
 
         //setting sound
