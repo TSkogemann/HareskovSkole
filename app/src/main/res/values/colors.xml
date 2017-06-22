@@ -5,6 +5,7 @@
     <color name="colorAccent">#ff3399</color>
 
     <color name="appBackgroundColor">#ffffff</color>
+    <color name="newsItemBackgroundColor">#f0f0f0</color>
 
     <color name="yellow">#f5e747</color>
     <color name="blue">#0000ff</color>

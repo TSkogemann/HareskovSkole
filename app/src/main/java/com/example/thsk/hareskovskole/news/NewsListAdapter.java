@@ -68,16 +68,17 @@ public class NewsListAdapter extends BaseAdapter {
         // Setting text, font and text size
         holder.title.setText(newsItemArrayList.get(position).getTitle());
         holder.title.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
-        holder.title.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 36);
+        holder.title.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 32);
+        holder.title.setTextColor(context.getResources().getColor(R.color.black));
         holder.feedtext.setText(newsItemArrayList.get(position).getFeedText());
         holder.feedtext.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
-        holder.feedtext.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+        holder.feedtext.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         // Setting picture
         Glide.with(context)
                 .load(newsItemArrayList.get(position).getFeedpicture())
                 .error(R.drawable.ic_menu_send)
                 .listener(requestListener)
-                .placeholder(R.drawable.ic_menu_camera)
+                .centerCrop()
                 .into(holder.feedpicture);
 
         return convertView;
