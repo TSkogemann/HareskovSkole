@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/commercial_dialog_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            card_view:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:id="@+id/commercial_dialog_main_container"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/commercialDialogColor"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:id="@+id/commercial_dialog_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="_dialog title"
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    card_view:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/commercial_dialog_image_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:id="@+id/commercial_dialog_picture"
+                            android:layout_width="360dp"
+                            android:layout_height="360dp"
+                            android:src="@drawable/ic_menu_manage" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/commercial_dialog_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="_dialog text sdflsdlfkjs dsfksf sf "
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/commercial_dialog_button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/commercialDialogBackgroundColor"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                card_view:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:id="@+id/commercial_dialog_postive_button_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left">
+
+                    <Button
+                        android:id="@+id/commercial_dialog_positive_button"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/commercialDialogPossitivButtonColor"
+                        android:text="_Positive" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                card_view:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:id="@+id/commercial_dialog_negative_button_button_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right">
+
+                    <Button
+                        android:id="@+id/commercial_dialog_negative_button"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/commercialDialogNegativeButtonColor"
+                        android:text="_Negative" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -2,6 +2,8 @@ package com.example.thsk.hareskovskole.utils;
 
 import android.content.Context;
 
+import com.example.thsk.hareskovskole.commercials.CommercialItem;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,5 +48,15 @@ public class Utility {
     private static String randomWord(){
         List<String> words = Arrays.asList("fox","two","mercurial","master", "event","todo","version","ok","run","android","monitor", "Ole");
         return words.get(randomNumber(words.size()-1 , 0));
+    }
+
+    public static CommercialItem getCommercial() {
+        String dialogTitle = randomText(3,1);
+        String dialogPicture = randomPicture();
+        String dialogText = randomText(40,1);
+        String dialogDetailTitle = randomText(5,1);
+        String dialogDetailPicture = randomPicture();
+        String dialogDetailText = randomText(100,1);
+        return new CommercialItem(dialogTitle,dialogPicture,dialogText,dialogDetailTitle,dialogDetailPicture,dialogDetailText);
     }
 }

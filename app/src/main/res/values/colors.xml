@@ -4,14 +4,26 @@
     <color name="colorPrimaryDark">#05ff99</color>
     <color name="colorAccent">#ff3399</color>
 
+    <!-- Generic -->
     <color name="appBackgroundColor">#ffffff</color>
+    <color name="transparent">#80ffffff</color>
+
+    <!--News -->
     <color name="newsItemBackgroundColor">#f0f0f0</color>
 
+    <!--Commercial -->
+    <color name="commercialDialogPossitivButtonColor">#00ff00</color>
+    <color name="commercialDialogNegativeButtonColor">#ff0000</color>
+    <color name="commercialDialogBackgroundColor">#e6e6e6</color>
+    <color name="commercialDialogColor">#cccccc</color>
+
+    <!-- Base colors -->
     <color name="yellow">#f5e747</color>
     <color name="blue">#0000ff</color>
     <color name="green">#4bb131</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
 
 
 </resources>

@@ -4,9 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.example.thsk.hareskovskole.BuildConfig;
 import com.example.thsk.hareskovskole.R;
 import com.urbanairship.AirshipConfigOptions;
 import com.urbanairship.Autopilot;
+
+import static android.util.Log.DEBUG;
+import static android.util.Log.VERBOSE;
 
 /**
  * Created by thsk on 21/06/2017.
@@ -34,10 +38,12 @@ public class CodeConfigAutopilot extends Autopilot {
                 .setDevelopmentAppSecret(developmentAppSecret)
                 .setProductionAppKey(productionAppKey)
                 .setProductionAppSecret(productionAppSecret)
-                .setInProduction(inProduction)
+                .setInProduction(!BuildConfig.DEBUG)
                 .setGcmSender(gcmCode)
                 .setNotificationIcon(R.drawable.common_full_open_on_phone)
                 .setNotificationAccentColor(0x7986CB)
+                .setProductionLogLevel(VERBOSE)
+                .setDevelopmentLogLevel(VERBOSE)
                 .build();
 
         return options;

@@ -1,9 +1,12 @@
 package com.example.thsk.hareskovskole;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,12 +17,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.thsk.hareskovskole.commercials.CommercialDialog;
+import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 import com.example.thsk.hareskovskole.news.NewsFragments;
+import com.example.thsk.hareskovskole.utils.Utility;
 import com.urbanairship.Autopilot;
 import com.urbanairship.UAirship;
 
@@ -59,7 +66,19 @@ public class HomeActivity extends AppCompatActivity
         //setup urbanairship
         initUrbanAirship();
 
+        //show commercial
+        showCommercial();
+
     }
+
+    private void showCommercial() {
+        // get the right commercial
+        CommercialItem commercialToBeShown = Utility.getCommercial();
+
+        // Create an instance of the dialog fragment and show it
+        Dialog dialog = new CommercialDialog(this, commercialToBeShown);
+        dialog.show();
+}
 
     private void initUrbanAirship() {
 
@@ -75,7 +94,7 @@ public class HomeActivity extends AppCompatActivity
 
         //subscribing to tags
         Set<String> tags = new HashSet<>();
-        tags.add("All12432test");
+        tags.add("test111");
         UAirship.shared().getPushManager().setTags(tags);
 
         //setting sound
@@ -163,6 +182,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_Temp) {
+            showCommercial();
 
         } else if (id == R.id.nav_Settings) {
 

@@ -33,16 +33,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationIdSuffix ""
-            versionNameSuffix ""
             signingConfig signingConfigs.release
             debuggable true
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationIdSuffix ".debug"
-            versionNameSuffix " debug $formattedDate"
             signingConfig signingConfigs.debug
             debuggable true
         }
