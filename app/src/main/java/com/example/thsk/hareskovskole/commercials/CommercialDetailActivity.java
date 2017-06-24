@@ -41,7 +41,7 @@ public class CommercialDetailActivity extends AppCompatActivity {
         currentItem = (CommercialItem) getIntent().getSerializableExtra("commercial");
 
         //iniate viewpager and adapter
-        pageAdapter = new ScreenSl
+        pageAdapter = new ScreenSliderAdapter();
         setData();
     }
 
