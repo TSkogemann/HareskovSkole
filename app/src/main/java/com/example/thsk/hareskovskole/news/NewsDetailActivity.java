@@ -2,7 +2,6 @@ package com.example.thsk.hareskovskole.news;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,8 +13,8 @@ import com.example.thsk.hareskovskole.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.thsk.hareskovskole.news.NewsItem.newsItemType.ARTICLE;
-import static com.example.thsk.hareskovskole.news.NewsItem.newsItemType.COMMERCIAL;
+import static com.example.thsk.hareskovskole.news.NewsItem.NewsItemType.ARTICLE;
+import static com.example.thsk.hareskovskole.news.NewsItem.NewsItemType.COMMERCIAL;
 
 /**
  * Created by thsk on 21/06/2017.

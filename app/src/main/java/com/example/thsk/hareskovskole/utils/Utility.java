@@ -5,7 +5,6 @@ import android.content.Context;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -60,7 +59,7 @@ public class Utility {
         String mainPictureText = Utility.randomText(250,0);
         String headline = Utility.randomText(6,2);
         String author = Utility.randomText(8,2);
-        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author, NewsItem.newsItemType.ARTICLE);
+        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author, NewsItem.NewsItemType.ARTICLE);
     }
 
     public static NewsItem getRandomNewsItemCommercial() {
@@ -73,7 +72,7 @@ public class Utility {
         String mainPictureText = Utility.randomText(250,0);
         String headline = Utility.randomText(6,2);
         String author = "SPONSORERET";
-        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author,NewsItem.newsItemType.COMMERCIAL);
+        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author, NewsItem.NewsItemType.COMMERCIAL);
     }
 
     public static CommercialItem getCommercial() {
