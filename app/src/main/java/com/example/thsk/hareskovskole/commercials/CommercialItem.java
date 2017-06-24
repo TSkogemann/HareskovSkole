@@ -1,5 +1,8 @@
 package com.example.thsk.hareskovskole.commercials;
 
+import com.example.thsk.hareskovskole.news.NewsDetailActivity;
+import com.example.thsk.hareskovskole.news.NewsItem;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,8 @@ public class CommercialItem implements Serializable {
     private String dialogDetailPicture;
     private String dialogDetailText;
     private List<String> dialogDetailExtraPictures = new ArrayList<>();
+
+    private NewsItem newsItem;
 
     public CommercialItem(String dialogTitle, String dialogPicture, String dialogText) {
         this.dialogTitle = dialogTitle;
@@ -43,6 +48,17 @@ public class CommercialItem implements Serializable {
         this.dialogDetailPicture = dialogDetailPicture;
         this.dialogDetailText = dialogDetailText;
         this.dialogDetailExtraPictures = dialogDetailExtraPictures;
+    }
+
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String dialogDetailTitle, String dialogDetailPicture, String dialogDetailText, List<String> dialogDetailExtraPictures, NewsItem newsItem) {
+        this.dialogTitle = dialogTitle;
+        this.dialogPicture = dialogPicture;
+        this.dialogText = dialogText;
+        this.dialogDetailTitle = dialogDetailTitle;
+        this.dialogDetailPicture = dialogDetailPicture;
+        this.dialogDetailText = dialogDetailText;
+        this.dialogDetailExtraPictures = dialogDetailExtraPictures;
+        this.newsItem = newsItem;
     }
 
     public String getDialogTitle() {

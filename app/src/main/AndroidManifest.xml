@@ -34,9 +34,13 @@
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".news.NewsDetailActivity"
-            android:label="ne"
+            android:label="NewsDetailActivity"
             android:theme="@style/AppTheme"></activity>
 
+        <activity
+            android:name=".commercials.CommercialDetailActivity"
+            android:label="CommercialDetailActivity"
+            android:theme="@style/AppTheme"></activity>
         <!-- Urban Airship -->
         <meta-data
             android:name="com.urbanairship.autopilot"

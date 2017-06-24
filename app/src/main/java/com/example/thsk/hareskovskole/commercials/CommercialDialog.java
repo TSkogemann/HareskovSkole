@@ -1,6 +1,7 @@
 package com.example.thsk.hareskovskole.commercials;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.news.NewsDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,10 +37,12 @@ public class CommercialDialog extends AlertDialog {
     CommercialItem currentCommercial;
     boolean hasDetails;
     AlertDialog commercialDialog;
+    Context currentContext;
 
     public CommercialDialog(Context context, CommercialItem currentCommercial) {
         super(context);
         this.currentCommercial = currentCommercial;
+        this.currentContext = context;
     }
 
     @Override
@@ -57,11 +61,13 @@ public class CommercialDialog extends AlertDialog {
     }
 
     private void setupButtons() {
-        if (!hasDetails) {
+        if (hasDetails) {
             commercialDialogPositiveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(currentContext, CommercialDetailActivity.class);
+                    intent.putExtra("commercial", currentCommercial);
+                    currentContext.startActivity(intent);
                 }
             });
         } else {
