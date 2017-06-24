@@ -1,5 +1,6 @@
 package com.example.thsk.hareskovskole;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -13,8 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.example.thsk.hareskovskole.commercials.CommercialDialog;
+import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
+import com.example.thsk.hareskovskole.utils.Data;
+import com.example.thsk.hareskovskole.utils.Utility;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -99,7 +105,7 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_Temp) {
-//            showCommercial();
+            showCommercial();
 
         } else if (id == R.id.nav_Settings) {
 
@@ -110,5 +116,15 @@ public class MenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showCommercial() {
+        // get the right commercial
+        int numberOfElements = Data.commercials.size();
+        CommercialItem commercialToBeShown = Data.commercials.get(Utility.randomNumber(numberOfElements-1,0));
+
+        // Create an instance of the dialog fragment and show it
+        Dialog dialog = new CommercialDialog(this, commercialToBeShown);
+        dialog.show();
     }
 }
