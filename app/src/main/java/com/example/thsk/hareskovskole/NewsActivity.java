@@ -46,7 +46,7 @@ public class NewsActivity extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-//        applyFirstFragment();
+        applyFirstFragment();
 
         //setup urbanairship
         initUrbanAirship();
