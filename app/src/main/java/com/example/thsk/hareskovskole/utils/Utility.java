@@ -60,7 +60,20 @@ public class Utility {
         String mainPictureText = Utility.randomText(250,0);
         String headline = Utility.randomText(6,2);
         String author = Utility.randomText(8,2);
-        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author);
+        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author, NewsItem.newsItemType.ARTICLE);
+    }
+
+    public static NewsItem getRandomNewsItemCommercial() {
+
+        String title = Utility.randomText(4, 1);
+        String mainText = Utility.randomText(400, 4);
+        String feedText = Utility.randomText(150, 0);
+        String picture = Utility.randomPicture();
+        String mainPicture = Utility.randomPicture();
+        String mainPictureText = Utility.randomText(250,0);
+        String headline = Utility.randomText(6,2);
+        String author = "SPONSORERET";
+        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author,NewsItem.newsItemType.COMMERCIAL);
     }
 
     public static CommercialItem getCommercial() {
@@ -70,7 +83,7 @@ public class Utility {
         String dialogDetailTitle = randomText(5,1);
         String dialogDetailPicture = randomPicture();
         String dialogDetailText = randomText(100,1);
-        NewsItem newsItem = getRandomNewsItem();
+        NewsItem newsItem = getRandomNewsItemCommercial();
         return new CommercialItem(dialogTitle,dialogPicture,dialogText,dialogDetailTitle,dialogDetailPicture,dialogDetailText,null, newsItem);
     }
 }

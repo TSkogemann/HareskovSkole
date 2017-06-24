@@ -14,6 +14,9 @@ import com.example.thsk.hareskovskole.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.thsk.hareskovskole.news.NewsItem.newsItemType.ARTICLE;
+import static com.example.thsk.hareskovskole.news.NewsItem.newsItemType.COMMERCIAL;
+
 /**
  * Created by thsk on 21/06/2017.
  */
@@ -57,8 +60,16 @@ public class NewsDetailActivity extends AppCompatActivity {
 
     private void initData() {
         newsDetailTitleTv.setText(currentItem.getTitle());
-        newsDetailAuthorTv.setText("Skrevet af: " + currentItem.getAuthor());
-        Glide.with(this)
+
+        switch (currentItem.getNewsItemType()){
+            case ARTICLE:
+                newsDetailAuthorTv.setText("Skrevet af: " + currentItem.getAuthor());
+                break;
+            case COMMERCIAL:
+                newsDetailAuthorTv.setText(currentItem.getAuthor());
+        }
+
+            Glide.with(this)
                 .load(currentItem.getMainPicture())
                 .error(R.drawable.ic_menu_send)
                 .centerCrop()

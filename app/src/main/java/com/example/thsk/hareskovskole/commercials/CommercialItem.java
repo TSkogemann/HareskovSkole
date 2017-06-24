@@ -116,4 +116,12 @@ public class CommercialItem implements Serializable {
     public void setDialogDetailExtraPictures(List<String> dialogDetailExtraPictures) {
         this.dialogDetailExtraPictures = dialogDetailExtraPictures;
     }
+
+    public NewsItem getNewsItem() {
+        return newsItem;
+    }
+
+    public void setNewsItem(NewsItem newsItem) {
+        this.newsItem = newsItem;
+    }
 }

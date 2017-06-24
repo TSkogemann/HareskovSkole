@@ -87,7 +87,6 @@ public class HomeActivity extends AppCompatActivity
         commercials.add(Utility.getCommercial());
         commercials.add(Utility.getCommercial());
         Data.commercials = commercials;
-
     }
 
     private void showCommercial() {
