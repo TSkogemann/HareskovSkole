@@ -10,21 +10,10 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-    <!-- fragment layout start -->
-    <LinearLayout
-        android:id="@+id/home_main_content"
+    <FrameLayout
+        android:id="@+id/activity_menu__content_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ListView
-            android:id="@+id/news_list"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@null"
-            android:dividerHeight="0dp">
-        </ListView>
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
     <include
         layout="@layout/app_bar_home"

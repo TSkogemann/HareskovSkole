@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.thsk.hareskovskole.HomeActivity;
+import com.example.thsk.hareskovskole.NewsActivity;
 import com.example.thsk.hareskovskole.R;
 
 import butterknife.BindView;
@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment {
         @Override
         public void onClick(View v) {
             // going straight to homefragmentactivity like the api call succeded
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            Intent intent = new Intent(getActivity(), NewsActivity.class);
             startActivity(intent);
         }
     });

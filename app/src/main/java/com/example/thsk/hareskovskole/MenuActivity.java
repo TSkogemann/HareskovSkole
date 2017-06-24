@@ -1,15 +1,11 @@
 package com.example.thsk.hareskovskole;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.LightingColorFilter;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,29 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import com.example.thsk.hareskovskole.commercials.CommercialDialog;
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
-import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
-import com.example.thsk.hareskovskole.news.NewsFragments;
-import com.example.thsk.hareskovskole.utils.Data;
-import com.example.thsk.hareskovskole.utils.Utility;
-import com.urbanairship.Autopilot;
-import com.urbanairship.UAirship;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity
+public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.nav_top_left_main_text)
@@ -47,16 +30,17 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.nav_top_left_secondary_text)
     TextView topLeftSecondaryText;
 
-    private int fragmentResource = R.id.home_main_content;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+    public void setContentView(@LayoutRes int layoutResID) {
+        DrawerLayout drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_menu, null);
+        FrameLayout contentFrameLayout = (FrameLayout) drawerLayout.findViewById(R.id.activity_menu__content_frame_layout);
+        contentFrameLayout.removeAllViews();
+        getLayoutInflater().inflate(layoutResID, contentFrameLayout);
+        super.setContentView(drawerLayout);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initFloatingBar();
-        applyFirstFragment();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -65,72 +49,11 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //setup urbanairship
-        initUrbanAirship();
-
-        //setup commercials
-        setupCommercials();
-
-        //show commercial
-        showCommercial();
-
     }
 
-    private void setupCommercials() {
-        List<CommercialItem> commercials = new ArrayList<>();
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        Data.commercials = commercials;
-    }
-
-    private void showCommercial() {
-        // get the right commercial
-        int numberOfElements = Data.commercials.size();
-        CommercialItem commercialToBeShown = Data.commercials.get(Utility.randomNumber(numberOfElements-1,0));
-
-        // Create an instance of the dialog fragment and show it
-        Dialog dialog = new CommercialDialog(this, commercialToBeShown);
-        dialog.show();
-}
-
-    private void initUrbanAirship() {
-
-        Autopilot.automaticTakeOff(this);
-
-        //setting user notifications = true
-        UAirship.shared().getPushManager().setUserNotificationsEnabled(true);
-        UAirship.shared().getInAppMessageManager().setAutoDisplayEnabled(true);
-
-        //Enabling in-app messaging
-        UAirship.shared().getInAppMessageManager().setAutoDisplayEnabled(true);
-
-
-        //subscribing to tags
-        Set<String> tags = new HashSet<>();
-        tags.add("test111");
-        UAirship.shared().getPushManager().setTags(tags);
-
-        //setting sound
-        UAirship.shared().getPushManager().setSoundEnabled(true);
-
-        //printing out channelID
-        String channelId = UAirship.shared().getPushManager().getChannelId();
-        System.out.println("Urban Airship Application channel ID: " + channelId);
-
-    }
-
-    private void applyFirstFragment() {
-        //not adding this transaction to backStack
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(fragmentResource, new NewsFragments());
-        ft.addToBackStack(LoginFragment.class.getSimpleName());
-        ft.commit();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     private void initTopbar() {
@@ -201,7 +124,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_Temp) {
-            showCommercial();
+//            showCommercial();
 
         } else if (id == R.id.nav_Settings) {
 
