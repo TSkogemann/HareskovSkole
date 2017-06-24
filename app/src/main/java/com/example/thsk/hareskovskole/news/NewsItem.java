@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class NewsItem implements Serializable {
 
-    private Enum newsItemType;
+    private NewsItemType newsItemType;
     private String title;
     private String author;
     // Used in the news feed along with the title
@@ -98,11 +98,11 @@ public class NewsItem implements Serializable {
         this.headline = headline;
     }
 
-    public Enum getNewsItemType() {
+    public NewsItemType getNewsItemType() {
         return newsItemType;
     }
 
-    public void setNewsItemType(Enum newsItemType) {
+    public void setNewsItemType(NewsItemType newsItemType) {
         this.newsItemType = newsItemType;
     }
 }
