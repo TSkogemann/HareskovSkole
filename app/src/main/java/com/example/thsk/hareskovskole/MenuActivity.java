@@ -3,9 +3,7 @@ package com.example.thsk.hareskovskole;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,22 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    @BindView(R.id.nav_top_left_main_text)
-    TextView topLeftMainText;
-    @BindView(R.id.nav_top_left_secondary_text)
-    TextView topLeftSecondaryText;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -56,8 +45,8 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void initTopbar() {
-        topLeftMainText.setText("_Dit navn her");
-        topLeftSecondaryText.setText("_blabblal blala");
+        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText("_Dit navn her");
+        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText("_blabblal blala");
     }
 
     @Override
@@ -74,8 +63,6 @@ public class MenuActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
-        // binding after the menu is inflated, so we can bind the menu items aswell
-        ButterKnife.bind(this);
         initTopbar();
         return true;
     }

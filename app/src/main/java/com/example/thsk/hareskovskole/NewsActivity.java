@@ -35,10 +35,10 @@ import butterknife.ButterKnife;
 
 public class NewsActivity extends MenuActivity {
 
-    @BindView(R.id.nav_top_left_main_text)
-    TextView topLeftMainText;
-    @BindView(R.id.nav_top_left_secondary_text)
-    TextView topLeftSecondaryText;
+//    @BindView(R.id.nav_top_left_main_text)
+//    TextView topLeftMainText;
+//    @BindView(R.id.nav_top_left_secondary_text)
+//    TextView topLeftSecondaryText;
 
     private int fragmentResource = R.id.home_main_content;
 

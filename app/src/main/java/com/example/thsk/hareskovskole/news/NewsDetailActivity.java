@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
 
 import butterknife.BindView;
@@ -16,11 +17,7 @@ import butterknife.ButterKnife;
 import static com.example.thsk.hareskovskole.news.NewsItem.NewsItemType.ARTICLE;
 import static com.example.thsk.hareskovskole.news.NewsItem.NewsItemType.COMMERCIAL;
 
-/**
- * Created by thsk on 21/06/2017.
- */
-
-public class NewsDetailActivity extends AppCompatActivity {
+public class NewsDetailActivity extends MenuActivity {
 
     @BindView(R.id.news_detail_title)
     TextView newsDetailTitleTv;
