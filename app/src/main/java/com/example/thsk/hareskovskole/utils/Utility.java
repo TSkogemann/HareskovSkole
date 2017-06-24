@@ -3,6 +3,7 @@ package com.example.thsk.hareskovskole.utils;
 import android.content.Context;
 
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
+import com.example.thsk.hareskovskole.news.NewsItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +50,18 @@ public class Utility {
         List<String> words = Arrays.asList("fox","two","mercurial","master", "event","todo","version","ok","run","android","monitor", "Ole");
         return words.get(randomNumber(words.size()-1 , 0));
     }
+    public static NewsItem getRandomNewsItem() {
+
+        String title = Utility.randomText(4, 1);
+        String mainText = Utility.randomText(400, 4);
+        String feedText = Utility.randomText(150, 0);
+        String picture = Utility.randomPicture();
+        String mainPicture = Utility.randomPicture();
+        String mainPictureText = Utility.randomText(250,0);
+        String headline = Utility.randomText(6,2);
+        String author = Utility.randomText(8,2);
+        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author);
+    }
 
     public static CommercialItem getCommercial() {
         String dialogTitle = randomText(3,1);
@@ -57,6 +70,7 @@ public class Utility {
         String dialogDetailTitle = randomText(5,1);
         String dialogDetailPicture = randomPicture();
         String dialogDetailText = randomText(100,1);
-        return new CommercialItem(dialogTitle,dialogPicture,dialogText,dialogDetailTitle,dialogDetailPicture,dialogDetailText);
+        NewsItem newsItem = getRandomNewsItem();
+        return new CommercialItem(dialogTitle,dialogPicture,dialogText,dialogDetailTitle,dialogDetailPicture,dialogDetailText,null, newsItem);
     }
 }

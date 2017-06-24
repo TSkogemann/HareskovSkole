@@ -66,23 +66,12 @@ public class NewsFragments extends Fragment {
         ArrayList<NewsItem> newsList = new ArrayList<>();
 
         for (int i=0; i<numberOfItems; i++) {
-            newsList.add(getRandomNewsItem());
+            newsList.add(Utility.getRandomNewsItem());
         }
         return newsList;
     }
 
-    private NewsItem getRandomNewsItem() {
 
-        String title = Utility.randomText(4, 1);
-        String mainText = Utility.randomText(400, 4);
-        String feedText = Utility.randomText(150, 0);
-        String picture = Utility.randomPicture();
-        String mainPicture = Utility.randomPicture();
-        String mainPictureText = Utility.randomText(250,0);
-        String headline = Utility.randomText(6,2);
-        String author = Utility.randomText(8,2);
-        return new NewsItem(title, feedText, picture,mainText, mainPicture,mainPictureText,headline,author);
-    }
 
 
 }

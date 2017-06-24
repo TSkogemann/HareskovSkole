@@ -26,11 +26,14 @@ import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 import com.example.thsk.hareskovskole.news.NewsFragments;
+import com.example.thsk.hareskovskole.utils.Data;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.urbanairship.Autopilot;
 import com.urbanairship.UAirship;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
@@ -66,14 +69,31 @@ public class HomeActivity extends AppCompatActivity
         //setup urbanairship
         initUrbanAirship();
 
+        //setup commercials
+        setupCommercials();
+
         //show commercial
         showCommercial();
 
     }
 
+    private void setupCommercials() {
+        List<CommercialItem> commercials = new ArrayList<>();
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        Data.commercials = commercials;
+
+    }
+
     private void showCommercial() {
         // get the right commercial
-        CommercialItem commercialToBeShown = Utility.getCommercial();
+        int numberOfElements = Data.commercials.size();
+        CommercialItem commercialToBeShown = Data.commercials.get(Utility.randomNumber(numberOfElements-1,0));
 
         // Create an instance of the dialog fragment and show it
         Dialog dialog = new CommercialDialog(this, commercialToBeShown);
