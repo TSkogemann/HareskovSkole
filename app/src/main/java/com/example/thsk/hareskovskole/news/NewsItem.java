@@ -22,7 +22,7 @@ public class NewsItem implements Serializable {
 
     public enum NewsItemType { ARTICLE, COMMERCIAL }
     public NewsItem(String title, String feedText, String feedpicture,
-                    String mainText, String mainPicture, String mainPictureText, String headline, String author, Enum newsItemType) {
+                    String mainText, String mainPicture, String mainPictureText, String headline, String author, NewsItemType newsItemType) {
         this.title = title;
         this.feedText = feedText;
         this.feedpicture = feedpicture;
