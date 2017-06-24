@@ -19,7 +19,7 @@ public class CommercialDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commercial_detail);
-        currentItem = (CommercialItem) getIntent().getSerializableExtra("item");
+        currentItem = (CommercialItem) getIntent().getSerializableExtra("commercial");
 
     }
 }
