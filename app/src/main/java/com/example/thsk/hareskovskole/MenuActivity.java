@@ -19,7 +19,7 @@ import com.example.thsk.hareskovskole.commercials.CommercialDialog;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
-import com.example.thsk.hareskovskole.utils.Data;
+import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 
 public class MenuActivity extends AppCompatActivity
@@ -53,6 +53,11 @@ public class MenuActivity extends AppCompatActivity
     private void initTopbar() {
         ((TextView) findViewById(R.id.nav_top_left_main_text)).setText("_Dit navn her");
         ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText("_blabblal blala");
+    }
+
+    public void setTopbarText(String mainText, String secondaryText) {
+        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText(mainText);
+        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(secondaryText);
     }
 
     @Override
@@ -120,8 +125,8 @@ public class MenuActivity extends AppCompatActivity
 
     private void showCommercial() {
         // get the right commercial
-        int numberOfElements = Data.commercials.size();
-        CommercialItem commercialToBeShown = Data.commercials.get(Utility.randomNumber(numberOfElements-1,0));
+        int numberOfElements = NewsActivity.currentUser.getMergedCommercials().size();
+        CommercialItem commercialToBeShown = NewsActivity.currentUser.getMergedCommercials().get(Utility.randomNumber(numberOfElements - 1, 0));
 
         // Create an instance of the dialog fragment and show it
         Dialog dialog = new CommercialDialog(this, commercialToBeShown);

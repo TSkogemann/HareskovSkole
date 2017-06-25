@@ -1,26 +1,16 @@
 package com.example.thsk.hareskovskole;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.thsk.hareskovskole.commercials.CommercialDialog;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.login.LoginFragment;
-import com.example.thsk.hareskovskole.messages.MessageActivity;
-import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 import com.example.thsk.hareskovskole.news.NewsFragments;
-import com.example.thsk.hareskovskole.utils.Data;
+import com.example.thsk.hareskovskole.utils.data.Environment;
+import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.urbanairship.Autopilot;
 import com.urbanairship.UAirship;
@@ -30,35 +20,45 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class NewsActivity extends MenuActivity {
 
-//    @BindView(R.id.nav_top_left_main_text)
-//    TextView topLeftMainText;
-//    @BindView(R.id.nav_top_left_secondary_text)
-//    TextView topLeftSecondaryText;
-
     private int fragmentResource = R.id.home_main_content;
+    public static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        setupUser();
+        setupData();
         applyFirstFragment();
 
         //setup urbanairship
         initUrbanAirship();
 
-        //setup commercials
-        setupCommercials();
-
         //show commercial
         showCommercial();
     }
 
-    private void setupCommercials() {
+    private void setupData() {
+    setTopbarText(currentUser.getName(),currentUser.getPrimaryEnvironment().getEnvironmentName());
+    }
+
+    private void setupUser() {
+        String primaryColor = "#e60000";
+        String primaryColorDark ="#b30000";
+        String accentColor ="#66ff66";
+        List<String> klasser = new ArrayList<>();
+        klasser.add("6A");
+        Environment env = new Environment("Hareskov skole",klasser, Environment.EnvironmentType.SCHOOL,
+                150,setupCommercials(),Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
+        User user = new User("Thomas Skogemann", User.UserType.STUDENT,env);
+        currentUser = user;
+
+    }
+
+    private List<CommercialItem> setupCommercials() {
         List<CommercialItem> commercials = new ArrayList<>();
         commercials.add(Utility.getCommercial());
         commercials.add(Utility.getCommercial());
@@ -67,13 +67,13 @@ public class NewsActivity extends MenuActivity {
         commercials.add(Utility.getCommercial());
         commercials.add(Utility.getCommercial());
         commercials.add(Utility.getCommercial());
-        Data.commercials = commercials;
+        return commercials;
     }
 
     private void showCommercial() {
         // get the right commercial
-        int numberOfElements = Data.commercials.size();
-        CommercialItem commercialToBeShown = Data.commercials.get(Utility.randomNumber(numberOfElements-1,0));
+        int numberOfElements = currentUser.getMergedCommercials().size();
+        CommercialItem commercialToBeShown = currentUser.getMergedCommercials().get(Utility.randomNumber(numberOfElements-1,0));
 
         // Create an instance of the dialog fragment and show it
         Dialog dialog = new CommercialDialog(this, commercialToBeShown);
@@ -107,7 +107,6 @@ public class NewsActivity extends MenuActivity {
     }
 
     private void applyFirstFragment() {
-        //not adding this transaction to backStack
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(fragmentResource, new NewsFragments());
         ft.addToBackStack(LoginFragment.class.getSimpleName());

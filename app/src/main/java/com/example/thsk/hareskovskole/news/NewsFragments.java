@@ -12,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.thsk.hareskovskole.NewsActivity;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
-import com.example.thsk.hareskovskole.utils.Data;
+import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class NewsFragments extends Fragment {
     private void setupNewsList() {
         newsList = getRandomNewsList(15);
         List<NewsItem> commercialList = new ArrayList<>();
-        for (CommercialItem com : Data.commercials) {
+        for (CommercialItem com : NewsActivity.currentUser.getMergedCommercials()) {
             if (com.getNewsItem() != null) {
              commercialList.add(com.getNewsItem());
             }

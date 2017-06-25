@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.news.NewsItem;
 
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
  * Created by thsk on 23/06/2017.
  */
 
-public class CommercialDetailActivity extends AppCompatActivity {
+public class CommercialDetailActivity extends MenuActivity {
 
     @BindView(R.id.commercial_detail_title)
     TextView commercialDetailTitle;
