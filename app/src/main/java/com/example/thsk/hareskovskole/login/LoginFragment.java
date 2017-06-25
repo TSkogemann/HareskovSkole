@@ -100,7 +100,7 @@ public class LoginFragment extends Fragment {
         for (String group : primaryEnviroment.getGroups()){
             RealmString temp = new RealmString();
             temp.setString(group);
-            realmGroups.add(temp);
+            realmGroups.add(myRealm.copyToRealm(temp));
         }
         realmPrimaryEnvironment.setGroups(realmGroups);
 
