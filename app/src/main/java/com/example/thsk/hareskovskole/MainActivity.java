@@ -6,8 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.login.CreateUserFragment;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.Environment;
+import com.example.thsk.hareskovskole.utils.data.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,7 +29,6 @@ public class MainActivity extends FragmentActivity {
     TextView topBarNewUserTv;
 
     private int fragmentResource;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,5 +81,4 @@ public class MainActivity extends FragmentActivity {
         ft.addToBackStack(LoginFragment.class.getSimpleName());
         ft.commit();
     }
-
 }

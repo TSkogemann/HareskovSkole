@@ -2,13 +2,14 @@ package com.example.thsk.hareskovskole.utils.data;
 
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by thsk on 25/06/2017.
  */
 
-public class Environment {
+public class Environment implements Serializable {
 
     private String environmentName;
     private List<String> groups;

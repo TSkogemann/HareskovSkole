@@ -11,6 +11,13 @@ import android.widget.Button;
 
 import com.example.thsk.hareskovskole.NewsActivity;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.commercials.CommercialItem;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.Environment;
+import com.example.thsk.hareskovskole.utils.data.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +29,7 @@ import butterknife.ButterKnife;
 public class LoginFragment extends Fragment {
     @BindView(R.id.loginButton)
     Button loginButton;
+    public User currentUser;
 
 
 
@@ -31,6 +39,7 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this,view);
         init();
+        setupUser();
         return view;
     }
 
@@ -40,8 +49,33 @@ public class LoginFragment extends Fragment {
         public void onClick(View v) {
             // going straight to homefragmentactivity like the api call succeded
             Intent intent = new Intent(getActivity(), NewsActivity.class);
+            intent.putExtra("user",currentUser);
             startActivity(intent);
         }
     });
+    }
+
+    private void setupUser() {
+        String primaryColor = "#e60000";
+        String primaryColorDark ="#b30000";
+        String accentColor ="#66ff66";
+        List<String> klasser = new ArrayList<>();
+        klasser.add("6A");
+        Environment env = new Environment("Hareskov skole",klasser, Environment.EnvironmentType.SCHOOL,
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
+        User user = new User("Thomas Skogemann", User.UserType.STUDENT,env);
+        currentUser = user;
+    }
+
+    private List<CommercialItem> setupCommercials() {
+        List<CommercialItem> commercials = new ArrayList<>();
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        commercials.add(Utility.getCommercial());
+        return commercials;
     }
 }

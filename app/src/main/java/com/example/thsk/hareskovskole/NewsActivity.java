@@ -23,7 +23,7 @@ import java.util.Set;
 public class NewsActivity extends MenuActivity {
 
     private int fragmentResource = R.id.home_main_content;
-    public static User currentUser;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,6 @@ public class NewsActivity extends MenuActivity {
         setContentView(R.layout.activity_news);
 
         setupUser();
-        setupData();
         applyFirstFragment();
 
         //setup urbanairship
@@ -41,34 +40,10 @@ public class NewsActivity extends MenuActivity {
         showCommercial();
     }
 
-    private void setupData() {
-    setTopbarText(currentUser.getName(),currentUser.getPrimaryEnvironment().getEnvironmentName());
-    }
-
     private void setupUser() {
-        String primaryColor = "#e60000";
-        String primaryColorDark ="#b30000";
-        String accentColor ="#66ff66";
-        List<String> klasser = new ArrayList<>();
-        klasser.add("6A");
-        Environment env = new Environment("Hareskov skole",klasser, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(),Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
-        User user = new User("Thomas Skogemann", User.UserType.STUDENT,env);
-        currentUser = user;
-
+        currentUser = (User) getIntent().getSerializableExtra("user");
     }
 
-    private List<CommercialItem> setupCommercials() {
-        List<CommercialItem> commercials = new ArrayList<>();
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        commercials.add(Utility.getCommercial());
-        return commercials;
-    }
 
     private void showCommercial() {
         // get the right commercial
