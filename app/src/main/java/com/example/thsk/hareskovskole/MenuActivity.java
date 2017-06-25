@@ -2,6 +2,7 @@ package com.example.thsk.hareskovskole;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
@@ -25,6 +26,8 @@ import com.example.thsk.hareskovskole.utils.Utility;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private User currentUser;
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         DrawerLayout drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_menu, null);
@@ -43,6 +46,10 @@ public class MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+         // setting toolbar color
+        toolbar.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
     }
 
     @Override
@@ -51,14 +58,10 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void initTopbar() {
-        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText("_Dit navn her");
-        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText("_blabblal blala");
+        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText(currentUser.getName());
+        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(currentUser.getPrimaryEnvironment().getEnvironmentName());
     }
 
-    public void setTopbarText(String mainText, String secondaryText) {
-        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText(mainText);
-        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(secondaryText);
-    }
 
     @Override
     public void onBackPressed() {
@@ -125,8 +128,8 @@ public class MenuActivity extends AppCompatActivity
 
     private void showCommercial() {
         // get the right commercial
-        int numberOfElements = NewsActivity.currentUser.getMergedCommercials().size();
-        CommercialItem commercialToBeShown = NewsActivity.currentUser.getMergedCommercials().get(Utility.randomNumber(numberOfElements - 1, 0));
+        int numberOfElements = currentUser.getMergedCommercials().size();
+        CommercialItem commercialToBeShown = currentUser.getMergedCommercials().get(Utility.randomNumber(numberOfElements - 1, 0));
 
         // Create an instance of the dialog fragment and show it
         Dialog dialog = new CommercialDialog(this, commercialToBeShown);

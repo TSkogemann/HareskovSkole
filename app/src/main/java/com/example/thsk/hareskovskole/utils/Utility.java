@@ -1,6 +1,7 @@
 package com.example.thsk.hareskovskole.utils;
 
 import android.content.Context;
+import android.graphics.Color;
 
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
@@ -19,6 +20,11 @@ public class Utility {
     public static float pxFromDp(float dp, Context mContext) {
         return dp * mContext.getResources().getDisplayMetrics().density;
     }
+
+    public static int stringToColor(String colour) {
+        return Color.parseColor(colour);
+    }
+
 
     // helper functions to generate random data
     public static String randomText(int maxNumberOfWords, int minNumberOfWords){

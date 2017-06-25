@@ -23,7 +23,7 @@ import java.util.Set;
 public class NewsActivity extends MenuActivity {
 
     private int fragmentResource = R.id.home_main_content;
-    private User currentUser;
+    public static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
