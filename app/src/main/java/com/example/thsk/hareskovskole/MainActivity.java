@@ -19,6 +19,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 
 public class MainActivity extends FragmentActivity {
@@ -37,13 +39,21 @@ public class MainActivity extends FragmentActivity {
         fragmentResource = R.id.main_content;
         ButterKnife.bind(this);
         applyFirstFragment();
+        setupRealm();
         init();
+    }
+
+    private void setupRealm() {
+        RealmConfiguration config = new RealmConfiguration
+                .Builder(this)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
     private void init() {
 
         topBarLoginTv.setClickable(false);
-
         topBarLoginTv.setBackgroundResource(R.drawable.side_nav_bar);
         topBarNewUserTv.setClickable(true);
         topBarNewUserTv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));

@@ -22,6 +22,10 @@ import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,8 +52,15 @@ public class MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         currentUser = (User) getIntent().getSerializableExtra("user");
+        getCurrentUserFromRealm();
          // setting toolbar color
         toolbar.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+    }
+
+    private void getCurrentUserFromRealm() {
+        Realm myRealm = Realm.getDefaultInstance();
+        RealmResults<RealmUser> realmUser = myRealm.where(RealmUser.class).findAll();
+        System.out.println(realmUser.toString());
     }
 
     @Override
@@ -58,8 +69,8 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void initTopbar() {
-        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText(currentUser.getName());
-        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(currentUser.getPrimaryEnvironment().getEnvironmentName());
+        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText("_user name");
+        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText("user enviroment");
     }
 
 

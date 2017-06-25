@@ -15,22 +15,28 @@ import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.User;
+import com.example.thsk.hareskovskole.utils.data.realm.RealmEnvironment;
+import com.example.thsk.hareskovskole.utils.data.realm.RealmString;
+import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
+import io.realm.RealmList;
 
 /**
  * Created by thsk on 15/06/2017.
  */
 
 public class LoginFragment extends Fragment {
+
     @BindView(R.id.loginButton)
     Button loginButton;
     public User currentUser;
-
+    private Realm myRealm;
 
 
     @Override
@@ -40,8 +46,15 @@ public class LoginFragment extends Fragment {
         ButterKnife.bind(this,view);
         init();
         setupUser();
+        setupRealm();
         return view;
     }
+
+    private void setupRealm() {
+        myRealm = Realm.getDefaultInstance();
+    }
+
+
 
     private void init() {
     loginButton.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +63,50 @@ public class LoginFragment extends Fragment {
             // going straight to homefragmentactivity like the api call succeded
             Intent intent = new Intent(getActivity(), NewsActivity.class);
             intent.putExtra("user",currentUser);
+            saveCurrentUser(currentUser);
             startActivity(intent);
         }
     });
+    }
+
+    private void saveCurrentUser(User currentUser) {
+        Environment primaryEnviroment = currentUser.getPrimaryEnvironment();
+        myRealm.beginTransaction();
+
+        // realm user
+        RealmUser realmUser = myRealm.createObject(RealmUser.class);
+        realmUser.setName(currentUser.getName());
+        realmUser.setUsertype(currentUser.getUserType().toString());
+
+        // primary environment
+        RealmEnvironment realmPrimaryEnvironment = myRealm.createObject(RealmEnvironment.class);
+
+        //environment info
+        realmPrimaryEnvironment.setEnvironmentName(primaryEnviroment.getEnvironmentName());
+        realmPrimaryEnvironment.setEnvironmentType(primaryEnviroment.getEnvironmentType().toString());
+
+        // account balance
+        realmPrimaryEnvironment.setAccountBalance(primaryEnviroment.getAccountBalance());
+
+        //primary environment styles
+        realmPrimaryEnvironment.setLogo(primaryEnviroment.getLogo());
+        realmPrimaryEnvironment.setSmallLogo(primaryEnviroment.getSmallLogo());
+        realmPrimaryEnvironment.setPrimaryColor(primaryEnviroment.getPrimaryColor());
+        realmPrimaryEnvironment.setPrimaryColorDark(primaryEnviroment.getPrimaryColorDark());
+        realmPrimaryEnvironment.setAccentColor(primaryEnviroment.getAccentColor());
+
+        //setting primary realm groups
+        RealmList<RealmString> realmGroups = new RealmList<>();
+        for (String group : primaryEnviroment.getGroups()){
+            RealmString temp = new RealmString();
+            temp.setString(group);
+            realmGroups.add(temp);
+        }
+        realmPrimaryEnvironment.setGroups(realmGroups);
+
+        //setting primary environment to user
+        realmUser.setPrimaryEnvironment(realmPrimaryEnvironment);
+        myRealm.commitTransaction();
     }
 
     private void setupUser() {
