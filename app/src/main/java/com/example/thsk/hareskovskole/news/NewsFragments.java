@@ -74,7 +74,7 @@ public class NewsFragments extends Fragment {
              commercialList.add(com.getNewsItem());
             }
         }
-        for(int i=2; i < newsList.size() ; i+=2){
+        for(int i=2; i < newsList.size() ; i+=3){
             if(commercialList.size() >0){
                 int index = Utility.randomNumber(commercialList.size()-1,0);
                 NewsItem commercialToAdd = commercialList.get(index);

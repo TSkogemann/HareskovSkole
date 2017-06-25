@@ -69,7 +69,11 @@ public class NewsListAdapter extends BaseAdapter {
         holder.title.setText(newsItemArrayList.get(position).getTitle());
         holder.title.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
         holder.title.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 32);
-        holder.title.setTextColor(context.getResources().getColor(R.color.black));
+        if(newsItemArrayList.get(position).getNewsItemType().equals(NewsItem.NewsItemType.ARTICLE)) {
+            holder.title.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+        } else {
+            holder.title.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        }
         holder.feedtext.setText(newsItemArrayList.get(position).getFeedText());
         holder.feedtext.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
         holder.feedtext.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);

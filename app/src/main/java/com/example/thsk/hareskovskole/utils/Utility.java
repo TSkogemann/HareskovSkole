@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -83,6 +84,13 @@ public class Utility {
         String dialogDetailPicture = randomPicture();
         String dialogDetailText = randomText(100,1);
         NewsItem newsItem = getRandomNewsItemCommercial();
-        return new CommercialItem(dialogTitle,dialogPicture,dialogText,dialogDetailTitle,dialogDetailPicture,dialogDetailText,null, newsItem);
+        List<String> dialogDetailExtraPictures = new ArrayList<>();
+        dialogDetailExtraPictures.add(randomPicture());
+        dialogDetailExtraPictures.add(randomPicture());
+        dialogDetailExtraPictures.add(randomPicture());
+        dialogDetailExtraPictures.add(randomPicture());
+        dialogDetailExtraPictures.add(randomPicture());
+
+        return new CommercialItem(dialogTitle,dialogPicture,dialogText,dialogDetailTitle,dialogDetailPicture,dialogDetailText,dialogDetailExtraPictures, newsItem);
     }
 }

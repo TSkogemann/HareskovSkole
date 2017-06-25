@@ -83,7 +83,7 @@ public class CommercialDialog extends AlertDialog {
     }
 
     private void setDialogData() {
-        //  commercialDialogTitleTv.setText(currentCommercial.getDialogTitle());
+          commercialDialogTitleTv.setText(currentCommercial.getDialogTitle());
         Glide.with(getContext())
                 .load(currentCommercial.getDialogDetailPicture())
                 .error(R.drawable.ic_menu_send)
