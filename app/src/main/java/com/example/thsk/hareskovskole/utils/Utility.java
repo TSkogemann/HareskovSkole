@@ -7,11 +7,15 @@ import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.data.realm.RealmParser;
+import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by thsk on 20/06/2017.
@@ -27,8 +31,20 @@ public class Utility {
         return Color.parseColor(colour);
     }
 
+
+    // the Database should only have 1 saved
     public static void saveCurrentUser(User currentUser){
+        // deleting all old users, there should never be more than one in the DB
+        deleteAllUsers(Realm.getDefaultInstance());
+
+        // saving the current user
         RealmParser.parseUserToRealmObject(currentUser);
+    }
+    private static void deleteAllUsers(Realm myRealm) {
+        myRealm.beginTransaction();
+        RealmResults users = myRealm.where(RealmUser.class).findAll();
+        users.clear();
+        myRealm.commitTransaction();
     }
 
     public static User loadCurrentUser(){

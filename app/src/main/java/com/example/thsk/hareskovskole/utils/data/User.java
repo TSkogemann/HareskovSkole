@@ -28,7 +28,6 @@ public class User implements Serializable {
         this.name = name;
         this.userType = userType;
         this.primaryEnvironment = primaryEnvironment;
-        this.mergedCommercials = primaryEnvironment.getCommercials();
     }
 
     public List<CommercialItem> getMergedCommercials() {

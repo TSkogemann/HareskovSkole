@@ -29,11 +29,31 @@ public class RealmParser {
         Realm myRealm = Realm.getDefaultInstance();
         RealmResults<RealmUser> realmUser = myRealm.where(RealmUser.class).findAll();
 
-        // create user that should be returned
+        // create user that should be returned and settting minimum required bt constructor
         String userName = realmUser.get(0).getName();
         User.UserType userType = getUserTypeEnum(realmUser.get(0).getUsertype());
         Environment primaryEnv = getPrimaryEnv(realmUser.get(0).getPrimaryEnvironment());
         User user = new User(userName, userType, primaryEnv);
+
+        //get secondary env
+        if (realmUser.get(0).getSecondaryEnvironments() != null && realmUser.get(0).getSecondaryEnvironments().size() > 0) {
+            List<Environment> secondEnv = new ArrayList<>();
+            for (RealmEnvironment env : realmUser.get(0).getSecondaryEnvironments()) {
+                secondEnv.add(getPrimaryEnv(env));
+            }
+            user.setSecondaryEnvironments(secondEnv);
+        }
+        // set mergedlist
+        List<CommercialItem> mergedCommercialList = user.getPrimaryEnvironment().getCommercials();
+        if (user.getSecondaryEnvironments() != null && user.getSecondaryEnvironments().size() > 0) {
+
+            for (Environment env : user.getSecondaryEnvironments()) {
+                for (CommercialItem item : env.getCommercials()) {
+                    mergedCommercialList.add(item);
+                }
+            }
+        }
+        user.setMergedCommercials(mergedCommercialList);
         return user;
     }
 
@@ -118,7 +138,7 @@ public class RealmParser {
         if (newsItemType.equals("ARTICLE")) {
             return NewsItem.NewsItemType.ARTICLE;
         }
-        if (newsItemType.equals("COMMERCIAL")){
+        if (newsItemType.equals("COMMERCIAL")) {
             return NewsItem.NewsItemType.COMMERCIAL;
         }
         //if we get here something is wrong
@@ -155,6 +175,8 @@ public class RealmParser {
     // -------------------  save user    --------------------------------------
     public static void parseUserToRealmObject(User currentUser) {
         Realm myRealm = Realm.getDefaultInstance();
+
+        //parsing current user
         Environment primaryEnvironment = currentUser.getPrimaryEnvironment();
         myRealm.beginTransaction();
 
@@ -180,6 +202,7 @@ public class RealmParser {
         myRealm.commitTransaction();
 
     }
+
 
     @NonNull
     private static RealmEnvironment getRealmEnvironment(Realm myRealm, Environment primaryEnvironment) {
