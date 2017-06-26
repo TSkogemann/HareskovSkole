@@ -36,7 +36,6 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.loginButton)
     Button loginButton;
     public User currentUser;
-    private Realm myRealm;
 
 
     @Override
@@ -46,15 +45,8 @@ public class LoginFragment extends Fragment {
         ButterKnife.bind(this,view);
         init();
         setupUser();
-        setupRealm();
         return view;
     }
-
-    private void setupRealm() {
-        myRealm = Realm.getDefaultInstance();
-    }
-
-
 
     private void init() {
     loginButton.setOnClickListener(new View.OnClickListener() {
@@ -63,52 +55,12 @@ public class LoginFragment extends Fragment {
             // going straight to homefragmentactivity like the api call succeded
             Intent intent = new Intent(getActivity(), NewsActivity.class);
             intent.putExtra("user",currentUser);
-            saveCurrentUser(currentUser);
+            Utility.saveCurrentUser(currentUser);
             startActivity(intent);
         }
     });
     }
 
-    private void saveCurrentUser(User currentUser) {
-       Utility.saveCurrentUser(currentUser);
-        /* Environment primaryEnviroment = currentUser.getPrimaryEnvironment();
-        myRealm.beginTransaction();
-
-        // realm user
-        RealmUser realmUser = myRealm.createObject(RealmUser.class);
-        realmUser.setName(currentUser.getName());
-        realmUser.setUsertype(currentUser.getUserType().toString());
-
-        // primary environment
-        RealmEnvironment realmPrimaryEnvironment = myRealm.createObject(RealmEnvironment.class);
-
-        //environment info
-        realmPrimaryEnvironment.setEnvironmentName(primaryEnviroment.getEnvironmentName());
-        realmPrimaryEnvironment.setEnvironmentType(primaryEnviroment.getEnvironmentType().toString());
-
-        // account balance
-        realmPrimaryEnvironment.setAccountBalance(primaryEnviroment.getAccountBalance());
-
-        //primary environment styles
-        realmPrimaryEnvironment.setLogo(primaryEnviroment.getLogo());
-        realmPrimaryEnvironment.setSmallLogo(primaryEnviroment.getSmallLogo());
-        realmPrimaryEnvironment.setPrimaryColor(primaryEnviroment.getPrimaryColor());
-        realmPrimaryEnvironment.setPrimaryColorDark(primaryEnviroment.getPrimaryColorDark());
-        realmPrimaryEnvironment.setAccentColor(primaryEnviroment.getAccentColor());
-
-        //setting primary realm groups
-        RealmList<RealmString> realmGroups = new RealmList<>();
-        for (String group : primaryEnviroment.getGroups()){
-            RealmString temp = new RealmString();
-            temp.setString(group);
-            realmGroups.add(myRealm.copyToRealm(temp));
-        }
-        realmPrimaryEnvironment.setGroups(realmGroups);
-
-        //setting primary environment to user
-        realmUser.setPrimaryEnvironment(realmPrimaryEnvironment);
-        myRealm.commitTransaction(); */
-    }
 
     private void setupUser() {
         String primaryColor = "#e60000";
@@ -119,6 +71,14 @@ public class LoginFragment extends Fragment {
         Environment env = new Environment("Hareskov skole",klasser, Environment.EnvironmentType.SCHOOL,
                 150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
         User user = new User("Thomas Skogemann", User.UserType.STUDENT,env);
+        Environment env2 = new Environment("Hareskov skole2",klasser, Environment.EnvironmentType.SCHOOL,
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
+        Environment env3 = new Environment("Hareskov skole3",klasser, Environment.EnvironmentType.SCHOOL,
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
+        List<Environment> secondaryEnv = new ArrayList<>();
+        secondaryEnv.add(env2);
+        secondaryEnv.add(env3);
+        user.setSecondaryEnvironments(secondaryEnv);
         currentUser = user;
     }
 

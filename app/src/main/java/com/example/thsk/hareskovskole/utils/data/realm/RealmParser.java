@@ -43,7 +43,7 @@ public class RealmParser {
             }
             user.setSecondaryEnvironments(secondEnv);
         }
-        // set mergedlist
+      /*  // set mergedlist
         List<CommercialItem> mergedCommercialList = user.getPrimaryEnvironment().getCommercials();
         if (user.getSecondaryEnvironments() != null && user.getSecondaryEnvironments().size() > 0) {
 
@@ -52,8 +52,8 @@ public class RealmParser {
                     mergedCommercialList.add(item);
                 }
             }
-        }
-        user.setMergedCommercials(mergedCommercialList);
+        } */
+        user.setMergedCommercials();
         return user;
     }
 

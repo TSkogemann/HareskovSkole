@@ -28,14 +28,23 @@ public class User implements Serializable {
         this.name = name;
         this.userType = userType;
         this.primaryEnvironment = primaryEnvironment;
+        this.mergedCommercials = setMergedCommercials();
     }
 
     public List<CommercialItem> getMergedCommercials() {
         return mergedCommercials;
     }
 
-    public void setMergedCommercials(List<CommercialItem> mergedCommercials) {
-        this.mergedCommercials = mergedCommercials;
+    public List<CommercialItem> setMergedCommercials() {
+        List<CommercialItem> list = primaryEnvironment.getCommercials();
+        if ( secondaryEnvironments != null && secondaryEnvironments.size()>0){
+            for (Environment env : secondaryEnvironments){
+                for (CommercialItem item : env.getCommercials()){
+                    list.add(item);
+                }
+            }
+        }
+        return list;
     }
 
     public String getName() {
@@ -68,5 +77,6 @@ public class User implements Serializable {
 
     public void setSecondaryEnvironments(List<Environment> secondaryEnvironments) {
         this.secondaryEnvironments = secondaryEnvironments;
+        this.mergedCommercials = setMergedCommercials();
     }
 }
