@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.thsk.hareskovskole.NewsActivity;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
+import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.User;
@@ -68,17 +69,18 @@ public class LoginFragment extends Fragment {
         String accentColor ="#66ff66";
         List<String> klasser = new ArrayList<>();
         klasser.add("6A");
+        List<NewsItem> newslist = Utility.getRandomNewsList(15);
         Environment env = new Environment("Hareskov skole",klasser, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
         User user = new User("Thomas Skogemann", User.UserType.STUDENT,env);
         Environment env2 = new Environment("Hareskov skole2",klasser, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
         Environment env3 = new Environment("Hareskov skole3",klasser, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor);
-        List<Environment> secondaryEnv = new ArrayList<>();
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
+      /*  List<Environment> secondaryEnv = new ArrayList<>();
         secondaryEnv.add(env2);
         secondaryEnv.add(env3);
-        user.setSecondaryEnvironments(secondaryEnv);
+        user.setSecondaryEnvironments(secondaryEnv); */
         currentUser = user;
     }
 

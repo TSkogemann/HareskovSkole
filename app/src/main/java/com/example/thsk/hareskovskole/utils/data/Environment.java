@@ -1,6 +1,9 @@
 package com.example.thsk.hareskovskole.utils.data;
 
+import android.support.annotation.Nullable;
+
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
+import com.example.thsk.hareskovskole.news.NewsItem;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,6 +20,8 @@ public class Environment implements Serializable {
 
     private int accountBalance;
     private List<CommercialItem> commercials;
+    @Nullable
+    private List<NewsItem> newsItemList;
 
     // Styling
     private String logo;
@@ -30,7 +35,7 @@ public class Environment implements Serializable {
     public Environment(String environmentName, List<String> groups, EnvironmentType environmentType,
                        int accountBalance, List<CommercialItem> commercials,
                        String logo, String smallLogo, String primaryColor,
-                       String primaryColorDark, String accentColor) {
+                       String primaryColorDark, String accentColor, List<NewsItem> newsItems) {
 
         this.environmentName = environmentName;
         this.groups = groups;
@@ -42,6 +47,15 @@ public class Environment implements Serializable {
         this.primaryColor = primaryColor;
         this.primaryColorDark = primaryColorDark;
         this.accentColor = accentColor;
+        this.newsItemList = newsItems;
+    }
+
+    public List<NewsItem> getNewsItemList() {
+        return newsItemList;
+    }
+
+    public void setNewsItemList(List<NewsItem> newsItemList) {
+        this.newsItemList = newsItemList;
     }
 
     public String getEnvironmentName() {

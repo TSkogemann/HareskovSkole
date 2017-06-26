@@ -51,18 +51,11 @@ public class MenuActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        currentUser = (User) getIntent().getSerializableExtra("user");
-        getCurrentUserFromRealm();
+        currentUser = Utility.loadCurrentUser();
          // setting toolbar color
         toolbar.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
     }
 
-    private void getCurrentUserFromRealm() {
-        Realm myRealm = Realm.getDefaultInstance();
-        RealmResults<RealmUser> realmUser = myRealm.where(RealmUser.class).findAll();
-        User testUser = Utility.loadCurrentUser();
-        System.out.println(realmUser.toString() + " " + testUser.getName());
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

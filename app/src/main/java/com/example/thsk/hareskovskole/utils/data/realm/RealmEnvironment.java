@@ -1,5 +1,7 @@
 package com.example.thsk.hareskovskole.utils.data.realm;
 
+import com.example.thsk.hareskovskole.news.NewsItem;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -15,6 +17,7 @@ public class RealmEnvironment extends RealmObject {
 
     private int accountBalance;
     private RealmList<RealmCommercialItem> commercials;
+    private RealmList<RealmNewsItem> newsItemList;
 
     // Styling
     private String logo;
@@ -25,6 +28,14 @@ public class RealmEnvironment extends RealmObject {
 
     // must have empty constructor
     public RealmEnvironment() {
+    }
+
+    public RealmList<RealmNewsItem> getNewsItemList() {
+        return newsItemList;
+    }
+
+    public void setNewsItemList(RealmList<RealmNewsItem> newsItemList) {
+        this.newsItemList = newsItemList;
     }
 
     public RealmList<RealmCommercialItem> getCommercials() {

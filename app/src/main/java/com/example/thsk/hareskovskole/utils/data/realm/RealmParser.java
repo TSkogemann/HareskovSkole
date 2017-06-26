@@ -43,17 +43,7 @@ public class RealmParser {
             }
             user.setSecondaryEnvironments(secondEnv);
         }
-      /*  // set mergedlist
-        List<CommercialItem> mergedCommercialList = user.getPrimaryEnvironment().getCommercials();
-        if (user.getSecondaryEnvironments() != null && user.getSecondaryEnvironments().size() > 0) {
 
-            for (Environment env : user.getSecondaryEnvironments()) {
-                for (CommercialItem item : env.getCommercials()) {
-                    mergedCommercialList.add(item);
-                }
-            }
-        } */
-        user.setMergedCommercials();
         return user;
     }
 
@@ -69,10 +59,21 @@ public class RealmParser {
         String primaryColor = env.getPrimaryColor();
         String primaryColorDark = env.getPrimaryColorDark();
         String accentColor = env.getAccentColor();
+        List<NewsItem> newsItems = getNewsList(env.getNewsItemList());
 
         Environment environment = new Environment(name, groups, envType, accBalance,
-                commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor);
+                commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems);
         return environment;
+    }
+
+    private static List<NewsItem> getNewsList(RealmList<RealmNewsItem> newsItemList) {
+        List<NewsItem> list = new ArrayList<>();
+        if(newsItemList.size()>0){
+            for (RealmNewsItem item : newsItemList){
+                list.add(getNewsItem(item));
+            }
+        }
+        return list;
     }
 
     private static List<CommercialItem> getCommercials(RealmList<RealmCommercialItem> realmCommercials) {
@@ -95,18 +96,7 @@ public class RealmParser {
         //check for newsItem
         if (item.getNewsItem() != null) {
 
-            String newsTitle = item.getNewsItem().getTitle();
-            String feedText = item.getNewsItem().getFeedText();
-            String feedPicture = item.getNewsItem().getFeedpicture();
-            String mainText = item.getNewsItem().getMainText();
-            String mainPicture = item.getNewsItem().getMainPicture();
-            String mainPictureText = item.getNewsItem().getMainPictureText();
-            String headline = item.getNewsItem().getHeadline();
-            String author = item.getNewsItem().getAuthor();
-            NewsItem.NewsItemType newsItemType = getNewsType(item.getNewsItem().getNewsItemType());
-
-            NewsItem newsitem = new NewsItem(newsTitle, feedText, feedPicture, mainText,
-                    mainPicture, mainPictureText, headline, author, newsItemType);
+            NewsItem newsitem = getNewsItem(item.getNewsItem());
 
             commercialItem.setNewsItem(newsitem);
         }
@@ -131,6 +121,22 @@ public class RealmParser {
         }
 
         return commercialItem;
+    }
+
+    @NonNull
+    private static NewsItem getNewsItem(RealmNewsItem item) {
+        String newsTitle = item.getTitle();
+        String feedText = item.getFeedText();
+        String feedPicture = item.getFeedpicture();
+        String mainText = item.getMainText();
+        String mainPicture = item.getMainPicture();
+        String mainPictureText = item.getMainPictureText();
+        String headline = item.getHeadline();
+        String author = item.getAuthor();
+        NewsItem.NewsItemType newsItemType = getNewsType(item.getNewsItemType());
+
+        return new NewsItem(newsTitle, feedText, feedPicture, mainText,
+                mainPicture, mainPictureText, headline, author, newsItemType);
     }
 
     private static NewsItem.NewsItemType getNewsType(String newsItemType) {
@@ -223,12 +229,25 @@ public class RealmParser {
         realmPrimaryEnvironment.setPrimaryColorDark(primaryEnvironment.getPrimaryColorDark());
         realmPrimaryEnvironment.setAccentColor(primaryEnvironment.getAccentColor());
 
+        //setting newsItemList
+        RealmList<RealmNewsItem> newsItemsList = new RealmList<>();
+        if (primaryEnvironment.getNewsItemList().size() > 0) {
+            for (NewsItem item : primaryEnvironment.getNewsItemList()) {
+            RealmNewsItem temp = new RealmNewsItem();
+                newsItemsList.add(myRealm.copyToRealm(getRealmNewsItem(myRealm,item)));
+            }
+        }
+        // setting newsItemList to environment
+        realmPrimaryEnvironment.setNewsItemList(newsItemsList);
+
         //setting primary realm groups
         RealmList<RealmString> realmGroups = new RealmList<>();
-        for (String group : primaryEnvironment.getGroups()) {
-            RealmString temp = new RealmString();
-            temp.setString(group);
-            realmGroups.add(myRealm.copyToRealm(temp));
+        if (primaryEnvironment.getGroups().size()>0) {
+            for (String group : primaryEnvironment.getGroups()) {
+                RealmString temp = new RealmString();
+                temp.setString(group);
+                realmGroups.add(myRealm.copyToRealm(temp));
+            }
         }
 
         //setting groups to primary environment

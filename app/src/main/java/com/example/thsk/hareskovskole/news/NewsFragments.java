@@ -38,7 +38,7 @@ public class NewsFragments extends Fragment {
     @BindView(R.id.news_feed_picture)
     ImageView newsFeedPictureIv;
 
-    ArrayList<NewsItem> newsList;
+    ArrayList<NewsItem> newsList = new ArrayList<>();
 
 
     @Override
@@ -47,7 +47,9 @@ public class NewsFragments extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, view);
 
-        setupNewsList();
+        User currentUser = Utility.loadCurrentUser();
+        newsList.addAll(currentUser.getMergedNewsAndCommercialList());
+        //setupNewsList();
 
         ListView newsView = (ListView) getActivity().findViewById(R.id.news_list);
         newsView.setAdapter(new NewsListAdapter(getActivity(), newsList));
@@ -66,34 +68,5 @@ public class NewsFragments extends Fragment {
 
         return view;
     }
-
-    private void setupNewsList() {
-        newsList = getRandomNewsList(15);
-        List<NewsItem> commercialList = new ArrayList<>();
-        for (CommercialItem com : NewsActivity.currentUser.getMergedCommercials()) {
-            if (com.getNewsItem() != null) {
-             commercialList.add(com.getNewsItem());
-            }
-        }
-        for(int i=2; i < newsList.size() ; i+=3){
-            if(commercialList.size() >0){
-                int index = Utility.randomNumber(commercialList.size()-1,0);
-                NewsItem commercialToAdd = commercialList.get(index);
-                newsList.add(i,commercialToAdd);
-                commercialList.remove(index);
-            }
-        }
-    }
-
-    private ArrayList<NewsItem> getRandomNewsList(int numberOfItems) {
-        // This function is only used to generate random newslists
-        ArrayList<NewsItem> newsList = new ArrayList<>();
-
-        for (int i = 0; i < numberOfItems; i++) {
-            newsList.add(Utility.getRandomNewsItem());
-        }
-        return newsList;
-    }
-
 
 }

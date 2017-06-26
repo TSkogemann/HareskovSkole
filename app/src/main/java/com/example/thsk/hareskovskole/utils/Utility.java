@@ -61,6 +61,16 @@ public class Utility {
         return title;
     }
 
+    public static ArrayList<NewsItem> getRandomNewsList(int numberOfItems) {
+        // This function is only used to generate random newslists
+        ArrayList<NewsItem> newsList = new ArrayList<>();
+
+        for (int i = 0; i < numberOfItems; i++) {
+            newsList.add(Utility.getRandomNewsItem());
+        }
+        return newsList;
+    }
+
     public static String randomPicture(){
         List<String> urls = Arrays.asList(
                 "http://hareskovskole.mrburns.webhot.dk/billeder/7C_small.JPG",
