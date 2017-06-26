@@ -14,8 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.commercials.CommercialDialog;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
@@ -65,6 +68,17 @@ public class MenuActivity extends AppCompatActivity
     private void initTopbar() {
         ((TextView) findViewById(R.id.nav_top_left_main_text)).setText(currentUser.getName());
         ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(currentUser.getPrimaryEnvironment().getEnvironmentName());
+        Glide.with(this)
+                .load(currentUser.getPrimaryEnvironment().getSmallLogo())
+                .error(R.drawable.ic_menu_camera)
+                .fitCenter()
+                .into(((ImageView) findViewById(R.id.nav_top_left_icon)));
+
+        // setting background color on the topbar
+        if (currentUser.getPrimaryEnvironment().getPrimaryColor() != null) {
+            (findViewById(R.id.nav_top_left_background))
+                    .setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+        }
     }
 
 
