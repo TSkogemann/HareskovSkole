@@ -3,16 +3,23 @@ package com.example.thsk.hareskovskole;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -55,8 +62,7 @@ public class MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         currentUser = User.getUser();
-         // setting toolbar color
-        toolbar.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+
     }
 
 
@@ -66,19 +72,31 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void initTopbar() {
+        // setting toolbar color
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+
         ((TextView) findViewById(R.id.nav_top_left_main_text)).setText(currentUser.getName());
+        ((TextView) findViewById(R.id.nav_top_left_main_text)).setTextColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
         ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(currentUser.getPrimaryEnvironment().getEnvironmentName());
+        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setTextColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
         Glide.with(this)
                 .load(currentUser.getPrimaryEnvironment().getSmallLogo())
                 .error(R.drawable.ic_menu_camera)
                 .fitCenter()
                 .into(((ImageView) findViewById(R.id.nav_top_left_icon)));
 
-        // setting background color on the topbar
-        if (currentUser.getPrimaryEnvironment().getPrimaryColor() != null) {
-            (findViewById(R.id.nav_top_left_background))
-                    .setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
-        }
+        // setting custom gradiant as topbar background - primarycolor -> white.
+
+        int bottomWidth = (findViewById(R.id.nav_view)).getWidth();
+        ShapeDrawable mDrawableBottom = new ShapeDrawable(new RectShape());
+        mDrawableBottom.getPaint().setShader(new LinearGradient(0, 0, bottomWidth, 0,
+                Color.parseColor("#ffffff"),
+                Color.parseColor(currentUser.getPrimaryEnvironment().getPrimaryColor()),
+                Shader.TileMode.CLAMP));
+        (findViewById(R.id.nav_view)).setBackground(mDrawableBottom);
+        (findViewById(R.id.nav_top_left_background)).setBackgroundDrawable(mDrawableBottom);
+
     }
 
 
@@ -86,7 +104,7 @@ public class MenuActivity extends AppCompatActivity
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+           drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -120,14 +138,11 @@ public class MenuActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_Messages) {
-
             Intent intent = new Intent(this, MessageActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_hareskovDollars) {
-
             Intent intent = new Intent(this, MoneyTransferActivity.class);
             startActivity(intent);
 
@@ -135,14 +150,13 @@ public class MenuActivity extends AppCompatActivity
             showCommercial();
 
         } else if (id == R.id.nav_Settings) {
-
             Intent intent = new Intent(this, MoneyTransferActivity.class);
             startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 
     private void showCommercial() {
@@ -153,5 +167,11 @@ public class MenuActivity extends AppCompatActivity
         // Create an instance of the dialog fragment and show it
         Dialog dialog = new CommercialDialog(this, commercialToBeShown);
         dialog.show();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        this.invalidateOptionsMenu();
     }
 }

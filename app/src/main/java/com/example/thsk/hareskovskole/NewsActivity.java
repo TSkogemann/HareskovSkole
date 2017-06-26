@@ -85,4 +85,8 @@ public class NewsActivity extends MenuActivity {
         ft.commit();
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
 }
