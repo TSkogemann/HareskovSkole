@@ -14,7 +14,7 @@ public class RealmEnvironment extends RealmObject {
     private String environmentType;
 
     private int accountBalance;
-    //private List<CommercialItem> commercials;
+    private RealmList<RealmCommercialItem> commercials;
 
     // Styling
     private String logo;
@@ -25,6 +25,14 @@ public class RealmEnvironment extends RealmObject {
 
     // must have empty constructor
     public RealmEnvironment() {
+    }
+
+    public RealmList<RealmCommercialItem> getCommercials() {
+        return commercials;
+    }
+
+    public void setCommercials(RealmList<RealmCommercialItem> commercials) {
+        this.commercials = commercials;
     }
 
     public String getEnvironmentName() {

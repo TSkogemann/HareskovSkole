@@ -12,11 +12,20 @@ public class RealmUser extends RealmObject {
     private String name;
     private String usertype;
     private RealmEnvironment primaryEnvironment;
+    private RealmList<RealmEnvironment> secondaryEnvironments;
 
 
 
     // Empty constructor required in realm
     public RealmUser() {
+    }
+
+    public RealmList<RealmEnvironment> getSecondaryEnvironments() {
+        return secondaryEnvironments;
+    }
+
+    public void setSecondaryEnvironments(RealmList<RealmEnvironment> secondaryEnvironments) {
+        this.secondaryEnvironments = secondaryEnvironments;
     }
 
     public RealmEnvironment getPrimaryEnvironment() {

@@ -60,7 +60,8 @@ public class MenuActivity extends AppCompatActivity
     private void getCurrentUserFromRealm() {
         Realm myRealm = Realm.getDefaultInstance();
         RealmResults<RealmUser> realmUser = myRealm.where(RealmUser.class).findAll();
-        System.out.println(realmUser.toString());
+        User testUser = Utility.loadCurrentUser();
+        System.out.println(realmUser.toString() + " " + testUser.getName());
     }
 
     @Override

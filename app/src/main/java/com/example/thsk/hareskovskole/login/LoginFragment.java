@@ -70,7 +70,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void saveCurrentUser(User currentUser) {
-        Environment primaryEnviroment = currentUser.getPrimaryEnvironment();
+       Utility.saveCurrentUser(currentUser);
+        /* Environment primaryEnviroment = currentUser.getPrimaryEnvironment();
         myRealm.beginTransaction();
 
         // realm user
@@ -106,7 +107,7 @@ public class LoginFragment extends Fragment {
 
         //setting primary environment to user
         realmUser.setPrimaryEnvironment(realmPrimaryEnvironment);
-        myRealm.commitTransaction();
+        myRealm.commitTransaction(); */
     }
 
     private void setupUser() {

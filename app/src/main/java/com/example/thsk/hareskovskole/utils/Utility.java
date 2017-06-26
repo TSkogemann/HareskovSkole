@@ -5,6 +5,8 @@ import android.graphics.Color;
 
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
+import com.example.thsk.hareskovskole.utils.data.User;
+import com.example.thsk.hareskovskole.utils.data.realm.RealmParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +25,14 @@ public class Utility {
 
     public static int stringToColor(String colour) {
         return Color.parseColor(colour);
+    }
+
+    public static void saveCurrentUser(User currentUser){
+        RealmParser.parseUserToRealmObject(currentUser);
+    }
+
+    public static User loadCurrentUser(){
+        return RealmParser.loadUser();
     }
 
 
