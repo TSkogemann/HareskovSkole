@@ -49,7 +49,6 @@ public class NewsFragments extends Fragment {
 
         User currentUser = Utility.loadCurrentUser();
         newsList.addAll(currentUser.getMergedNewsAndCommercialList());
-        //setupNewsList();
 
         ListView newsView = (ListView) getActivity().findViewById(R.id.news_list);
         newsView.setAdapter(new NewsListAdapter(getActivity(), newsList));

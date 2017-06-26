@@ -30,7 +30,7 @@ public class NewsActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
-        setupUser();
+        currentUser = Utility.loadCurrentUser();
         applyFirstFragment();
 
         //setup urbanairship
@@ -40,9 +40,6 @@ public class NewsActivity extends MenuActivity {
         showCommercial();
     }
 
-    private void setupUser() {
-        currentUser = (User) getIntent().getSerializableExtra("user");
-    }
 
 
     private void showCommercial() {

@@ -39,7 +39,8 @@ public class User implements Serializable {
     }
 
     private List<NewsItem> setMergedNewsAndCommercialList() {
-        List<NewsItem> list = mergedNews;
+        List<NewsItem> list = new ArrayList<>();
+                list.addAll(mergedNews);
         List<NewsItem> commercialsListWithNews = new ArrayList<>();
 
         // making a list of all commercials with newsitems
@@ -52,14 +53,14 @@ public class User implements Serializable {
         }
         // inserting the commercials in the list. two news and then one commercial
         if ( commercialsListWithNews.size()>0) {
-            for (int i = 2; i < list.size(); i += 3) {
+            for (int i = 2; i < mergedNews.size(); i += 3) {
                 int index = Utility.randomNumber(commercialsListWithNews.size() - 1, 0);
                 // break if the list is empty
                 if(commercialsListWithNews.size() == 0){
                     return list;
                 }
                 NewsItem commercialToAdd = commercialsListWithNews.get(index);
-                mergedNews.add(i, commercialToAdd);
+                list.add(i, commercialToAdd);
                 //removing items that has already been added to prevent the same commercial to be shown several times
                 commercialsListWithNews.remove(index);
             }

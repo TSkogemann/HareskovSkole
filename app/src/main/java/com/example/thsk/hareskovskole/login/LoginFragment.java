@@ -55,7 +55,6 @@ public class LoginFragment extends Fragment {
         public void onClick(View v) {
             // going straight to homefragmentactivity like the api call succeded
             Intent intent = new Intent(getActivity(), NewsActivity.class);
-            intent.putExtra("user",currentUser);
             Utility.saveCurrentUser(currentUser);
             startActivity(intent);
         }
