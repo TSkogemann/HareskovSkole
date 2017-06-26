@@ -51,7 +51,7 @@ public class MenuActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        currentUser = Utility.loadCurrentUser();
+        currentUser = User.getUser();
          // setting toolbar color
         toolbar.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
     }
@@ -63,8 +63,8 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void initTopbar() {
-        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText("_user name");
-        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText("user enviroment");
+        ((TextView) findViewById(R.id.nav_top_left_main_text)).setText(currentUser.getName());
+        ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(currentUser.getPrimaryEnvironment().getEnvironmentName());
     }
 
 

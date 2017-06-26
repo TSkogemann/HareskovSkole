@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,9 +62,17 @@ public class NewsDetailActivity extends MenuActivity {
         switch (currentItem.getNewsItemType()){
             case ARTICLE:
                 newsDetailAuthorTv.setText("Skrevet af: " + currentItem.getAuthor());
+                if(User.getUser().getPrimaryEnvironment().getPrimaryColor()!= null){
+                    newsDetailTitleTv.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
+                    newsDetailBackButton.setBackgroundColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
+                }
                 break;
             case COMMERCIAL:
                 newsDetailAuthorTv.setText(currentItem.getAuthor());
+                if(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()!= null){
+                    newsDetailTitleTv.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()));
+                    newsDetailBackButton.setBackgroundColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
+                }
         }
 
             Glide.with(this)

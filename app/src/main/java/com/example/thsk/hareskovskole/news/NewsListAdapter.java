@@ -15,6 +15,8 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.User;
 
 import java.util.ArrayList;
 
@@ -71,8 +73,14 @@ public class NewsListAdapter extends BaseAdapter {
         holder.title.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 32);
         if(newsItemArrayList.get(position).getNewsItemType().equals(NewsItem.NewsItemType.ARTICLE)) {
             holder.title.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            if(User.getUser().getPrimaryEnvironment().getPrimaryColor()!= null){
+                holder.title.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
+            }
         } else {
             holder.title.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+            if(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()!= null){
+                holder.title.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()));
+            }
         }
         holder.feedtext.setText(newsItemArrayList.get(position).getFeedText());
         holder.feedtext.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);

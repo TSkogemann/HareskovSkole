@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.news.NewsItem;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +51,9 @@ public class CommercialDetailActivity extends MenuActivity {
 
     private void setData() {
         commercialDetailTitle.setText(currentItem.getDialogDetailTitle());
+        if(User.getUser().getPrimaryEnvironment().getPrimaryColor()!= null){
+            commercialDetailTitle.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()));
+        }
         Glide.with(this)
                 .load(currentItem.getDialogDetailPicture())
                 .error(R.drawable.ic_menu_send)

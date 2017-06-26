@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.news.NewsDetailActivity;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,6 +64,9 @@ public class CommercialDialog extends AlertDialog {
 
     private void setupButtons() {
         if (hasDetails) {
+            if(User.getUser().getPrimaryEnvironment().getPrimaryColor()!= null){
+                commercialDialogPositiveButton.setBackgroundColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()));
+            }
             commercialDialogPositiveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,6 +89,9 @@ public class CommercialDialog extends AlertDialog {
 
     private void setDialogData() {
           commercialDialogTitleTv.setText(currentCommercial.getDialogTitle());
+        if(User.getUser().getPrimaryEnvironment().getPrimaryColor()!= null){
+            commercialDialogTitleTv.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()));
+        }
         Glide.with(getContext())
                 .load(currentCommercial.getDialogDetailPicture())
                 .error(R.drawable.ic_menu_send)

@@ -30,6 +30,11 @@ public class User implements Serializable {
 
     public enum UserType {STUDENT, PARENT, TEACHER}
 
+    private static User instance;
+
+    public User() {
+    }
+
     public User(String name, UserType userType, Environment primaryEnvironment) {
         this.name = name;
         this.userType = userType;
@@ -37,6 +42,15 @@ public class User implements Serializable {
         //logic in the constructor. It merges all commercials and newsItems from all environments
         setMergedLists();
     }
+
+    public static User getUser (){
+        if(instance == null){
+            instance = Utility.loadCurrentUser();
+        }
+        return instance;
+    }
+
+
 
     private List<NewsItem> setMergedNewsAndCommercialList() {
         List<NewsItem> list = new ArrayList<>();

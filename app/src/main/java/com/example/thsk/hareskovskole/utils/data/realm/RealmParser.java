@@ -68,8 +68,8 @@ public class RealmParser {
 
     private static List<NewsItem> getNewsList(RealmList<RealmNewsItem> newsItemList) {
         List<NewsItem> list = new ArrayList<>();
-        if(newsItemList.size()>0){
-            for (RealmNewsItem item : newsItemList){
+        if (newsItemList.size() > 0) {
+            for (RealmNewsItem item : newsItemList) {
                 list.add(getNewsItem(item));
             }
         }
@@ -141,10 +141,10 @@ public class RealmParser {
 
     private static NewsItem.NewsItemType getNewsType(String newsItemType) {
 
-        if (newsItemType.equals("ARTICLE")) {
+        if (newsItemType.toString().equals("ARTICLE")) {
             return NewsItem.NewsItemType.ARTICLE;
         }
-        if (newsItemType.equals("COMMERCIAL")) {
+        if (newsItemType.toString().equals("COMMERCIAL")) {
             return NewsItem.NewsItemType.COMMERCIAL;
         }
         //if we get here something is wrong
@@ -152,10 +152,14 @@ public class RealmParser {
     }
 
     private static Environment.EnvironmentType getEnvType(RealmEnvironment env) {
-        if (env.getEnvironmentType().equals("SCHOOL")) {
+        if (env.getEnvironmentType().toString().equals("SCHOOL")) {
             return Environment.EnvironmentType.SCHOOL;
         }
-        return Environment.EnvironmentType.CLUB;
+        if (env.getEnvironmentType().toString().equals("CLUB")) {
+            return Environment.EnvironmentType.CLUB;
+        }
+        // if we are here we are in trouble!
+        return null;
     }
 
     private static List<String> getGroups(RealmEnvironment env) {
@@ -169,13 +173,17 @@ public class RealmParser {
     }
 
     private static User.UserType getUserTypeEnum(String userType) {
-        if (userType.equals("STUDENT")) {
+        if (userType.toString().equals("STUDENT")) {
             return User.UserType.STUDENT;
         }
-        if (userType.equals("PARENT")) {
+        if (userType.toString().equals("PARENT")) {
             return User.UserType.PARENT;
         }
-        return User.UserType.TEACHER;
+        if (userType.toString().equals("TEACHER")) {
+            return User.UserType.TEACHER;
+        }
+        //if we are here something is wrong
+        return null;
     }
 
     // -------------------  save user    --------------------------------------
@@ -233,8 +241,8 @@ public class RealmParser {
         RealmList<RealmNewsItem> newsItemsList = new RealmList<>();
         if (primaryEnvironment.getNewsItemList().size() > 0) {
             for (NewsItem item : primaryEnvironment.getNewsItemList()) {
-            RealmNewsItem temp = new RealmNewsItem();
-                newsItemsList.add(myRealm.copyToRealm(getRealmNewsItem(myRealm,item)));
+                RealmNewsItem temp = new RealmNewsItem();
+                newsItemsList.add(myRealm.copyToRealm(getRealmNewsItem(myRealm, item)));
             }
         }
         // setting newsItemList to environment
@@ -242,7 +250,7 @@ public class RealmParser {
 
         //setting primary realm groups
         RealmList<RealmString> realmGroups = new RealmList<>();
-        if (primaryEnvironment.getGroups().size()>0) {
+        if (primaryEnvironment.getGroups().size() > 0) {
             for (String group : primaryEnvironment.getGroups()) {
                 RealmString temp = new RealmString();
                 temp.setString(group);
@@ -315,9 +323,13 @@ public class RealmParser {
     }
 
     private static String newsTypeToString(NewsItem.NewsItemType newsItemType) {
-        if (newsItemType.equals("ARTICLE")) {
+        if (newsItemType.toString().equals("ARTICLE")) {
             return "ARTICLE";
         }
-        return "COMMERCIAL";
+        if (newsItemType.toString().equals("COMMERCIAL")) {
+            return "COMMERCIAL";
+        }
+        // if we are here something is wrong!
+        return null;
     }
 }
