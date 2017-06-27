@@ -83,7 +83,8 @@ public class User implements Serializable {
     }
 
     private List<NewsItem> setMergedNews() {
-        List<NewsItem> list = primaryEnvironment.getNewsItemList();
+        List<NewsItem> list = new ArrayList<>();
+                list.addAll(primaryEnvironment.getNewsItemList());
         if (secondaryEnvironments != null && secondaryEnvironments.size() > 0) {
             for (Environment env : secondaryEnvironments) {
                 for (NewsItem item : env.getNewsItemList()) {

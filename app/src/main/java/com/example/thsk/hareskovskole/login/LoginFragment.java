@@ -76,10 +76,10 @@ public class LoginFragment extends Fragment {
                 150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
         Environment env3 = new Environment("Hareskov skole3",klasser, Environment.EnvironmentType.SCHOOL,
                 150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
-      /*  List<Environment> secondaryEnv = new ArrayList<>();
+        List<Environment> secondaryEnv = new ArrayList<>();
         secondaryEnv.add(env2);
         secondaryEnv.add(env3);
-        user.setSecondaryEnvironments(secondaryEnv); */
+        user.setSecondaryEnvironments(secondaryEnv);
         currentUser = user;
     }
 
