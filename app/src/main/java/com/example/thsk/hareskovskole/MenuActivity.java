@@ -41,10 +41,11 @@ public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private User currentUser;
+    private DrawerLayout drawerLayout;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
-        DrawerLayout drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_menu, null);
+        drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_menu, null);
         FrameLayout contentFrameLayout = (FrameLayout) drawerLayout.findViewById(R.id.activity_menu__content_frame_layout);
         contentFrameLayout.removeAllViews();
         getLayoutInflater().inflate(layoutResID, contentFrameLayout);
@@ -52,9 +53,8 @@ public class MenuActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             public void onDrawerClosed(View v) {
                 super.onDrawerClosed(v);
                 initTopbar();
@@ -63,7 +63,7 @@ public class MenuActivity extends AppCompatActivity
                 super.onDrawerOpened(v);
             }
         };
-        drawer.setDrawerListener(toggle);
+        drawerLayout.setDrawerListener(toggle);
 
         toggle.syncState();
 
@@ -111,9 +111,8 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -163,8 +162,7 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
 
