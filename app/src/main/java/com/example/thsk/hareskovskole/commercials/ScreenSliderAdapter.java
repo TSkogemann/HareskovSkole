@@ -25,6 +25,7 @@ public class ScreenSliderAdapter extends PagerAdapter {
     public ScreenSliderAdapter(Context mContext, List<String> commercialExtraPictures) {
         this.mContext = mContext;
         this.commercialExtraPictures = commercialExtraPictures;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -43,8 +44,9 @@ public class ScreenSliderAdapter extends PagerAdapter {
         View itemView = mLayoutInflater.inflate(R.layout.activity_commercial_detail, container, false);
         ImageView imageView = (ImageView) itemView.findViewById(R.id.commercial_detail_picture_pager);
         Glide.with(mContext)
-                .load(commercialExtraPictures)
+                .load(commercialExtraPictures.get(position))
                 .placeholder(R.drawable.ic_menu_camera)
+                .error(R.drawable.ic_menu_send)
                 .into(imageView);
         container.addView(itemView);
         return itemView;

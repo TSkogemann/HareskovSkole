@@ -59,6 +59,9 @@ public class MenuActivity extends AppCompatActivity
                 super.onDrawerClosed(v);
                 initTopbar();
             }
+            public void onDrawerOpened(View v){
+                super.onDrawerOpened(v);
+            }
         };
         drawer.setDrawerListener(toggle);
 

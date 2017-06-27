@@ -42,11 +42,12 @@ public class CommercialDetailActivity extends MenuActivity {
         setContentView(R.layout.activity_commercial_detail);
         ButterKnife.bind(this);
         currentItem = (CommercialItem) getIntent().getSerializableExtra("commercial");
-
+        setData();
         //iniate viewpager and adapter
         pageAdapter = new ScreenSliderAdapter(getApplicationContext(),currentItem.getDialogDetailExtraPictures());
+        commercialDetailPicturePager.setAdapter(pageAdapter);
 
-        setData();
+
     }
 
     private void setData() {
