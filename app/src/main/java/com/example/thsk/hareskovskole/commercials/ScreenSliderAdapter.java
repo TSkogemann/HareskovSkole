@@ -41,7 +41,7 @@ public class ScreenSliderAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         LayoutInflater mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = mLayoutInflater.inflate(R.layout.activity_commercial_detail, container, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_commercial_detail, container, false);
         ImageView imageView = (ImageView) itemView.findViewById(R.id.commercial_detail_item_image_view);
         Glide.with(mContext)
                 .load(commercialExtraPictures.get(position))
