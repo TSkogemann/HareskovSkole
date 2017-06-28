@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.Environment;
+import com.example.thsk.hareskovskole.utils.data.Group;
+import com.example.thsk.hareskovskole.utils.data.Message;
 import com.example.thsk.hareskovskole.utils.data.User;
 
 import java.util.ArrayList;
@@ -32,8 +34,10 @@ public class RealmParser {
         // create user that should be returned and settting minimum required bt constructor
         String userName = realmUser.get(0).getName();
         User.UserType userType = getUserTypeEnum(realmUser.get(0).getUsertype());
+        String loginToken = realmUser.get(0).getLoginToken();
         Environment primaryEnv = getPrimaryEnv(realmUser.get(0).getPrimaryEnvironment());
-        User user = new User(userName, userType, primaryEnv);
+        List<Message> messages = getMessages(realmUser.get(0).getMessages());
+        User user = new User(userName, userType, loginToken, messages, primaryEnv);
 
         //get secondary env
         if (realmUser.get(0).getSecondaryEnvironments() != null && realmUser.get(0).getSecondaryEnvironments().size() > 0) {
@@ -47,10 +51,31 @@ public class RealmParser {
         return user;
     }
 
+    private static List<Message> getMessages(RealmList<RealmMessage> messages) {
+        List<Message> list = new ArrayList<>();
+
+        if (messages.size() > 0) {
+            for (RealmMessage msg : messages) {
+                list.add(getMsg(msg));
+            }
+        }
+        return list;
+    }
+
+    private static Message getMsg(RealmMessage realmMsg) {
+        Message message = new Message();
+
+        message.setMessageText(realmMsg.getMessageText());
+        message.setSenderName(realmMsg.getSenderName());
+        message.setDateAndTime(realmMsg.getDateAndTime());
+
+        return message;
+    }
+
     private static Environment getPrimaryEnv(RealmEnvironment env) {
 
         String name = env.getEnvironmentName();
-        List<String> groups = getGroups(env);
+        List<Group> groups = getGroups(env);
         Environment.EnvironmentType envType = getEnvType(env);
         int accBalance = env.getAccountBalance();
         List<CommercialItem> commercials = getCommercials(env.getCommercials());
@@ -134,9 +159,10 @@ public class RealmParser {
         String headline = item.getHeadline();
         String author = item.getAuthor();
         NewsItem.NewsItemType newsItemType = getNewsType(item.getNewsItemType());
+        String mainVideo = item.getMainVideo();
 
         return new NewsItem(newsTitle, feedText, feedPicture, mainText,
-                mainPicture, mainPictureText, headline, author, newsItemType);
+                mainPicture, mainPictureText, headline, author, newsItemType,mainVideo);
     }
 
     private static NewsItem.NewsItemType getNewsType(String newsItemType) {
@@ -162,14 +188,18 @@ public class RealmParser {
         return null;
     }
 
-    private static List<String> getGroups(RealmEnvironment env) {
-        List<String> groups = new ArrayList<>();
+    private static List<Group> getGroups(RealmEnvironment env) {
+        List<Group> list = new ArrayList<>();
 
-        for (RealmString string : env.getGroups()) {
-            groups.add(string.getString());
+        for (RealmGroup group : env.getGroups()) {
+            Group temp = new Group();
+            temp.setAllowPayment(group.isAllowPayment());
+            temp.setAllowMessages(group.isAllowMessages());
+            temp.setName(group.getName());
+            list.add(temp);
         }
 
-        return groups;
+        return list;
     }
 
     private static User.UserType getUserTypeEnum(String userType) {
@@ -187,6 +217,11 @@ public class RealmParser {
     }
 
     // -------------------  save user    --------------------------------------
+    // -------------------  save user    --------------------------------------
+    // -------------------  save user    --------------------------------------
+    // -------------------  save user    --------------------------------------
+
+
     public static void parseUserToRealmObject(User currentUser) {
         Realm myRealm = Realm.getDefaultInstance();
 
@@ -198,6 +233,8 @@ public class RealmParser {
         RealmUser realmUser = myRealm.createObject(RealmUser.class);
         realmUser.setName(currentUser.getName());
         realmUser.setUsertype(currentUser.getUserType().toString());
+        realmUser.setLoginToken(currentUser.getLoginToken());
+        realmUser.setMessages(getRealmMessages(myRealm, currentUser));
         RealmEnvironment realmPrimaryEnvironment = getRealmEnvironment(myRealm, primaryEnvironment);
 
 
@@ -205,16 +242,39 @@ public class RealmParser {
         realmUser.setPrimaryEnvironment(realmPrimaryEnvironment);
 
         // secondary environments
+        RealmList<RealmEnvironment> realmSecondaryEnvironments = new RealmList<>();
         if (currentUser.getSecondaryEnvironments() != null && currentUser.getSecondaryEnvironments().size() > 0) {
-            RealmList<RealmEnvironment> realmSecondaryEnvironments = new RealmList<>();
+
 
             for (Environment env : currentUser.getSecondaryEnvironments()) {
                 realmSecondaryEnvironments.add(getRealmEnvironment(myRealm, env));
             }
+            realmUser.setSecondaryEnvironments(realmSecondaryEnvironments);
         }
 
         myRealm.commitTransaction();
+    }
 
+    private static RealmList<RealmMessage> getRealmMessages(Realm myRealm, User currentUser) {
+        RealmList<RealmMessage> list = new RealmList<>();
+
+        if (currentUser.getMessages().size() > 0) {
+            for (Message msg : currentUser.getMessages()) {
+                list.add(myRealm.copyToRealm(getRealmMessage(myRealm, msg)));
+            }
+        }
+
+        return list;
+    }
+
+    private static RealmMessage getRealmMessage(Realm myRealm, Message msg) {
+        RealmMessage realmMessage = myRealm.createObject(RealmMessage.class);
+
+        realmMessage.setMessageText(msg.getMessageText());
+        realmMessage.setSenderName(msg.getSenderName());
+        realmMessage.setDateAndTime(msg.getDateAndTime());
+
+        return realmMessage;
     }
 
 
@@ -249,11 +309,13 @@ public class RealmParser {
         realmPrimaryEnvironment.setNewsItemList(newsItemsList);
 
         //setting primary realm groups
-        RealmList<RealmString> realmGroups = new RealmList<>();
+        RealmList<RealmGroup> realmGroups = new RealmList<>();
         if (primaryEnvironment.getGroups().size() > 0) {
-            for (String group : primaryEnvironment.getGroups()) {
-                RealmString temp = new RealmString();
-                temp.setString(group);
+            for (Group group : primaryEnvironment.getGroups()) {
+                RealmGroup temp = new RealmGroup();
+                temp.setAllowMessages(group.getAllowMessages());
+                temp.setAllowPayment(group.getAllowPayment());
+                temp.setName(group.getName());
                 realmGroups.add(myRealm.copyToRealm(temp));
             }
         }
@@ -318,6 +380,7 @@ public class RealmParser {
         realmItem.setMainPicture(item.getMainPicture());
         realmItem.setMainPictureText(item.getMainPictureText());
         realmItem.setHeadline(item.getHeadline());
+        realmItem.setMainVideo(item.getMainVideo());
 
         return realmItem;
     }

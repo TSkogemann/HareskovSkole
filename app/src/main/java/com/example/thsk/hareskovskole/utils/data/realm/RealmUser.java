@@ -11,13 +11,33 @@ public class RealmUser extends RealmObject {
 
     private String name;
     private String usertype;
+    private String loginToken;
+    private RealmList<RealmMessage> messages;
     private RealmEnvironment primaryEnvironment;
     private RealmList<RealmEnvironment> secondaryEnvironments;
 
 
 
-    // Empty constructor required in realm
+
+
     public RealmUser() {
+        // Empty constructor required in realm
+    }
+
+    public RealmList<RealmMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(RealmList<RealmMessage> messages) {
+        this.messages = messages;
+    }
+
+    public String getLoginToken() {
+        return loginToken;
+    }
+
+    public void setLoginToken(String loginToken) {
+        this.loginToken = loginToken;
     }
 
     public RealmList<RealmEnvironment> getSecondaryEnvironments() {

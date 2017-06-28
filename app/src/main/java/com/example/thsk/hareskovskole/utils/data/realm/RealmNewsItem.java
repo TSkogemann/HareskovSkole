@@ -21,8 +21,17 @@ public class RealmNewsItem extends RealmObject {
     private String mainPicture;
     private String mainPictureText;
     private String headline;
+    private String mainVideo;
 
     public RealmNewsItem() {
+    }
+
+    public String getMainVideo() {
+        return mainVideo;
+    }
+
+    public void setMainVideo(String mainVideo) {
+        this.mainVideo = mainVideo;
     }
 
     public String getNewsItemType() {

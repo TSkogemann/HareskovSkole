@@ -12,7 +12,7 @@ import io.realm.RealmObject;
 public class RealmEnvironment extends RealmObject {
 
     private String environmentName;
-    private RealmList<RealmString> groups;
+    private RealmList<RealmGroup> groups;
     private String environmentType;
 
     private int accountBalance;
@@ -110,11 +110,11 @@ public class RealmEnvironment extends RealmObject {
         this.accentColor = accentColor;
     }
 
-    public RealmList<RealmString> getGroups() {
+    public RealmList<RealmGroup> getGroups() {
         return groups;
     }
 
-    public void setGroups(RealmList<RealmString> groups) {
+    public void setGroups(RealmList<RealmGroup> groups) {
         this.groups = groups;
     }
 }

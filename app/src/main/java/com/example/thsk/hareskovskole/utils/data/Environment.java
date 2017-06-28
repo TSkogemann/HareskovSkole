@@ -15,7 +15,7 @@ import java.util.List;
 public class Environment implements Serializable {
 
     private String environmentName;
-    private List<String> groups;
+    private List<Group> groups;
     private EnvironmentType environmentType;
 
     private int accountBalance;
@@ -32,7 +32,7 @@ public class Environment implements Serializable {
 
     public enum EnvironmentType {SCHOOL,CLUB}
 
-    public Environment(String environmentName, List<String> groups, EnvironmentType environmentType,
+    public Environment(String environmentName, List<Group> groups, EnvironmentType environmentType,
                        int accountBalance, List<CommercialItem> commercials,
                        String logo, String smallLogo, String primaryColor,
                        String primaryColorDark, String accentColor, List<NewsItem> newsItems) {
@@ -66,11 +66,11 @@ public class Environment implements Serializable {
         this.environmentName = environmentName;
     }
 
-    public List<String> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<String> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 

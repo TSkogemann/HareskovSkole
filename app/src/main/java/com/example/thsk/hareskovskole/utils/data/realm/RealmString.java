@@ -10,6 +10,7 @@ public class RealmString extends RealmObject {
 
     private String string;
     public RealmString() {
+        //required empty constructor
     }
 
     public String getString() {

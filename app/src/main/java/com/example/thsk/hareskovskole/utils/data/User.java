@@ -1,5 +1,7 @@
 package com.example.thsk.hareskovskole.utils.data;
 
+import android.support.annotation.Nullable;
+
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.Utility;
@@ -17,6 +19,9 @@ public class User implements Serializable {
     // user info
     private String name;
     private UserType userType;
+    private String loginToken;
+    @Nullable
+    private List<Message> messages;
 
     // Environments are school, clubs etc. Primary environment styles will be used in the app.
     private Environment primaryEnvironment;
@@ -33,12 +38,15 @@ public class User implements Serializable {
     private static User instance;
 
     public User() {
+        // required empty constructor
     }
 
-    public User(String name, UserType userType, Environment primaryEnvironment) {
+    public User(String name, UserType userType,String loginToken,List<Message> messages, Environment primaryEnvironment) {
         this.name = name;
         this.userType = userType;
         this.primaryEnvironment = primaryEnvironment;
+        this.loginToken = loginToken;
+        this.messages = messages;
         //logic in the constructor. It merges all commercials and newsItems from all environments
         setMergedLists();
     }
@@ -50,7 +58,21 @@ public class User implements Serializable {
         return instance;
     }
 
+    public List<Message> getMessages() {
+        return messages;
+    }
 
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public String getLoginToken() {
+        return loginToken;
+    }
+
+    public void setLoginToken(String loginToken) {
+        this.loginToken = loginToken;
+    }
 
     private List<NewsItem> setMergedNewsAndCommercialList() {
         List<NewsItem> list = new ArrayList<>();

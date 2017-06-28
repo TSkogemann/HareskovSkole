@@ -19,10 +19,13 @@ public class NewsItem implements Serializable {
     private String mainPicture;
     private String mainPictureText;
     private String headline;
+    private String mainVideo;
 
     public enum NewsItemType { ARTICLE, COMMERCIAL }
     public NewsItem(String title, String feedText, String feedpicture,
-                    String mainText, String mainPicture, String mainPictureText, String headline, String author, NewsItemType newsItemType) {
+                    String mainText, String mainPicture, String mainPictureText,
+                    String headline, String author, NewsItemType newsItemType,
+                    String mainVideo) {
         this.title = title;
         this.feedText = feedText;
         this.feedpicture = feedpicture;
@@ -32,6 +35,15 @@ public class NewsItem implements Serializable {
         this.headline = headline;
         this.author = author;
         this.newsItemType = newsItemType;
+        this.mainVideo = mainVideo;
+    }
+
+    public String getMainVideo() {
+        return mainVideo;
+    }
+
+    public void setMainVideo(String mainVideo) {
+        this.mainVideo = mainVideo;
     }
 
     public String getTitle() {

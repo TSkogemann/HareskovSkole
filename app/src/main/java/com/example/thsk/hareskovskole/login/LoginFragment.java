@@ -15,6 +15,8 @@ import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Environment;
+import com.example.thsk.hareskovskole.utils.data.Group;
+import com.example.thsk.hareskovskole.utils.data.Message;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.data.realm.RealmEnvironment;
 import com.example.thsk.hareskovskole.utils.data.realm.RealmString;
@@ -66,15 +68,23 @@ public class LoginFragment extends Fragment {
         String primaryColor = "#e60000";
         String primaryColorDark ="#b30000";
         String accentColor ="#66ff66";
-        List<String> klasser = new ArrayList<>();
-        klasser.add("6A");
+        // secondary env use same random groups
+        List<Group> groups = new ArrayList<>();
+        groups.add(new Group(true,true,"AlwaysTrue"));
+        groups.add(new Group(false,false,"AlwaysFalse"));
+        groups.add(new Group(true,false,"TruePaymentFalseMsg"));
+        groups.add(new Group(false,true,"FalsePaymentTrueMsg"));
+        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord()));
+        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord()));
+        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord()));
         List<NewsItem> newslist = Utility.getRandomNewsList(15);
-        Environment env = new Environment("Hareskov skole",klasser, Environment.EnvironmentType.SCHOOL,
+        List<Message> messages = Utility.getRandomMessages(5);
+        Environment env = new Environment("Hareskov skole",groups, Environment.EnvironmentType.SCHOOL,
                 150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
-        User user = new User("Thomas Skogemann", User.UserType.STUDENT,env);
-        Environment env2 = new Environment("Hareskov skole2",klasser, Environment.EnvironmentType.SCHOOL,
+        User user = new User("Thomas Skogemann", User.UserType.STUDENT,"loginToken1212",messages,env);
+        Environment env2 = new Environment("Hareskov skole2",groups, Environment.EnvironmentType.SCHOOL,
                 150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
-        Environment env3 = new Environment("Hareskov skole3",klasser, Environment.EnvironmentType.SCHOOL,
+        Environment env3 = new Environment("Hareskov skole3",groups, Environment.EnvironmentType.SCHOOL,
                 150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
         List<Environment> secondaryEnv = new ArrayList<>();
         secondaryEnv.add(env2);
