@@ -27,6 +27,7 @@ public class User implements Serializable {
     private Environment primaryEnvironment;
     private List<Environment> secondaryEnvironments;
 
+    // these lists are set automatically and should not be set from constructor or by a setmethod
     // should be a merge with all the commercials from all the users environments
     private List<CommercialItem> mergedCommercials = new ArrayList<>();
     private List<NewsItem> mergedNews = new ArrayList<>();
