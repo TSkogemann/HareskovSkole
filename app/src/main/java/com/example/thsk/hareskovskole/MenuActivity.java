@@ -45,11 +45,11 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
-        drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_menu, null);
+        super.setContentView(R.layout.activity_menu);
+        drawerLayout = (DrawerLayout) findViewById(R.id.activity_menu_drawer_layout);
         FrameLayout contentFrameLayout = (FrameLayout) drawerLayout.findViewById(R.id.activity_menu__content_frame_layout);
         contentFrameLayout.removeAllViews();
         getLayoutInflater().inflate(layoutResID, contentFrameLayout);
-        super.setContentView(drawerLayout);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
