@@ -7,6 +7,7 @@ import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.Group;
 import com.example.thsk.hareskovskole.utils.data.Message;
+import com.example.thsk.hareskovskole.utils.data.MoneyTransferItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class RealmParser {
         List<Group> groups = getGroups(env);
         Environment.EnvironmentType envType = getEnvType(env);
         int accBalance = env.getAccountBalance();
+        List<MoneyTransferItem> listOfTransactions = getTransactionList(env);
         List<CommercialItem> commercials = getCommercials(env.getCommercials());
         String logo = env.getLogo();
         String smallLogo = env.getSmallLogo();
@@ -86,9 +88,28 @@ public class RealmParser {
         String accentColor = env.getAccentColor();
         List<NewsItem> newsItems = getNewsList(env.getNewsItemList());
 
+
         Environment environment = new Environment(name, groups, envType, accBalance,
-                commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems);
+                commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions);
         return environment;
+    }
+
+    private static List<MoneyTransferItem> getTransactionList(RealmEnvironment env) {
+        List<MoneyTransferItem> list = new ArrayList<>();
+
+        if(env.getListOfTransactions().size()>0){
+            for (RealmMoneyTransferItem item : env.getListOfTransactions()){
+                MoneyTransferItem temp = new MoneyTransferItem(
+                        item.getFromUserName(),
+                        item.getFromUserId(),
+                        item.getToUserName(),
+                        item.getToUserId(),
+                        item.getAmount());
+                list.add(temp);
+
+            }
+        }
+        return list;
     }
 
     private static List<NewsItem> getNewsList(RealmList<RealmNewsItem> newsItemList) {
@@ -162,7 +183,7 @@ public class RealmParser {
         String mainVideo = item.getMainVideo();
 
         return new NewsItem(newsTitle, feedText, feedPicture, mainText,
-                mainPicture, mainPictureText, headline, author, newsItemType,mainVideo);
+                mainPicture, mainPictureText, headline, author, newsItemType, mainVideo);
     }
 
     private static NewsItem.NewsItemType getNewsType(String newsItemType) {
@@ -289,6 +310,22 @@ public class RealmParser {
 
         // account balance
         realmPrimaryEnvironment.setAccountBalance(primaryEnvironment.getAccountBalance());
+
+        // money transaction list
+        RealmList<RealmMoneyTransferItem> realmMoneyTransferItemList = new RealmList<>();
+        if (primaryEnvironment.getListOfTransaction().size() > 0) {
+            for(MoneyTransferItem item : primaryEnvironment.getListOfTransaction()){
+                RealmMoneyTransferItem temp = new RealmMoneyTransferItem();
+                temp.setAmount(item.getAmount());
+                temp.setFromUserId(item.getFromUserId());
+                temp.setFromUserName(item.getFromUserName());
+                temp.setToUserName(item.getToUserName());
+                temp.setToUserId(item.getToUserId());
+                realmMoneyTransferItemList.add(myRealm.copyToRealm(temp));
+            }
+        }
+        // money transaction list to environment
+        realmPrimaryEnvironment.setListOfTransactions(realmMoneyTransferItemList);
 
         //primary environment styles
         realmPrimaryEnvironment.setLogo(primaryEnvironment.getLogo());

@@ -19,6 +19,8 @@ public class Environment implements Serializable {
     private EnvironmentType environmentType;
 
     private int accountBalance;
+    @Nullable
+    private List<MoneyTransferItem> listOfTransaction;
     private List<CommercialItem> commercials;
     @Nullable
     private List<NewsItem> newsItemList;
@@ -35,7 +37,8 @@ public class Environment implements Serializable {
     public Environment(String environmentName, List<Group> groups, EnvironmentType environmentType,
                        int accountBalance, List<CommercialItem> commercials,
                        String logo, String smallLogo, String primaryColor,
-                       String primaryColorDark, String accentColor, List<NewsItem> newsItems) {
+                       String primaryColorDark, String accentColor, List<NewsItem> newsItems,
+                       List<MoneyTransferItem> listOfTransaction) {
 
         this.environmentName = environmentName;
         this.groups = groups;
@@ -48,6 +51,16 @@ public class Environment implements Serializable {
         this.primaryColorDark = primaryColorDark;
         this.accentColor = accentColor;
         this.newsItemList = newsItems;
+        this.listOfTransaction = listOfTransaction;
+    }
+
+    @Nullable
+    public List<MoneyTransferItem> getListOfTransaction() {
+        return listOfTransaction;
+    }
+
+    public void setListOfTransaction(@Nullable List<MoneyTransferItem> listOfTransaction) {
+        this.listOfTransaction = listOfTransaction;
     }
 
     public List<NewsItem> getNewsItemList() {

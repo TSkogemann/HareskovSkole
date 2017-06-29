@@ -6,6 +6,7 @@ import android.graphics.Color;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.Message;
+import com.example.thsk.hareskovskole.utils.data.MoneyTransferItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.data.realm.RealmParser;
 import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
@@ -110,12 +111,28 @@ public class Utility {
         return new NewsItem(title, feedText, picture, mainText, mainPicture, mainPictureText, headline, author, NewsItem.NewsItemType.ARTICLE, mainVideo);
     }
 
+    public static List<MoneyTransferItem> getRandomTransactionList(int numberOfTransactions) {
+        List<MoneyTransferItem> list = new ArrayList<>();
+
+        for (int i = 0; i < numberOfTransactions; i++) {
+        list.add(getRandomMoneyTransferItem());
+        }
+
+        return list;
+    }
+
+    private static MoneyTransferItem getRandomMoneyTransferItem() {
+    MoneyTransferItem item = new MoneyTransferItem(getRandomWord(),getRandomWord(),getRandomWord(),getRandomWord(),randomNumber(9999,0));
+    return item;
+    }
+
+
     private static String getRandomVideo() {
         List<String> videoLinks = new ArrayList<>();
         videoLinks.add("videolink1");
         videoLinks.add("videolink2");
         videoLinks.add("videolink3");
-        return videoLinks.get(randomNumber(videoLinks.size(),0));
+        return videoLinks.get(randomNumber(videoLinks.size(), 0));
     }
 
     public static NewsItem getRandomNewsItemCommercial() {
@@ -129,7 +146,7 @@ public class Utility {
         String headline = Utility.randomText(6, 2);
         String author = "SPONSORERET";
         String mainVideo = getRandomVideo();
-        return new NewsItem(title, feedText, picture, mainText, mainPicture, mainPictureText, headline, author, NewsItem.NewsItemType.COMMERCIAL,mainVideo);
+        return new NewsItem(title, feedText, picture, mainText, mainPicture, mainPictureText, headline, author, NewsItem.NewsItemType.COMMERCIAL, mainVideo);
     }
 
     public static CommercialItem getCommercial() {
@@ -153,8 +170,8 @@ public class Utility {
     public static List<Message> getRandomMessages(int numberOfMessages) {
         List<Message> messages = new ArrayList<>();
 
-        for(int i=0; i< numberOfMessages; i++){
-            messages.add(new Message(randomText(40,5), getRandomWord(),randomDate()));
+        for (int i = 0; i < numberOfMessages; i++) {
+            messages.add(new Message(randomText(40, 5), getRandomWord(), randomDate()));
         }
 
         return messages;
@@ -164,21 +181,21 @@ public class Utility {
         // date format DD-MM-YYYY-hh-mm
         String date = new String();
         //day
-        date = date + randomNumber(30,1) +"-";
+        date = date + randomNumber(30, 1) + "-";
         //month
-        date = date + randomNumber(11,1) +"-";
+        date = date + randomNumber(11, 1) + "-";
         //year
-        date = date + randomNumber(2,2015) +"-";
+        date = date + randomNumber(2, 2015) + "-";
         //hour
-        date = date + randomNumber(23,0) +"-";
+        date = date + randomNumber(23, 0) + "-";
         //min
-        date = date + randomNumber(60,0);
+        date = date + randomNumber(60, 0);
         return date;
     }
 
     public static boolean getRandomBoolean() {
         // will return true more than false
-        if(randomNumber(9,1)>3){
+        if (randomNumber(9, 1) > 3) {
             return true;
         }
         return false;

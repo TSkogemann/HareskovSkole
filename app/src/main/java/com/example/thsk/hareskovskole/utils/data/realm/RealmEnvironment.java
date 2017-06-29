@@ -16,6 +16,7 @@ public class RealmEnvironment extends RealmObject {
     private String environmentType;
 
     private int accountBalance;
+    private RealmList<RealmMoneyTransferItem>listOfTransactions;
     private RealmList<RealmCommercialItem> commercials;
     private RealmList<RealmNewsItem> newsItemList;
 
@@ -28,6 +29,14 @@ public class RealmEnvironment extends RealmObject {
 
     // must have empty constructor
     public RealmEnvironment() {
+    }
+
+    public RealmList<RealmMoneyTransferItem> getListOfTransactions() {
+        return listOfTransactions;
+    }
+
+    public void setListOfTransactions(RealmList<RealmMoneyTransferItem> listOfTransactions) {
+        this.listOfTransactions = listOfTransactions;
     }
 
     public RealmList<RealmNewsItem> getNewsItemList() {

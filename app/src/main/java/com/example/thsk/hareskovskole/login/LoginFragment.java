@@ -80,12 +80,12 @@ public class LoginFragment extends Fragment {
         List<NewsItem> newslist = Utility.getRandomNewsList(15);
         List<Message> messages = Utility.getRandomMessages(5);
         Environment env = new Environment("Hareskov skole",groups, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5));
         User user = new User("Thomas Skogemann", User.UserType.STUDENT,"loginToken1212",messages,env);
         Environment env2 = new Environment("Hareskov skole2",groups, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5));
         Environment env3 = new Environment("Hareskov skole3",groups, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist);
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5));
         List<Environment> secondaryEnv = new ArrayList<>();
         secondaryEnv.add(env2);
         secondaryEnv.add(env3);
