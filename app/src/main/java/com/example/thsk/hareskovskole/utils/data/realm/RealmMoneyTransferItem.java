@@ -1,5 +1,7 @@
 package com.example.thsk.hareskovskole.utils.data.realm;
 
+import com.example.thsk.hareskovskole.utils.data.MoneyTransferItem;
+
 import io.realm.RealmObject;
 
 /**
@@ -8,30 +10,14 @@ import io.realm.RealmObject;
 
 public class RealmMoneyTransferItem extends RealmObject {
 
-    private String fromUserName;
-    private String fromUserId;
     private String toUserName;
-    private String toUserId;
+    private String transactionType;
     private int amount;
+
+    public enum TransactionType {SEND,RECEIVED}
 
     public RealmMoneyTransferItem() {
         //required empty constructor
-    }
-
-    public String getFromUserName() {
-        return fromUserName;
-    }
-
-    public void setFromUserName(String fromUserName) {
-        this.fromUserName = fromUserName;
-    }
-
-    public String getFromUserId() {
-        return fromUserId;
-    }
-
-    public void setFromUserId(String fromUserId) {
-        this.fromUserId = fromUserId;
     }
 
     public String getToUserName() {
@@ -42,12 +28,12 @@ public class RealmMoneyTransferItem extends RealmObject {
         this.toUserName = toUserName;
     }
 
-    public String getToUserId() {
-        return toUserId;
+    public String getTransactionType() {
+        return transactionType;
     }
 
-    public void setToUserId(String toUserId) {
-        this.toUserId = toUserId;
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
     public int getAmount() {

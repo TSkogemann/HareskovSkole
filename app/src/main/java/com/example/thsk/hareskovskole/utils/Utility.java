@@ -122,8 +122,16 @@ public class Utility {
     }
 
     private static MoneyTransferItem getRandomMoneyTransferItem() {
-    MoneyTransferItem item = new MoneyTransferItem(getRandomWord(),getRandomWord(),getRandomWord(),getRandomWord(),randomNumber(9999,0));
+    MoneyTransferItem item = new MoneyTransferItem(getRandomWord(),getRandomTransactionType(),randomNumber(9999,0));
     return item;
+    }
+
+    private static MoneyTransferItem.TransactionType getRandomTransactionType() {
+        if (randomNumber(10,1)>4){
+            return MoneyTransferItem.TransactionType.SEND;
+        } else {
+            return MoneyTransferItem.TransactionType.RECEIVED;
+        }
     }
 
 

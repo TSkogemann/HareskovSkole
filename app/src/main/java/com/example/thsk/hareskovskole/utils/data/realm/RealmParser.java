@@ -100,16 +100,26 @@ public class RealmParser {
         if(env.getListOfTransactions().size()>0){
             for (RealmMoneyTransferItem item : env.getListOfTransactions()){
                 MoneyTransferItem temp = new MoneyTransferItem(
-                        item.getFromUserName(),
-                        item.getFromUserId(),
                         item.getToUserName(),
-                        item.getToUserId(),
+                        getTransactionType(item.getTransactionType()),
                         item.getAmount());
                 list.add(temp);
 
             }
         }
         return list;
+    }
+
+    private static MoneyTransferItem.TransactionType getTransactionType(String transactionType) {
+
+        if (transactionType.equals("SEND")) {
+            return MoneyTransferItem.TransactionType.SEND;
+        }
+        if (transactionType.equals("RECEIVED")) {
+            return MoneyTransferItem.TransactionType.RECEIVED;
+        }
+        // if we are here we are in trouble!
+        return null;
     }
 
     private static List<NewsItem> getNewsList(RealmList<RealmNewsItem> newsItemList) {
@@ -317,10 +327,8 @@ public class RealmParser {
             for(MoneyTransferItem item : primaryEnvironment.getListOfTransaction()){
                 RealmMoneyTransferItem temp = new RealmMoneyTransferItem();
                 temp.setAmount(item.getAmount());
-                temp.setFromUserId(item.getFromUserId());
-                temp.setFromUserName(item.getFromUserName());
                 temp.setToUserName(item.getToUserName());
-                temp.setToUserId(item.getToUserId());
+                temp.setTransactionType(item.getTransactionType().toString());
                 realmMoneyTransferItemList.add(myRealm.copyToRealm(temp));
             }
         }

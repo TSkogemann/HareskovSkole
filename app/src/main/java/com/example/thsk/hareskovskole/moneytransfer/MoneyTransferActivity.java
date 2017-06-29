@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 public class MoneyTransferActivity extends MenuActivity {
 
     private User currentUser;
-    private List<MoneyTransferItem> listOfTransactions = new ArrayList<>();
+    private ArrayList<MoneyTransferItem> listOfTransactions = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,12 +31,12 @@ public class MoneyTransferActivity extends MenuActivity {
         setContentView(R.layout.activity_moneytransfer);
         ButterKnife.bind(this);
 
-        /*
-        currentUser = Utility.loadCurrentUser();
-        listOfTransactions.addAll(currentUser.getMergedNewsAndCommercialList());
 
-        ListView newsView = (ListView) getActivity().findViewById(R.id.news_list);
-        newsView.setAdapter(new NewsListAdapter(getActivity(), newsList));
-*/
+        currentUser = Utility.loadCurrentUser();
+        listOfTransactions.addAll(currentUser.getPrimaryEnvironment().getListOfTransaction());
+
+        ListView newsView = (ListView) findViewById(R.id.money_transfer_previous_transfers);
+        newsView.setAdapter(new MoneyTransactionAdapter(listOfTransactions, this));
+
     }
 }
