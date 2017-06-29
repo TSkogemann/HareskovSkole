@@ -9,7 +9,6 @@
         android:id="@+id/news_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
         android:divider="@null"
         android:dividerHeight="0dp"
         />
