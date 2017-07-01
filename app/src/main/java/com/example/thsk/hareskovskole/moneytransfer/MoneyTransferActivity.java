@@ -50,7 +50,6 @@ public class MoneyTransferActivity extends MenuActivity {
         setContentView(R.layout.activity_moneytransfer);
         ButterKnife.bind(this);
 
-
         currentUser = Utility.loadCurrentUser();
         listOfTransactions.addAll(currentUser.getPrimaryEnvironment().getListOfTransaction());
 
