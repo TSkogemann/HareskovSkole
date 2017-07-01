@@ -2,39 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/newsItemBackgroundColor"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
         <TextView
             android:id="@+id/money_transfer_from_user_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:text="_From user" />
+            android:text="_From user"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></View>
 
         <TextView
             android:id="@+id/money_transfer_to_user_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="_From user" />
-
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="_From user"
+            android:maxLines="1"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"></View>
+            android:layout_weight="2"></View>
 
         <TextView
             android:id="@+id/money_transfer_amount_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:text="_From user" />
+            android:text="_From user"
+            android:maxLines="1"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            />
     </LinearLayout>
 
 </LinearLayout>

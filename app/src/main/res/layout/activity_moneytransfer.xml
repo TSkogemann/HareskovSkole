@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="_vælg modtager"
+                android:text="Vælg modtager"
                 android:textColor="@color/black"
                 android:textSize="24dp" />
 
@@ -76,7 +76,7 @@
                 android:layout_weight="1"></View>
 
             <Spinner
-                android:id="@+id/money_transfer_choose_reciever"
+                android:id="@+id/money_transfer_choose_reciever_spinner"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="3"
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:text="_Beløb"
+                android:text="Beløb"
                 android:textColor="@color/black"
                 android:textSize="24dp" />
 
@@ -109,12 +109,19 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"></View>
-
-            <EditText
-                android:id="@+id/money_transfer_send_amount"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            <EditText
+                android:id="@+id/money_transfer_send_amount_et"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:background="?android:colorBackground"
+                android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_weight="1" />
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -122,21 +129,54 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Tidligere overførseler"
+                android:text="Tidligere overførelser"
                 android:textColor="@color/black"
-                android:textSize="24dp"
-                />
+                android:textSize="24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                >
+
+                <TextView
+                    android:text="Fra"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"/>
+
+                <TextView
+                    android:text="Til"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"></View>
+
+                <TextView
+                    android:text="Beløb"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="60dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
             <ListView
                 android:id="@+id/money_transfer_previous_transfers"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="@null"
-                android:dividerHeight="0dp"
-                />
+                android:dividerHeight="0dp" />
 
         </LinearLayout>
 

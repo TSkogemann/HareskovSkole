@@ -69,14 +69,12 @@ public class MoneyTransactionAdapter extends BaseAdapter {
         if(moneyTransferItemList.get(position).getTransactionType() == MoneyTransferItem.TransactionType.SEND) {
             holder.amountTransfered.setTextColor(Color.RED);
             holder.fromUser.setText(User.getUser().getName());
-            holder.fromUser.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
-            holder.fromUser.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 32);
+            holder.fromUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
             holder.toUser.setText(moneyTransferItemList.get(position).getToUserName());
         } else {
             holder.amountTransfered.setTextColor(Color.GREEN);
             holder.fromUser.setText(moneyTransferItemList.get(position).getToUserName());
-            holder.fromUser.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
-            holder.fromUser.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 32);
+            holder.toUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
             holder.toUser.setText(User.getUser().getName());
 
         }
