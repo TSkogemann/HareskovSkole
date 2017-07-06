@@ -33,7 +33,7 @@ public class MessageActivity extends MenuActivity {
 
     User currentUSer;
     List<String> listOfRecievers;
-    List<Message> currentChatList;
+    List<Message> currentMsgList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MessageActivity extends MenuActivity {
     }
 
     private void initMsgChooseRecieverSpinner() {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listOfRecievers);
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listOfRecievers);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         msgChooseRecieverSpinner.setAdapter(dataAdapter);
@@ -55,7 +55,7 @@ public class MessageActivity extends MenuActivity {
         msgChooseRecieverSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+            String nameselected = dataAdapter.getItem(position);
             }
 
             @Override

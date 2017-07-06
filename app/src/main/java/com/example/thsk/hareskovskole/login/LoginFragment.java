@@ -65,8 +65,8 @@ public class LoginFragment extends Fragment {
 
 
     private void setupUser() {
-        String primaryColor = "#e600ff";
-        String primaryColorDark ="#b3ff00";
+        String primaryColor = "#e60000";
+        String primaryColorDark ="#b30000";
         String accentColor ="#66ff66";
         // secondary env use same random groups
         List<Group> groups = new ArrayList<>();
