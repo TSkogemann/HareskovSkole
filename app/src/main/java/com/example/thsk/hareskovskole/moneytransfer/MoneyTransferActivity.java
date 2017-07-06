@@ -3,6 +3,7 @@ package com.example.thsk.hareskovskole.moneytransfer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,10 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.login.CreateUserFragment;
+import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Group;
 import com.example.thsk.hareskovskole.utils.data.MoneyTransferItem;
@@ -37,6 +41,10 @@ public class MoneyTransferActivity extends MenuActivity {
     Button sendMoneyButton;
     @BindView(R.id.money_transfer_send_amount_et)
     EditText amountEditText;
+    @BindView(R.id.money_transfer_fun_money)
+    TextView funMoneyTopBarTv;
+    @BindView(R.id.money_transfer_real_money)
+    TextView realMoneyTopBarTv;
 
 
     private User currentUser;
@@ -57,6 +65,41 @@ public class MoneyTransferActivity extends MenuActivity {
         newsView.setAdapter(new MoneyTransactionAdapter(listOfTransactions, this));
 
         init();
+        setTopBar();
+    }
+
+    private void setTopBar() {
+        funMoneyTopBarTv.setClickable(false);
+        funMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+        realMoneyTopBarTv.setClickable(true);
+        realMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
+        funMoneyTopBarTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                funMoneyTopBarTv.setClickable(false);
+                funMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+                realMoneyTopBarTv.setClickable(true);
+                realMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
+              /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(fragmentResource,new LoginFragment());
+                ft.commit();
+                */
+            }
+        });
+
+        realMoneyTopBarTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                realMoneyTopBarTv.setClickable(false);
+                realMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+                funMoneyTopBarTv.setClickable(true);
+                funMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
+              /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(fragmentResource, new CreateUserFragment());
+                ft.commit();
+                */
+            }
+        });
     }
 
     private void init() {
