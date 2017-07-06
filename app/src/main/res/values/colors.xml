@@ -5,7 +5,7 @@
     <color name="colorAccent">#ff3399</color>
 
     <!-- Generic -->
-    <color name="appBackgroundColor">#ffffff</color>
+    <color name="appBackgroundColor">#fffafafa</color>
     <color name="transparent">#80ffffff</color>
 
     <!--News -->

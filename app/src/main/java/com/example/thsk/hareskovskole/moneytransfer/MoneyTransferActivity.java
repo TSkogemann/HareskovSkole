@@ -70,14 +70,14 @@ public class MoneyTransferActivity extends MenuActivity {
 
     private void setTopBar() {
         funMoneyTopBarTv.setClickable(false);
-        funMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+        funMoneyTopBarTv.setBackgroundColor(getResources().getColor(R.color.appBackgroundColor));
         realMoneyTopBarTv.setClickable(true);
         realMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
         funMoneyTopBarTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 funMoneyTopBarTv.setClickable(false);
-                funMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+                funMoneyTopBarTv.setBackgroundColor(getResources().getColor(R.color.appBackgroundColor));
                 realMoneyTopBarTv.setClickable(true);
                 realMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
               /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -91,7 +91,7 @@ public class MoneyTransferActivity extends MenuActivity {
             @Override
             public void onClick(View v) {
                 realMoneyTopBarTv.setClickable(false);
-                realMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+                realMoneyTopBarTv.setBackgroundColor(getResources().getColor(R.color.appBackgroundColor));
                 funMoneyTopBarTv.setClickable(true);
                 funMoneyTopBarTv.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
               /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
