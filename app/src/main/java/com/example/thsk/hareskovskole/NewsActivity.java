@@ -3,7 +3,9 @@ package com.example.thsk.hareskovskole;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thsk.hareskovskole.commercials.CommercialDialog;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
@@ -12,6 +14,7 @@ import com.example.thsk.hareskovskole.news.NewsFragments;
 import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.webservice.ApiClient;
 import com.urbanairship.Autopilot;
 import com.urbanairship.UAirship;
 
@@ -19,6 +22,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import swagger.model.NewsItem;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewsActivity extends MenuActivity {
 
@@ -38,9 +46,29 @@ public class NewsActivity extends MenuActivity {
 
         //show commercial
         showCommercial();
+
+        testFecthingNewsOverNetwork();
     }
 
+    // now it is just proof of concept, but later these data should be saved in Realm
+    private void testFecthingNewsOverNetwork() {
+        Log.d("NewsActivity", "token=" + currentUser.getLoginToken());
+        ApiClient.getNewsApi().newsUsingGET().enqueue(new Callback<List<NewsItem>>() {
+            @Override
+            public void onResponse(Call<List<NewsItem>> call, Response<List<NewsItem>> response) {
+                Log.d("NewsActivity", "code: " + response.code());
+                for (NewsItem newsItem : response.body()) {
+                    Log.d("NewsActivity", newsItem.getTitle());
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<NewsItem>> call, Throwable t) {
+                Log.d("NewsActivity", t.getMessage());
+                Toast.makeText(NewsActivity.this, "Netværks fejl!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     private void showCommercial() {
         // get the right commercial

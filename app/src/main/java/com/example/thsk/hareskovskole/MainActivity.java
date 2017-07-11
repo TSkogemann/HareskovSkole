@@ -8,25 +8,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.login.CreateUserFragment;
-import com.example.thsk.hareskovskole.news.NewsItem;
-import com.example.thsk.hareskovskole.utils.Utility;
-import com.example.thsk.hareskovskole.utils.data.Environment;
-import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.webservice.ApiClient;
-import com.example.thsk.hareskovskole.webservice.ApiInterface;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import swagger.model.NewsItem;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,24 +53,6 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void init() {
-
-        ApiClient.getApi().getNewsItems().enqueue(new Callback<List<NewsItem>>() {
-            @Override
-            public void onResponse(Call<List<NewsItem>> call, Response<List<NewsItem>> response) {
-                if (response.isSuccessful()) {
-                    for (NewsItem newsItem : response.body()) {
-                        Log.d("newsItem", newsItem.getTitle());
-                    }
-                } else {
-                    Toast.makeText(MainActivity.this, "Server fejl!", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<NewsItem>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Netværks fejl!", Toast.LENGTH_LONG).show();
-            }
-        });
 
         topBarLoginTv.setClickable(false);
         topBarLoginTv.setBackgroundResource(R.drawable.side_nav_bar);

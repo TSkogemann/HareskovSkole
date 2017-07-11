@@ -1,8 +1,17 @@
 package com.example.thsk.hareskovskole.webservice;
 
 
+import android.util.Log;
+
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
+
 import java.io.IOException;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+import swagger.api.NewsResourceApi;
+import swagger.api.UserResourceApi;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 //import okhttp3.logging.HttpLoggingInterceptor;
@@ -14,7 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     private static Retrofit retrofit = null;
-    private static ApiInterface apiInterface = null;
+    private static NewsResourceApi newsApi = null;
+    private static UserResourceApi userApi = null;
 
     private static Retrofit getRetrofit() {
         if (retrofit == null) {
@@ -23,13 +33,21 @@ public class ApiClient {
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
-                    Request request = chain.request().newBuilder().addHeader("Authentication", "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJTVFVERU5UIl0sInVzZXJJZCI6IjEiLCJ1c2VybmFtZSI6ImtseXZlciJ9.k5vAsqnefabQ8l-qDPoB112czskzrLz08d4VOofRTlEGLhloisvqw_X1XH21Az1WxmjLqnWMtS9HMu6Wljeyug").build();
+                    Request.Builder requestBuilder = chain.request().newBuilder();
+                    Realm myRealm = Realm.getDefaultInstance();
+                    myRealm.refresh();
+                    RealmResults<RealmUser> realmUsers = myRealm.where(RealmUser.class).findAll();
+                    if (realmUsers.size() > 0 && realmUsers.get(0).getLoginToken() != null) {
+                        requestBuilder.addHeader("Authentication", realmUsers.get(0).getLoginToken());
+                    }
+                    Request request = requestBuilder.build();
                     return chain.proceed(request);
                 }
             }).build();
 
             retrofit = new Retrofit.Builder()
                     .baseUrl("https://sunlit-apricot-171716.appspot.com")
+//                    .baseUrl("http://10.0.2.2:8080")  // for debugging, when you have the backend running on your own laptop.
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
@@ -37,11 +55,18 @@ public class ApiClient {
         return retrofit;
     }
 
-    public static ApiInterface getApi() {
-        if (apiInterface == null) {
-            apiInterface = getRetrofit().create(ApiInterface.class);
+    public static NewsResourceApi getNewsApi() {
+        if (newsApi == null) {
+            newsApi = getRetrofit().create(NewsResourceApi.class);
         }
-        return apiInterface;
+        return newsApi;
+    }
+
+    public static UserResourceApi getUserApi() {
+        if (userApi == null) {
+            userApi = getRetrofit().create(UserResourceApi.class);
+        }
+        return userApi;
     }
 
 }

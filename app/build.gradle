@@ -1,4 +1,33 @@
+plugins {
+    id 'org.detoeuf.swagger-codegen' version '1.7.1'
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'org.detoeuf.swagger-codegen'
+
+swagger {
+    inputSpec = 'https://sunlit-apricot-171716.appspot.com/v2/api-docs?group=api'
+//    inputSpec = 'http://localhost:8080/v2/api-docs?group=api'
+    outputDir = 'app/generatedSwaggerApi'
+    lang = 'java'
+
+    additionalProperties = [
+        'modelPackage': 'swagger.model',
+        'apiPackage'  : 'swagger.api',
+        'dateLibrary' : 'java8',
+        'library'     : 'retrofit2',
+        'artifactId'  : 'swagger-skoleapp-retrofit2',
+    ]
+    systemProperties = [
+            'apis' : '',
+            'models' : '',
+            'apiDocs': 'false',
+            'modelDocs': 'false',
+            'apiTests': 'false',
+            'modelTests': 'false',
+            'hideGenerationTimestamp': 'false'
+    ]
+}
 
 android {
     compileSdkVersion 25
@@ -43,6 +72,14 @@ android {
             debuggable true
         }
     }
+
+    sourceSets {
+        main {
+            java {
+                srcDir('generatedSwaggerApi/src/main/java')
+            }
+        }
+    }
 }
 
 dependencies {
@@ -68,9 +105,17 @@ dependencies {
     //realm
     compile 'io.realm:realm-android:0.87.4'
 
+
+
     //retrofit (network library)
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.google.code.gson:gson:2.8.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    //swagger
+    compile 'io.swagger:swagger-annotations:1.5.15'
+
+
+
 
 }

@@ -2,21 +2,29 @@ package com.example.thsk.hareskovskole.login;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.webservice.ApiClient;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import swagger.model.CreateUserData;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by thsk on 15/06/2017.
@@ -30,6 +38,10 @@ public class CreateUserFragment extends Fragment {
     Spinner schoolClassSpinner;
     @BindView(R.id.userType)
     Spinner userTypeSpinner;
+    @BindView(R.id.create_user_password_Et)
+    EditText userPasswordEditText;
+    @BindView(R.id.create_user_auth_code_Et)
+    EditText createUserAuthCodeEditText;
 
     @BindView(R.id.create_user_button)
     Button createUserButton;
@@ -72,7 +84,32 @@ public class CreateUserFragment extends Fragment {
         createUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("ssdfsdfsdfsfs");
+                CreateUserData createUserData = new CreateUserData();
+                createUserData.setPassword(userPasswordEditText.getText().toString());
+                createUserData.setUsername(createUserAuthCodeEditText.getText().toString());
+                createUserData.setClassLetter("B");
+                createUserData.setGrade(7);
+                createUserData.setRole(CreateUserData.RoleEnum.STUDENT);
+                ApiClient.getUserApi().createUserUsingPOST(createUserData).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            String loginToken = response.headers().get("Authentication");
+                            Log.d("CreateUserFragment", loginToken);
+                            Toast.makeText(CreateUserFragment.this.getContext(), "User created - current version of app does not log in", Toast.LENGTH_LONG).show();
+                        } else if (response.code() == 401) {
+                            Toast.makeText(CreateUserFragment.this.getContext(), "incorrect username or password", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(CreateUserFragment.this.getContext(), "Server fejl! - status code=" + response.code(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Log.d("CreateUserFragment", "onFailure " + t.getMessage());
+                        Toast.makeText(CreateUserFragment.this.getContext(), "Netværks fejl!", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }
