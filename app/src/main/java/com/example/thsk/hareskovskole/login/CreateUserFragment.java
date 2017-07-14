@@ -90,9 +90,9 @@ public class CreateUserFragment extends Fragment {
                 createUserData.setClassLetter("B");
                 createUserData.setGrade(7);
                 createUserData.setRole(CreateUserData.RoleEnum.STUDENT);
-                ApiClient.getUserApi().createUserUsingPOST(createUserData).enqueue(new Callback<Void>() {
+                ApiClient.getUserApi().createUserUsingPOST(createUserData).enqueue(new Callback<swagger.model.User>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<swagger.model.User> call, Response<swagger.model.User> response) {
                         if (response.isSuccessful()) {
                             String loginToken = response.headers().get("Authentication");
                             Log.d("CreateUserFragment", loginToken);
@@ -105,7 +105,7 @@ public class CreateUserFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<swagger.model.User> call, Throwable t) {
                         Log.d("CreateUserFragment", "onFailure " + t.getMessage());
                         Toast.makeText(CreateUserFragment.this.getContext(), "Netværks fejl!", Toast.LENGTH_LONG).show();
                     }

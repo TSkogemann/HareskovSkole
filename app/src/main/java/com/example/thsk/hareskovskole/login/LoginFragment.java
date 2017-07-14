@@ -71,9 +71,9 @@ public class LoginFragment extends Fragment {
                 Credentials credentials = new Credentials();
                 credentials.setUsername(loginEmailEditText.getText().toString());
                 credentials.setPassword(loginPasswordEditText.getText().toString());
-                ApiClient.getUserApi().loginUsingPOST(credentials).enqueue(new Callback<Void>() {
+                ApiClient.getUserApi().loginUsingPOST(credentials).enqueue(new Callback<swagger.model.User>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<swagger.model.User> call, Response<swagger.model.User> response) {
                         if (response.isSuccessful()) {
                             String loginToken = response.headers().get("Authentication");
                             Log.d("LoginFragment", loginToken);
@@ -89,7 +89,7 @@ public class LoginFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<swagger.model.User> call, Throwable t) {
                         Log.d("LoginFragment", "onFailure " + t.getMessage());
                         Toast.makeText(LoginFragment.this.getContext(), "Netværks fejl!", Toast.LENGTH_LONG).show();
                     }

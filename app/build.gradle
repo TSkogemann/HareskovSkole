@@ -14,7 +14,7 @@ swagger {
     additionalProperties = [
         'modelPackage': 'swagger.model',
         'apiPackage'  : 'swagger.api',
-        'dateLibrary' : 'java8',
+        'dateLibrary' : 'joda',
         'library'     : 'retrofit2',
         'artifactId'  : 'swagger-skoleapp-retrofit2',
     ]
@@ -114,6 +114,9 @@ dependencies {
 
     //swagger
     compile 'io.swagger:swagger-annotations:1.5.15'
+
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
+
 
 
 

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import swagger.api.MessageResourceApi;
 import swagger.api.NewsResourceApi;
 import swagger.api.UserResourceApi;
 import okhttp3.Interceptor;
@@ -25,6 +26,7 @@ public class ApiClient {
     private static Retrofit retrofit = null;
     private static NewsResourceApi newsApi = null;
     private static UserResourceApi userApi = null;
+    private static MessageResourceApi messageApi = null;
 
     private static Retrofit getRetrofit() {
         if (retrofit == null) {
@@ -67,6 +69,13 @@ public class ApiClient {
             userApi = getRetrofit().create(UserResourceApi.class);
         }
         return userApi;
+    }
+
+    public static MessageResourceApi getMessageApi() {
+        if (messageApi == null) {
+            messageApi = getRetrofit().create(MessageResourceApi.class);
+        }
+        return messageApi;
     }
 
 }
