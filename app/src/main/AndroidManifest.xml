@@ -13,6 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@android:drawable/ic_lock_idle_charging" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel"
+            android:value="fcm_default_channel"/>
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,25 +57,21 @@
             android:name=".commercials.CommercialDetailActivity"
             android:label="CommercialDetailActivity"
             android:theme="@style/AppTheme"></activity>
-        <!-- Urban Airship -->
-        <meta-data
-            android:name="com.urbanairship.autopilot"
-            android:value="com.example.thsk.hareskovskole.utils.urbanairship.CodeConfigAutopilot" />
 
-        <!-- OPTIONAL, if you want to receive push, push opened and registration completed intents -->
-        <!-- Replace the receiver below with your package and class name -->
-        <receiver android:name=".utils.urbanairship.UAirshipReceiver"
-            android:exported="false">
-
+        <service
+            android:name=".fcm.SkoleappFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.urbanairship.push.CHANNEL_UPDATED" />
-                <action android:name="com.urbanairship.push.OPENED" />
-                <action android:name="com.urbanairship.push.RECEIVED" />
-                <action android:name="com.urbanairship.push.DISMISSED" />
-
-                <category android:name="${applicationId}" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
-        </receiver>
+        </service>
+
+        <service
+            android:name=".fcm.SkoleappFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

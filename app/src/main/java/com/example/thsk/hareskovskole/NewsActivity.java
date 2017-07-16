@@ -15,8 +15,6 @@ import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.webservice.ApiClient;
-import com.urbanairship.Autopilot;
-import com.urbanairship.UAirship;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,9 +38,6 @@ public class NewsActivity extends MenuActivity {
 
         currentUser = Utility.loadCurrentUser();
         applyFirstFragment();
-
-        //setup urbanairship
-        initUrbanAirship();
 
         //show commercial
         showCommercial();
@@ -78,32 +73,6 @@ public class NewsActivity extends MenuActivity {
         // Create an instance of the dialog fragment and show it
         Dialog dialog = new CommercialDialog(this, commercialToBeShown);
         dialog.show();
-}
-
-    private void initUrbanAirship() {
-
-        Autopilot.automaticTakeOff(this);
-
-        //setting user notifications = true
-        UAirship.shared().getPushManager().setUserNotificationsEnabled(true);
-        UAirship.shared().getInAppMessageManager().setAutoDisplayEnabled(true);
-
-        //Enabling in-app messaging
-        UAirship.shared().getInAppMessageManager().setAutoDisplayEnabled(true);
-
-
-        //subscribing to tags
-        Set<String> tags = new HashSet<>();
-        tags.add("test111");
-        UAirship.shared().getPushManager().setTags(tags);
-
-        //setting sound
-        UAirship.shared().getPushManager().setSoundEnabled(true);
-
-        //printing out channelID
-        String channelId = UAirship.shared().getPushManager().getChannelId();
-        System.out.println("Urban Airship Application channel ID: " + channelId);
-
     }
 
     private void applyFirstFragment() {

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "913787353985",
+    "firebase_url": "https://sunlit-apricot-171716.firebaseio.com",
+    "project_id": "sunlit-apricot-171716",
+    "storage_bucket": "sunlit-apricot-171716.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913787353985:android:cf123358f10f8bb0",
+        "android_client_info": {
+          "package_name": "com.example.thsk.hareskovskole"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913787353985-fn3h2nktb45imsoujnsiqfhkv2dt2upn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAxe0l-GsqNGxWxc1CuyT5sSKRrTnqe9w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
