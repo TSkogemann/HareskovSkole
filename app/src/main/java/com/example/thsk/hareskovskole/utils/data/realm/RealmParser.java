@@ -341,8 +341,9 @@ public class RealmParser {
             }
         }
         // Message list
-        realmPrimaryEnvironment.setMessages(getRealmMessages(myRealm, primaryEnvironment.getMessages()));
-
+        if ( primaryEnvironment.getMessages() != null) {
+            realmPrimaryEnvironment.setMessages(getRealmMessages(myRealm, primaryEnvironment.getMessages()));
+        }
         // money transaction list to environment
         realmPrimaryEnvironment.setListOfTransactions(realmMoneyTransferItemList);
 
@@ -372,7 +373,7 @@ public class RealmParser {
                 temp.setAllowMessages(group.getAllowMessages());
                 temp.setAllowPayment(group.getAllowPayment());
                 temp.setName(group.getName());
-                if (group.getMessages().size()>0){
+                if (group.getMessages() != null && group.getMessages().size()>0){
                     temp.setMessages(getRealmMessages(myRealm, group.getMessages()));
                 }
                 realmGroups.add(myRealm.copyToRealm(temp));

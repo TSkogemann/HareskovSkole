@@ -42,7 +42,9 @@ public class NewsActivity extends MenuActivity {
         //show commercial
         showCommercial();
 
-        testFecthingNewsOverNetwork();
+        // changes in the data structure caused this to crash, outcommented untill fixed
+        // todo
+        //testFecthingNewsOverNetwork();
     }
 
     // now it is just proof of concept, but later these data should be saved in Realm

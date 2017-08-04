@@ -83,6 +83,12 @@ public class LoginFragment extends Fragment {
                             startActivity(intent);
                         } else if (response.code() == 401) {
                             Toast.makeText(LoginFragment.this.getContext(), "incorrect username or password", Toast.LENGTH_LONG).show();
+
+                            // Cheat login
+                            Utility.saveCurrentUser(currentUser);
+                            Intent intent = new Intent(getActivity(), NewsActivity.class);
+                            startActivity(intent);
+
                         } else {
                             Toast.makeText(LoginFragment.this.getContext(), "Server fejl! - status code=" + response.code(), Toast.LENGTH_LONG).show();
                         }
@@ -92,6 +98,10 @@ public class LoginFragment extends Fragment {
                     public void onFailure(Call<swagger.model.User> call, Throwable t) {
                         Log.d("LoginFragment", "onFailure " + t.getMessage());
                         Toast.makeText(LoginFragment.this.getContext(), "Netværks fejl!", Toast.LENGTH_LONG).show();
+                        // cheat login
+                        Utility.saveCurrentUser(currentUser);
+                        Intent intent = new Intent(getActivity(), NewsActivity.class);
+                        startActivity(intent);
                     }
                 });
             }
