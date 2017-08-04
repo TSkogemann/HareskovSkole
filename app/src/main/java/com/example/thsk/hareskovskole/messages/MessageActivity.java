@@ -36,7 +36,7 @@ public class MessageActivity extends MenuActivity {
 
     User currentUSer;
     List<String> recieverList;
-    private String sendToName;
+    private String sendToName ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,14 @@ public class MessageActivity extends MenuActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sendToName = recieverList.get(position);
                 System.out.println("name picked " +sendToName);
+                Bundle bundle = new Bundle();
+                bundle.putString("name",sendToName);
+                MessageConversationFragment msgFragment = new MessageConversationFragment();
+                msgFragment.setArguments(bundle);
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.add(fragmentResource, msgFragment);
+                ft.addToBackStack(MessageConversationFragment.class.getSimpleName());
+                ft.commit();
             }
 
             @Override

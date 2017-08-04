@@ -23,6 +23,9 @@ public class MessageConversationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message_conversation, container, false);
         ButterKnife.bind(this,view);
+        if (getArguments()!= null) {
+            String chatPartnerName = getArguments().getString("name");
+        }
         return view;
     }
 }
