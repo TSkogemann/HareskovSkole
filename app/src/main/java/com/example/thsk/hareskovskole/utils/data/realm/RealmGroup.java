@@ -1,5 +1,6 @@
 package com.example.thsk.hareskovskole.utils.data.realm;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -11,9 +12,18 @@ public class RealmGroup extends RealmObject {
     private boolean allowPayment;
     private boolean allowMessages;
     private String name;
+    private RealmList<RealmMessage> messages;
 
     public RealmGroup() {
         //required empty constructor
+    }
+
+    public RealmList<RealmMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(RealmList<RealmMessage> messages) {
+        this.messages = messages;
     }
 
     public String getName() {

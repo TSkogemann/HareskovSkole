@@ -21,50 +21,26 @@
             android:textColor="@color/black"
             android:gravity="center"/>
 
-        <View
+        <Spinner
+            android:id="@+id/message_choose_reciever_spinner"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"></View>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-            <Spinner
-                android:id="@+id/message_choose_reciever_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:gravity="bottom"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
+            android:layout_height="40dp"
+            android:layout_weight="3"
+            android:background="@android:drawable/btn_dropdown"
+            android:gravity="bottom"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
+    <!-- fragment layout start -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    <ListView
-        android:id="@+id/message_chat_list"
+        android:id="@+id/message_conversation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        />
+
+        android:orientation="vertical">
+
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/message_input_et"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:hint="Skriv besked..."/>
-
-    <Button
-        android:id="@+id/message_send_msg_button"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="Send"/>
 
 </LinearLayout>
 

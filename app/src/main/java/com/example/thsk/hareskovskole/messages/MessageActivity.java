@@ -3,6 +3,7 @@ package com.example.thsk.hareskovskole.messages;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.Spinner;
 
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.Group;
@@ -27,35 +29,34 @@ import butterknife.ButterKnife;
  */
 
 public class MessageActivity extends MenuActivity {
-
     @BindView(R.id.message_choose_reciever_spinner)
     Spinner msgChooseRecieverSpinner;
 
+    private int fragmentResource;
+
     User currentUSer;
-    List<String> listOfRecievers;
-    List<Message> currentMsgList;
+    List<String> recieverList;
+    private String sendToName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         ButterKnife.bind(this);
-
+        fragmentResource = R.id.message_conversation;
         currentUSer = Utility.loadCurrentUser();
+
+        // init spinner
         initListOfRecievers();
-        initMsgChooseRecieverSpinner();
-    }
-
-    private void initMsgChooseRecieverSpinner() {
-        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listOfRecievers);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, recieverList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         msgChooseRecieverSpinner.setAdapter(dataAdapter);
 
         msgChooseRecieverSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String nameselected = dataAdapter.getItem(position);
+                sendToName = recieverList.get(position);
+                System.out.println("name picked " +sendToName);
             }
 
             @Override
@@ -63,16 +64,24 @@ public class MessageActivity extends MenuActivity {
 
             }
         });
+    applyFirstFragment();
+    }
 
+    private void applyFirstFragment() {
+        //not adding this transaction to backStack
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(fragmentResource, new MessageConversationFragment());
+        ft.addToBackStack(MessageConversationFragment.class.getSimpleName());
+        ft.commit();
+    }
 
-        }
 
     private void initListOfRecievers() {
-        listOfRecievers = new ArrayList<>();
+        recieverList = new ArrayList<>();
         if(currentUSer.getPrimaryEnvironment().getGroups().size()>0){
             for(Group group : currentUSer.getPrimaryEnvironment().getGroups()){
                 if(group.getAllowMessages()){
-                    listOfRecievers.add(group.getName());
+                    recieverList.add(group.getName());
                 }
             }
         }
@@ -81,7 +90,7 @@ public class MessageActivity extends MenuActivity {
                 if(env.getGroups().size()>0){
                     for (Group group : env.getGroups()){
                         if(group.getAllowMessages()){
-                            listOfRecievers.add(group.getName());
+                            recieverList.add(group.getName());
                         }
                     }
                 }

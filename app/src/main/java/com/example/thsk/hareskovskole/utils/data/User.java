@@ -20,8 +20,6 @@ public class User implements Serializable {
     private String name;
     private UserType userType;
     private String loginToken;
-    @Nullable
-    private List<Message> messages;
 
     // Environments are school, clubs etc. Primary environment styles will be used in the app.
     private Environment primaryEnvironment;
@@ -42,12 +40,11 @@ public class User implements Serializable {
         // required empty constructor
     }
 
-    public User(String name, UserType userType,String loginToken,List<Message> messages, Environment primaryEnvironment) {
+    public User(String name, UserType userType,String loginToken, Environment primaryEnvironment) {
         this.name = name;
         this.userType = userType;
         this.primaryEnvironment = primaryEnvironment;
         this.loginToken = loginToken;
-        this.messages = messages;
         //logic in the constructor. It merges all commercials and newsItems from all environments
         setMergedLists();
     }
@@ -57,14 +54,6 @@ public class User implements Serializable {
             instance = Utility.loadCurrentUser();
         }
         return instance;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
     }
 
     public String getLoginToken() {

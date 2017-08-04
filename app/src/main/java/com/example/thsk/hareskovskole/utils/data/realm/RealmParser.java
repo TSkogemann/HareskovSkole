@@ -37,8 +37,7 @@ public class RealmParser {
         User.UserType userType = getUserTypeEnum(realmUser.get(0).getUsertype());
         String loginToken = realmUser.get(0).getLoginToken();
         Environment primaryEnv = getPrimaryEnv(realmUser.get(0).getPrimaryEnvironment());
-        List<Message> messages = getMessages(realmUser.get(0).getMessages());
-        User user = new User(userName, userType, loginToken, messages, primaryEnv);
+        User user = new User(userName, userType, loginToken, primaryEnv);
 
         //get secondary env
         if (realmUser.get(0).getSecondaryEnvironments() != null && realmUser.get(0).getSecondaryEnvironments().size() > 0) {
@@ -87,11 +86,17 @@ public class RealmParser {
         String primaryColorDark = env.getPrimaryColorDark();
         String accentColor = env.getAccentColor();
         List<NewsItem> newsItems = getNewsList(env.getNewsItemList());
+        List<Message> messages = getMessages(env.getMessages());
 
-
-        Environment environment = new Environment(name, groups, envType, accBalance,
-                commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions);
-        return environment;
+        Environment environment;
+        if (messages.size()>0){
+         environment = new Environment(name, groups, envType, accBalance,
+                 commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions, messages);
+        } else {
+            environment = new Environment(name, groups, envType, accBalance,
+                    commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions);
+        }
+            return environment;
     }
 
     private static List<MoneyTransferItem> getTransactionList(RealmEnvironment env) {
@@ -227,6 +232,13 @@ public class RealmParser {
             temp.setAllowPayment(group.isAllowPayment());
             temp.setAllowMessages(group.isAllowMessages());
             temp.setName(group.getName());
+            if (group.getMessages().size()>0){
+                List<Message> msgList = new ArrayList<>();
+                for (RealmMessage msg : group.getMessages()) {
+                    msgList.add(getMsg(msg));
+                }
+                temp.setMessages(msgList);
+            }
             list.add(temp);
         }
 
@@ -265,7 +277,6 @@ public class RealmParser {
         realmUser.setName(currentUser.getName());
         realmUser.setUsertype(currentUser.getUserType().toString());
         realmUser.setLoginToken(currentUser.getLoginToken());
-        realmUser.setMessages(getRealmMessages(myRealm, currentUser));
         RealmEnvironment realmPrimaryEnvironment = getRealmEnvironment(myRealm, primaryEnvironment);
 
 
@@ -286,15 +297,12 @@ public class RealmParser {
         myRealm.commitTransaction();
     }
 
-    private static RealmList<RealmMessage> getRealmMessages(Realm myRealm, User currentUser) {
+    private static RealmList<RealmMessage> getRealmMessages(Realm myRealm, List<Message> msglist) {
         RealmList<RealmMessage> list = new RealmList<>();
 
-        if (currentUser.getMessages().size() > 0) {
-            for (Message msg : currentUser.getMessages()) {
+            for (Message msg : msglist) {
                 list.add(myRealm.copyToRealm(getRealmMessage(myRealm, msg)));
             }
-        }
-
         return list;
     }
 
@@ -332,6 +340,9 @@ public class RealmParser {
                 realmMoneyTransferItemList.add(myRealm.copyToRealm(temp));
             }
         }
+        // Message list
+        realmPrimaryEnvironment.setMessages(getRealmMessages(myRealm, primaryEnvironment.getMessages()));
+
         // money transaction list to environment
         realmPrimaryEnvironment.setListOfTransactions(realmMoneyTransferItemList);
 
@@ -361,6 +372,9 @@ public class RealmParser {
                 temp.setAllowMessages(group.getAllowMessages());
                 temp.setAllowPayment(group.getAllowPayment());
                 temp.setName(group.getName());
+                if (group.getMessages().size()>0){
+                    temp.setMessages(getRealmMessages(myRealm, group.getMessages()));
+                }
                 realmGroups.add(myRealm.copyToRealm(temp));
             }
         }

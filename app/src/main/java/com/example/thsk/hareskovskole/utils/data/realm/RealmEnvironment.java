@@ -19,6 +19,7 @@ public class RealmEnvironment extends RealmObject {
     private RealmList<RealmMoneyTransferItem>listOfTransactions;
     private RealmList<RealmCommercialItem> commercials;
     private RealmList<RealmNewsItem> newsItemList;
+    private RealmList<RealmMessage> messages;
 
     // Styling
     private String logo;
@@ -29,6 +30,14 @@ public class RealmEnvironment extends RealmObject {
 
     // must have empty constructor
     public RealmEnvironment() {
+    }
+
+    public RealmList<RealmMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(RealmList<RealmMessage> messages) {
+        this.messages = messages;
     }
 
     public RealmList<RealmMoneyTransferItem> getListOfTransactions() {
