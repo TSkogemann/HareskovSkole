@@ -35,7 +35,7 @@ public class MessageActivity extends MenuActivity {
     private int fragmentResource;
 
     User currentUSer;
-    List<String> recieverList;
+    List<ChatObject> recieverList;
     private String sendToName ;
 
     @Override
@@ -48,14 +48,13 @@ public class MessageActivity extends MenuActivity {
 
         // init spinner
         initListOfRecievers();
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, recieverList);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        MessageAdapter dataAdapter = new MessageAdapter(recieverList,this);
         msgChooseRecieverSpinner.setAdapter(dataAdapter);
 
         msgChooseRecieverSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sendToName = recieverList.get(position);
+                sendToName = recieverList.get(position).toString();
                 System.out.println("name picked " +sendToName);
                 Bundle bundle = new Bundle();
                 bundle.putString("name",sendToName);
@@ -86,19 +85,58 @@ public class MessageActivity extends MenuActivity {
 
     private void initListOfRecievers() {
         recieverList = new ArrayList<>();
+        // adding primary env to list
+        String envName =  currentUSer.getPrimaryEnvironment().getEnvironmentName();
+        List<Message> messages;
+        if ( currentUSer.getPrimaryEnvironment().getMessages()!= null) {
+            messages = currentUSer.getPrimaryEnvironment().getMessages();
+        } else {
+            messages = new ArrayList<>();
+        }
+        recieverList.add(new ChatObject(envName,messages));
+
+        // adding primary env groups to list
         if(currentUSer.getPrimaryEnvironment().getGroups().size()>0){
             for(Group group : currentUSer.getPrimaryEnvironment().getGroups()){
                 if(group.getAllowMessages()){
-                    recieverList.add(group.getName());
+                    String groupName = group.getName();
+                    List<Message> groupMessages;
+                    if ( group.getMessages()!= null) {
+                        groupMessages = group.getMessages();
+                    } else {
+                        groupMessages = new ArrayList<>();
+                    }
+                    recieverList.add(new ChatObject(envName,groupName,groupMessages));
                 }
             }
         }
+
+        // secondary env
         if (currentUSer.getSecondaryEnvironments().size()>0){
             for (Environment env : currentUSer.getSecondaryEnvironments()){
+
+                // adding secondary env to list
+                String secEnvName =  env.getEnvironmentName();
+                List<Message> secMessages;
+                if ( env.getMessages()!= null) {
+                    secMessages = env.getMessages();
+                } else {
+                    secMessages = new ArrayList<>();
+                }
+                recieverList.add(new ChatObject(secEnvName,secMessages));
+
+                // adding secondary env groups to list
                 if(env.getGroups().size()>0){
                     for (Group group : env.getGroups()){
                         if(group.getAllowMessages()){
-                            recieverList.add(group.getName());
+                            String groupName = group.getName();
+                            List<Message> groupMessages;
+                            if ( group.getMessages()!= null) {
+                                groupMessages = group.getMessages();
+                            } else {
+                                groupMessages = new ArrayList<>();
+                            }
+                            recieverList.add(new ChatObject(secEnvName,groupName,groupMessages));
                         }
                     }
                 }

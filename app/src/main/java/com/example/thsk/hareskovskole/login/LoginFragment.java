@@ -91,6 +91,11 @@ public class LoginFragment extends Fragment {
 
                         } else {
                             Toast.makeText(LoginFragment.this.getContext(), "Server fejl! - status code=" + response.code(), Toast.LENGTH_LONG).show();
+
+                            // Cheat login
+                            Utility.saveCurrentUser(currentUser);
+                            Intent intent = new Intent(getActivity(), NewsActivity.class);
+                            startActivity(intent);
                         }
                     }
 

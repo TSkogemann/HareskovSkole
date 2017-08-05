@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -17,6 +19,9 @@ import butterknife.ButterKnife;
  */
 
 public class MessageConversationFragment extends Fragment {
+
+    @BindView(R.id.message_chat_list)
+    ListView chat;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
