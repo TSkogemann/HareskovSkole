@@ -36,7 +36,7 @@ public class MessageActivity extends MenuActivity {
 
     User currentUSer;
     List<ChatObject> recieverList;
-    private String sendToName ;
+    private ChatObject sendToName ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +54,10 @@ public class MessageActivity extends MenuActivity {
         msgChooseRecieverSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sendToName = recieverList.get(position).toString();
+                sendToName = recieverList.get(position);
                 System.out.println("name picked " +sendToName);
                 Bundle bundle = new Bundle();
-                bundle.putString("name",sendToName);
+                bundle.putSerializable("chat",sendToName);
                 MessageConversationFragment msgFragment = new MessageConversationFragment();
                 msgFragment.setArguments(bundle);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

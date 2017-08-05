@@ -10,6 +10,10 @@ import android.widget.ListView;
 
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.utils.data.Message;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,9 +32,17 @@ public class MessageConversationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message_conversation, container, false);
         ButterKnife.bind(this,view);
+        ChatObject chatObj;
         if (getArguments()!= null) {
-            String chatPartnerName = getArguments().getString("name");
+            chatObj = (ChatObject) getArguments().getSerializable("chat");
+            System.out.println(chat.toString());
+        } else {
+            chatObj = new ChatObject("error", new ArrayList<Message>());
         }
+
+        ListView newsView = (ListView) view.findViewById(R.id.message_chat_list);
+        newsView.setAdapter(new MessageListAdapter(chatObj.getChat(), getContext()));
+       // chat.setAdapter(new MessageListAdapter(chatObj.getChat(), getContext()));
         return view;
     }
 }

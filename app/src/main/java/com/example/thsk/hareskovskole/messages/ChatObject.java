@@ -2,13 +2,14 @@ package com.example.thsk.hareskovskole.messages;
 
 import com.example.thsk.hareskovskole.utils.data.Message;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by thsk on 04/08/2017.
  */
 
-public class ChatObject {
+public class ChatObject implements Serializable {
 
     private String enviromentName;
     private String groupName;

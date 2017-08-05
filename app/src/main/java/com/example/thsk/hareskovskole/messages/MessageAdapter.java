@@ -8,9 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.thsk.hareskovskole.R;
-import com.example.thsk.hareskovskole.utils.data.MoneyTransferItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,28 +43,22 @@ public class MessageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-//        if (convertView == null){
-//            convertView = myLayoutInflater(R.layout.sim,)
-//        }
-
         // Binding views
         if (convertView == null) {
-            convertView = myLayoutInflater.inflate(R.layout.sim, null);
+            convertView = myLayoutInflater.inflate(R.layout.item_chat_name, null);
             holder = new ViewHolder();
-            holder.fromUser = (TextView) convertView.findViewById(R.id.money_transfer_from_user_tv);
-            holder.toUser = (TextView) convertView.findViewById(R.id.money_transfer_to_user_tv);
-            holder.amountTransfered = (TextView) convertView.findViewById(R.id.money_transfer_amount_tv);
-
+            holder.fromUser = (TextView) convertView.findViewById(R.id.chat_name);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         ChatObject chatObject = chatObjects.get(position);
-        holder.fromUser.setText(chatObject.getGroupName());
-        holder.toUser.setText("to user something");
-        holder.amountTransfered.setText("100kr");
-
+        if (chatObject.getGroupName() != null){
+            holder.fromUser.setText(chatObject.getGroupName());
+        } else {
+            holder.fromUser.setText(chatObject.getEnviromentName());
+        }
         // Setting text, font and text size
 
 
@@ -92,7 +84,7 @@ public class MessageAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView fromUser, toUser, amountTransfered;
+        TextView fromUser;
     }
     }
 
