@@ -38,17 +38,17 @@ public class MessageAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        if (convertView == null){
-            convertView = myLayoutInflater(R.layout.sim,)
-        }
-/*
+//        if (convertView == null){
+//            convertView = myLayoutInflater(R.layout.sim,)
+//        }
+
         // Binding views
         if (convertView == null) {
             convertView = myLayoutInflater.inflate(R.layout.sim, null);
@@ -62,25 +62,30 @@ public class MessageAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        ChatObject chatObject = chatObjects.get(position);
+        holder.fromUser.setText(chatObject.getGroupName());
+        holder.toUser.setText("to user something");
+        holder.amountTransfered.setText("100kr");
+
         // Setting text, font and text size
 
 
-        if(moneyTransferItemList.get(position).getTransactionType() == MoneyTransferItem.TransactionType.SEND) {
-            holder.amountTransfered.setTextColor(Color.RED);
-            holder.fromUser.setText(User.getUser().getName());
-            holder.fromUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
-            holder.toUser.setText(moneyTransferItemList.get(position).getToUserName());
-        } else {
-            holder.amountTransfered.setTextColor(Color.GREEN);
-            holder.fromUser.setText(moneyTransferItemList.get(position).getToUserName());
-            holder.toUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
-            holder.toUser.setText(User.getUser().getName());
+//        if(moneyTransferItemList.get(position).getTransactionType() == MoneyTransferItem.TransactionType.SEND) {
+//            holder.amountTransfered.setTextColor(Color.RED);
+//            holder.fromUser.setText(User.getUser().getName());
+//            holder.fromUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
+//            holder.toUser.setText(moneyTransferItemList.get(position).getToUserName());
+//        } else {
+//            holder.amountTransfered.setTextColor(Color.GREEN);
+//            holder.fromUser.setText(moneyTransferItemList.get(position).getToUserName());
+//            holder.toUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
+//            holder.toUser.setText(User.getUser().getName());
+//
+//        }
+//        holder.amountTransfered.setText(moneyTransferItemList.get(position).getAmount()+"");
+//        holder.amountTransfered.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
+//        holder.amountTransfered.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
 
-        }
-        holder.amountTransfered.setText(moneyTransferItemList.get(position).getAmount()+"");
-        holder.amountTransfered.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
-        holder.amountTransfered.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-*/
         return convertView;
 
 
