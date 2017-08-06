@@ -179,9 +179,12 @@ public class Utility {
         List<Message> messages = new ArrayList<>();
 
         for (int i = 0; i < numberOfMessages; i++) {
-            messages.add(new Message(randomText(40, 5), getRandomWord(), randomDate()));
+            if (i % 3 == 0) {
+                messages.add(new Message(randomText(40, 5), null, randomDate()));
+            } else {
+                messages.add(new Message(randomText(40, 5), getRandomWord(), randomDate()));
+            }
         }
-
         return messages;
     }
 

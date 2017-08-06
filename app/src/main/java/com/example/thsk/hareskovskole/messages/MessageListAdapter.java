@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Message;
 
 import java.util.List;
@@ -19,10 +21,12 @@ import java.util.List;
 public class MessageListAdapter extends BaseAdapter {
     private LayoutInflater myLayoutInflater;
     private List<Message> messages;
+    Context context;
 
     public MessageListAdapter (List<Message> messages, Context context) {
         myLayoutInflater = LayoutInflater.from(context);
         this.messages = messages;
+        this.context = context;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class MessageListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -49,15 +53,28 @@ public class MessageListAdapter extends BaseAdapter {
             convertView = myLayoutInflater.inflate(R.layout.item_message, null);
             holder = new ViewHolder();
             holder.recievedMsg = (TextView) convertView.findViewById(R.id.message_item_chatbubble_other_tv);
+            holder.recievedDate = (TextView) convertView.findViewById(R.id.message_item_date_other_tv);
+            holder.other = (LinearLayout) convertView.findViewById(R.id.message_item_other);
             holder.sendMsg = (TextView) convertView.findViewById(R.id.message_item_chatbubble_self_tv);
+            holder.sendDate = (TextView) convertView.findViewById(R.id.message_item_date_self_tv);
+            holder.send = (LinearLayout) convertView.findViewById(R.id.message_item_self);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.recievedMsg.setText("_recievedtest");
-        holder.sendMsg.setText("_sendtest");
+        if (messages.get(position).getSenderName() != null ) {
+            holder.other.setVisibility(View.VISIBLE);
+            holder.send.setVisibility(View.INVISIBLE);
+            holder.recievedMsg.setText(messages.get(position).getMessageText());
+            holder.recievedDate.setText("sendt " + messages.get(position).getDateAndTime());
+        } else {
+           holder.send.setVisibility(View.VISIBLE);
+            holder.other.setVisibility(View.INVISIBLE);
+            holder.sendMsg.setText(messages.get(position).getMessageText());
+            holder.sendDate.setText("sendt " + messages.get(position).getDateAndTime());
+        }
 
         // Setting text, font and text size
         /*
@@ -83,6 +100,7 @@ public class MessageListAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView recievedMsg, sendMsg;
+        TextView recievedMsg, sendMsg,recievedDate,sendDate;
+        LinearLayout send,other;
     }
 }

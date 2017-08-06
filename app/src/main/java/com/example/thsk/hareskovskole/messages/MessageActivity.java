@@ -61,8 +61,7 @@ public class MessageActivity extends MenuActivity {
                 MessageConversationFragment msgFragment = new MessageConversationFragment();
                 msgFragment.setArguments(bundle);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.add(fragmentResource, msgFragment);
-                ft.addToBackStack(MessageConversationFragment.class.getSimpleName());
+                ft.replace(fragmentResource, msgFragment);
                 ft.commit();
             }
 
@@ -76,8 +75,13 @@ public class MessageActivity extends MenuActivity {
 
     private void applyFirstFragment() {
         //not adding this transaction to backStack
+        sendToName = recieverList.get(0);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("chat",sendToName);
+        MessageConversationFragment msgFragment = new MessageConversationFragment();
+        msgFragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(fragmentResource, new MessageConversationFragment());
+        ft.add(fragmentResource, msgFragment);
         ft.addToBackStack(MessageConversationFragment.class.getSimpleName());
         ft.commit();
     }

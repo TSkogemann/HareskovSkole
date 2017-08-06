@@ -120,7 +120,7 @@ public class LoginFragment extends Fragment {
         String accentColor ="#66ff66";
         // secondary env use same random groups
         List<Group> groups = new ArrayList<>();
-        groups.add(new Group(true,true,"AlwaysTrue",Utility.getRandomMessages(3)));
+        groups.add(new Group(true,true,"AlwaysTrue",Utility.getRandomMessages(10)));
         groups.add(new Group(false,false,"AlwaysFalse"));
         groups.add(new Group(true,false,"TruePaymentFalseMsg"));
         groups.add(new Group(false,true,"FalsePaymentTrueMsg",Utility.getRandomMessages(3)));
@@ -129,7 +129,7 @@ public class LoginFragment extends Fragment {
         groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord()));
         List<NewsItem> newslist = Utility.getRandomNewsList(15);
         Environment env = new Environment("Hareskov skole",groups, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5),Utility.getRandomMessages(3));
+                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5),Utility.getRandomMessages(10));
         User user = new User("Thomas Skogemann", User.UserType.STUDENT,null,env);
         Environment env2 = new Environment("Hareskov skole2",groups, Environment.EnvironmentType.SCHOOL,
                 150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5));
