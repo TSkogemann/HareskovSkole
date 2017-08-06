@@ -13,16 +13,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
-            android:background="@color/blue"
-            android:dividerHeight="0dp"
-            />
+            android:dividerHeight="8dp" />
     </LinearLayout>
 
     <EditText
         android:id="@+id/message_input_et"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:hint="Skriv besked..."/>
+        android:hint="Skriv besked..."
+        android:background="@color/newsItemBackgroundColor"/>
 
     <Button
         android:id="@+id/message_send_msg_button"

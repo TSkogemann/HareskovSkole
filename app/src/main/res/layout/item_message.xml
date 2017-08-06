@@ -3,11 +3,10 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red"
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/message_item_self"
+        android:id="@+id/message_item_self_ll"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -16,14 +15,16 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="8dp">
+            card_view:cardCornerRadius="16dp"
+            >
 
             <LinearLayout
+                android:id="@+id/message_item_self"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/green"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="8dp"
+                >
 
                 <TextView
                     android:id="@+id/message_item_chatbubble_self_tv"
@@ -34,7 +35,7 @@
 
                 <TextView
                     android:id="@+id/message_item_date_self_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="_sendt xx-yy-zzzz"
                     android:textAlignment="center"
@@ -44,21 +45,23 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/message_item_other"
+        android:id="@+id/message_item_other_ll"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:elevation="0dp">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="8dp">
+            card_view:cardCornerRadius="24dp"
+            >
 
             <LinearLayout
+                android:id="@+id/message_item_other"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/yellow"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -66,12 +69,11 @@
                     android:id="@+id/message_item_chatbubble_other_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/yellow"
                     android:paddingBottom="4dp" />
 
                 <TextView
                     android:id="@+id/message_item_date_other_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="_sendt xx-yy-zzzz"
                     android:textAlignment="center"

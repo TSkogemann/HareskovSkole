@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Message;
+import com.example.thsk.hareskovskole.utils.data.User;
 
 import java.util.List;
 
@@ -22,11 +23,13 @@ public class MessageListAdapter extends BaseAdapter {
     private LayoutInflater myLayoutInflater;
     private List<Message> messages;
     Context context;
+    User currentUser;
 
     public MessageListAdapter (List<Message> messages, Context context) {
         myLayoutInflater = LayoutInflater.from(context);
         this.messages = messages;
         this.context = context;
+        this.currentUser = Utility.loadCurrentUser();
     }
 
     @Override
@@ -55,23 +58,28 @@ public class MessageListAdapter extends BaseAdapter {
             holder.recievedMsg = (TextView) convertView.findViewById(R.id.message_item_chatbubble_other_tv);
             holder.recievedDate = (TextView) convertView.findViewById(R.id.message_item_date_other_tv);
             holder.other = (LinearLayout) convertView.findViewById(R.id.message_item_other);
+            holder.otherll = (LinearLayout) convertView.findViewById(R.id.message_item_other_ll);
             holder.sendMsg = (TextView) convertView.findViewById(R.id.message_item_chatbubble_self_tv);
             holder.sendDate = (TextView) convertView.findViewById(R.id.message_item_date_self_tv);
             holder.send = (LinearLayout) convertView.findViewById(R.id.message_item_self);
+            holder.sendll = (LinearLayout) convertView.findViewById(R.id.message_item_self_ll);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.other.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
+        holder.send.setBackgroundColor(context.getResources().getColor(R.color.commercialDialogColor));
+
         if (messages.get(position).getSenderName() != null ) {
-            holder.other.setVisibility(View.VISIBLE);
-            holder.send.setVisibility(View.INVISIBLE);
+            holder.otherll.setVisibility(View.VISIBLE);
+            holder.sendll.setVisibility(View.INVISIBLE);
             holder.recievedMsg.setText(messages.get(position).getMessageText());
             holder.recievedDate.setText("sendt " + messages.get(position).getDateAndTime());
         } else {
-           holder.send.setVisibility(View.VISIBLE);
-            holder.other.setVisibility(View.INVISIBLE);
+           holder.sendll.setVisibility(View.VISIBLE);
+            holder.otherll.setVisibility(View.INVISIBLE);
             holder.sendMsg.setText(messages.get(position).getMessageText());
             holder.sendDate.setText("sendt " + messages.get(position).getDateAndTime());
         }
@@ -101,6 +109,6 @@ public class MessageListAdapter extends BaseAdapter {
 
     static class ViewHolder {
         TextView recievedMsg, sendMsg,recievedDate,sendDate;
-        LinearLayout send,other;
+        LinearLayout send,sendll,other,otherll;
     }
 }

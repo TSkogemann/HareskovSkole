@@ -43,7 +43,6 @@ public class MessageConversationFragment extends Fragment {
         ButterKnife.bind(this,view);
         if (getArguments()!= null) {
             chatObj = (ChatObject) getArguments().getSerializable("chat");
-            System.out.println(chat.toString());
         } else {
             chatObj = new ChatObject("error", new ArrayList<Message>());
         }
