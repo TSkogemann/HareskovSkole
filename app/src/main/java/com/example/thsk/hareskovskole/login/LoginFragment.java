@@ -75,7 +75,7 @@ public class LoginFragment extends Fragment {
         super.onResume();
         backgroundVideovv.setAlpha(0);
         //backgroundVideovv.setScaleMode(VideoTextureView.FIT_WIDTH);
-        Uri videoUri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.login_background_video);
+        Uri videoUri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.video2);
         backgroundVideovv.setVideoURI(videoUri);
         backgroundVideovv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -86,6 +86,8 @@ public class LoginFragment extends Fragment {
                 mp.setLooping(true);
             }
         });
+       // backgroundVideovv.setScaleX(3f);
+       // backgroundVideovv.setScaleY(3f);
         backgroundVideovv.start();
         backgroundVideovv.start();
         backgroundVideovv.post(new Runnable() {
