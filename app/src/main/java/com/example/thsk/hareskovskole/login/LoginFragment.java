@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -57,6 +59,10 @@ public class LoginFragment extends Fragment {
     EditText loginEmailEditText;
     @BindView(R.id.loginPasswordEt)
     EditText loginPasswordEditText;
+    @BindView(R.id.login_forgot_password_tv)
+    TextView loginForgotPasswordTv;
+    @BindView(R.id.login_new_user_tv)
+    TextView loginNewUserTv;
     public User currentUser;
 
 
@@ -105,6 +111,26 @@ public class LoginFragment extends Fragment {
     }
 
     private void init() {
+
+        loginForgotPasswordTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("forgot password clicked!");
+            }
+        });
+
+        loginNewUserTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("new user clicked!");
+
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.main_content, new CreateUserFragment(), "NewFragmentTag");
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
