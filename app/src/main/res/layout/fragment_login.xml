@@ -28,33 +28,38 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/white"
+                android:paddingBottom="24dp">
 
                 <EditText
                     android:id="@+id/loginEmailEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="_Email"
+                    android:hint="Email"
+                    android:textColor="@color/white"
                     android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/white">
 
                 <EditText
                     android:id="@+id/loginPasswordEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="_Password" />
+                    android:hint="Password"
+                    android:textColor="@color/white"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:text="_Login"
             android:textColor="@color/white" />

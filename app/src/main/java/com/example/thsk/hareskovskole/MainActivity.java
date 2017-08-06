@@ -26,11 +26,6 @@ import retrofit2.Response;
 
 public class MainActivity extends FragmentActivity {
 
-    @BindView(R.id.topBarLogin)
-    TextView topBarLoginTv;
-    @BindView(R.id.topBarNewUser)
-    TextView topBarNewUserTv;
-
     private int fragmentResource;
 
     @Override
@@ -41,7 +36,6 @@ public class MainActivity extends FragmentActivity {
         ButterKnife.bind(this);
         applyFirstFragment();
         setupRealm();
-        init();
     }
 
     private void setupRealm() {
@@ -52,38 +46,6 @@ public class MainActivity extends FragmentActivity {
         Realm.setDefaultConfiguration(config);
     }
 
-    private void init() {
-
-        topBarLoginTv.setClickable(false);
-        topBarLoginTv.setBackgroundResource(R.drawable.side_nav_bar);
-        topBarNewUserTv.setClickable(true);
-        topBarNewUserTv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        topBarLoginTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                topBarLoginTv.setClickable(false);
-                topBarLoginTv.setBackgroundResource(R.drawable.side_nav_bar);
-                topBarNewUserTv.setClickable(true);
-                topBarNewUserTv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(fragmentResource,new LoginFragment());
-                ft.commit();
-            }
-        });
-
-        topBarNewUserTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                topBarLoginTv.setClickable(true);
-                topBarLoginTv.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                topBarNewUserTv.setClickable(false);
-                topBarNewUserTv.setBackgroundResource(R.drawable.side_nav_bar);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(fragmentResource, new CreateUserFragment());
-                ft.commit();
-            }
-        });
-    }
 
     private void applyFirstFragment() {
         //not adding this transaction to backStack
