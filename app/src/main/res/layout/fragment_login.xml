@@ -26,6 +26,7 @@
             android:orientation="vertical"
             android:layout_centerInParent="true">
 
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,9 +53,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
+                    android:inputType="textPassword"
                     android:textColor="@color/white"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/login_logo"
+            android:scaleType="fitCenter"
+            android:layout_alignParentTop="true"/>
 
         <Button
             android:id="@+id/loginButton"
