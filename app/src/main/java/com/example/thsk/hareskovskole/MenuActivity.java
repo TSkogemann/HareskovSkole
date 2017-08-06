@@ -154,11 +154,11 @@ public class MenuActivity extends AppCompatActivity
             Intent intent = new Intent(this, MoneyTransferActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_Temp) {
+        } else if (id == R.id.nav_Commercial) {
             showCommercial();
 
-        } else if (id == R.id.nav_Settings) {
-            Intent intent = new Intent(this, MoneyTransferActivity.class);
+        } else if (id == R.id.nav_news) {
+            Intent intent = new Intent(this, NewsActivity.class);
             startActivity(intent);
         }
 

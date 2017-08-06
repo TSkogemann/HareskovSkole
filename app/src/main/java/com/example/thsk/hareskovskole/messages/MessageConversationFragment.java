@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
@@ -53,6 +54,7 @@ public class MessageConversationFragment extends Fragment {
         adapter.notifyDataSetChanged();
 
 
+
         return view;
     }
 
@@ -60,6 +62,6 @@ public class MessageConversationFragment extends Fragment {
     public void sendbtnClicked (){
         String text;
         text = messageEt.getText().toString();
-        System.out.println(text);
+        Toast.makeText(MessageConversationFragment.this.getContext(), "Send clicked with message: " + text, Toast.LENGTH_LONG).show();
     }
 }

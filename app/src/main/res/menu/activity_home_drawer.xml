@@ -13,13 +13,13 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Hareskov dollars" />
         <item
-            android:id="@+id/nav_Temp"
+            android:id="@+id/nav_Commercial"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Temp" />
+            android:title="Vis reklame" />
         <item
-            android:id="@+id/nav_Settings"
+            android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Indstillinger" />
+            android:title="Nyheder" />
     </group>
 
 </menu>
