@@ -2,8 +2,11 @@ package com.example.thsk.hareskovskole.login;
 
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.example.thsk.hareskovskole.MainActivity;
 import com.example.thsk.hareskovskole.NewsActivity;
@@ -45,6 +49,8 @@ import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
 
+    @BindView(R.id.login_background_vv)
+    VideoView backgroundVideovv;
     @BindView(R.id.loginButton)
     Button loginButton;
     @BindView(R.id.loginEmailEt)
@@ -62,6 +68,38 @@ public class LoginFragment extends Fragment {
         init();
         setupUser();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        backgroundVideovv.setAlpha(0);
+        //backgroundVideovv.setScaleMode(VideoTextureView.FIT_WIDTH);
+        Uri videoUri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.login_background_video);
+        backgroundVideovv.setVideoURI(videoUri);
+        backgroundVideovv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                //removing sound
+                mp.setVolume(0f,0f);
+                //setting looping
+                mp.setLooping(true);
+            }
+        });
+        backgroundVideovv.start();
+        backgroundVideovv.start();
+        backgroundVideovv.post(new Runnable() {
+            @Override
+            public void run() {
+                if (null != backgroundVideovv) {
+                    backgroundVideovv.animate()
+                            .alpha(1)
+                            .setDuration(3000)
+                            .setInterpolator(new LinearOutSlowInInterpolator())
+                            .start();
+                }
+            }
+        });
     }
 
     private void init() {
@@ -153,4 +191,6 @@ public class LoginFragment extends Fragment {
         commercials.add(Utility.getCommercial());
         return commercials;
     }
+
+
 }

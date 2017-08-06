@@ -5,11 +5,12 @@
     android:orientation="vertical"
     android:background="@drawable/main_app_background">
 
-    <View
+    <VideoView
+        android:id="@+id/login_background_vv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:background="@drawable/main_app_background"
+        android:layout_height="match_parent"
+        android:clickable="false"
+
         />
 
 
@@ -23,12 +24,7 @@
             android:layout_height="wrap_content"
             android:hint="_Email" />
     </android.support.design.widget.TextInputLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:background="@drawable/main_app_background"
-        />
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -42,12 +38,6 @@
             />
     </android.support.design.widget.TextInputLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:background="@drawable/main_app_background"
-        />
 
     <Button
         android:id="@+id/loginButton"
