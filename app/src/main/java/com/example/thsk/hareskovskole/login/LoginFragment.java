@@ -134,6 +134,10 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Cheatlogin
+                cheatLogin();
+
                 Credentials credentials = new Credentials();
                 credentials.setUsername(loginEmailEditText.getText().toString());
                 credentials.setPassword(loginPasswordEditText.getText().toString());
@@ -150,18 +154,9 @@ public class LoginFragment extends Fragment {
                         } else if (response.code() == 401) {
                             Toast.makeText(LoginFragment.this.getContext(), "incorrect username or password", Toast.LENGTH_LONG).show();
 
-                            // Cheat login
-                            Utility.saveCurrentUser(currentUser);
-                            Intent intent = new Intent(getActivity(), NewsActivity.class);
-                            startActivity(intent);
-
                         } else {
                             Toast.makeText(LoginFragment.this.getContext(), "Server fejl! - status code=" + response.code(), Toast.LENGTH_LONG).show();
 
-                            // Cheat login
-                            Utility.saveCurrentUser(currentUser);
-                            Intent intent = new Intent(getActivity(), NewsActivity.class);
-                            startActivity(intent);
                         }
                     }
 
@@ -169,10 +164,6 @@ public class LoginFragment extends Fragment {
                     public void onFailure(Call<swagger.model.User> call, Throwable t) {
                         Log.d("LoginFragment", "onFailure " + t.getMessage());
                         Toast.makeText(LoginFragment.this.getContext(), "Netværks fejl!", Toast.LENGTH_LONG).show();
-                        // cheat login
-                        Utility.saveCurrentUser(currentUser);
-                        Intent intent = new Intent(getActivity(), NewsActivity.class);
-                        startActivity(intent);
                     }
                 });
             }
@@ -181,8 +172,8 @@ public class LoginFragment extends Fragment {
 
 
     private void setupUser() {
-        String primaryColor = "#e60000";
-        String primaryColorDark ="#b30000";
+        String primaryColor = "#00b300";
+        String primaryColorDark ="#008000";
         String accentColor ="#66ff66";
         // secondary env use same random groups
         List<Group> groups = new ArrayList<>();
@@ -206,6 +197,8 @@ public class LoginFragment extends Fragment {
         secondaryEnv.add(env3);
         user.setSecondaryEnvironments(secondaryEnv);
         currentUser = user;
+
+
     }
 
     private List<CommercialItem> setupCommercials() {
@@ -220,5 +213,9 @@ public class LoginFragment extends Fragment {
         return commercials;
     }
 
-
+    private void cheatLogin(){
+        Utility.saveCurrentUser(currentUser);
+        Intent intent = new Intent(getActivity(), NewsActivity.class);
+        startActivity(intent);
+    }
 }

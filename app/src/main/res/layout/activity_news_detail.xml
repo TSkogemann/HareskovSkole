@@ -67,6 +67,12 @@
                     android:layout_gravity="center_horizontal"
                     card_view:cardCornerRadius="8dp">
 
+                    <VideoView
+                        android:id="@+id/news_detail_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="280dp"
+                        android:visibility="gone"/>
+
                     <ImageView
                         android:id="@+id/news_detail_picture"
                         android:layout_width="match_parent"

@@ -137,9 +137,11 @@ public class Utility {
 
     private static String getRandomVideo() {
         List<String> videoLinks = new ArrayList<>();
-        videoLinks.add("videolink1");
-        videoLinks.add("videolink2");
-        videoLinks.add("videolink3");
+        //videoLinks.add("https://www.youtube.com/watch?v=INlrea1aDW8");
+        videoLinks.add("http://clips.vorwaerts-gmbh.de/VfE_html5.mp4");
+       // videoLinks.add("http://www.skoletube.dk/e/5b600379919c5dbe95f8/1");
+       // videoLinks.add("http://hareskovskole.mrburns.webhot.dk/video/gade_hareskov.wmv");
+       // videoLinks.add("http://hareskovskole.mrburns.webhot.dk/IMG_0751.MOV");
         return videoLinks.get(randomNumber(videoLinks.size(), 0));
     }
 

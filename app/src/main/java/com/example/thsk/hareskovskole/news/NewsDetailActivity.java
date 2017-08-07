@@ -1,11 +1,15 @@
 package com.example.thsk.hareskovskole.news;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.MenuActivity;
@@ -33,6 +37,8 @@ public class NewsDetailActivity extends MenuActivity {
     TextView newsDetailHeadline;
     @BindView(R.id.news_detail_main_text)
     TextView newsDetailMainTextTv;
+    @BindView(R.id.news_detail_video)
+    VideoView newsDetailVideoVv;
 
     @BindView(R.id.news_detail_back_button)
     Button newsDetailBackButton;
@@ -59,29 +65,63 @@ public class NewsDetailActivity extends MenuActivity {
     private void initData() {
         newsDetailTitleTv.setText(currentItem.getTitle());
 
-        switch (currentItem.getNewsItemType()){
+        switch (currentItem.getNewsItemType()) {
             case ARTICLE:
                 newsDetailAuthorTv.setText("Skrevet af: " + currentItem.getAuthor());
-                if(User.getUser().getPrimaryEnvironment().getPrimaryColor()!= null){
+                if (User.getUser().getPrimaryEnvironment().getPrimaryColor() != null) {
                     newsDetailTitleTv.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
                     newsDetailBackButton.setBackgroundColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
                 }
                 break;
             case COMMERCIAL:
                 newsDetailAuthorTv.setText(currentItem.getAuthor());
-                if(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()!= null){
+                if (User.getUser().getPrimaryEnvironment().getPrimaryColorDark() != null) {
                     newsDetailTitleTv.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()));
                     newsDetailBackButton.setBackgroundColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
                 }
         }
 
-            Glide.with(this)
+        if (currentItem.getMainVideo() != null) {
+            showVideoView();
+
+        } else {
+            showImageView();
+        }
+            newsDetailPictureTextTv.setText(currentItem.getMainPictureText());
+            newsDetailHeadline.setText(currentItem.getHeadline());
+            newsDetailMainTextTv.setText(currentItem.getMainText());
+    }
+
+    private void showVideoView() {
+        //setting video visible and removing imageview
+        newsDetailVideoVv.setVisibility(View.VISIBLE);
+        newsDetailPictureIv.setVisibility(View.GONE);
+
+        newsDetailVideoVv.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                showImageView();
+                return true;
+            }
+        });
+
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(newsDetailVideoVv);
+        Uri video = Uri.parse(currentItem.getMainVideo());
+        newsDetailVideoVv.setMediaController(mediaController);
+        newsDetailVideoVv.setVideoURI(video);
+        newsDetailVideoVv.start();
+    }
+
+    private void showImageView() {
+        //setting video visible and removing imageview
+        newsDetailVideoVv.setVisibility(View.GONE);
+        newsDetailPictureIv.setVisibility(View.VISIBLE);
+
+        Glide.with(this)
                 .load(currentItem.getMainPicture())
                 .error(R.drawable.ic_menu_send)
                 .centerCrop()
                 .into(newsDetailPictureIv);
-        newsDetailPictureTextTv.setText(currentItem.getMainPictureText());
-        newsDetailHeadline.setText(currentItem.getHeadline());
-        newsDetailMainTextTv.setText(currentItem.getMainText());
     }
 }
