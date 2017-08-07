@@ -15,11 +15,20 @@ public class RealmCommercialItem extends RealmObject {
     private String dialogDetailTitle;
     private String dialogDetailPicture;
     private String dialogDetailText;
+    private String dialogDetailVideo;
     private RealmList<RealmString> dialogDetailExtraPictures;
 
     private RealmNewsItem newsItem;
 
     public RealmCommercialItem() {
+    }
+
+    public String getDialogDetailVideo() {
+        return dialogDetailVideo;
+    }
+
+    public void setDialogDetailVideo(String dialogDetailVideo) {
+        this.dialogDetailVideo = dialogDetailVideo;
     }
 
     public RealmNewsItem getNewsItem() {

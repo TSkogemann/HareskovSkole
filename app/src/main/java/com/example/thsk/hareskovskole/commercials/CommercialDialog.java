@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.R;
-import com.example.thsk.hareskovskole.news.NewsDetailActivity;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.User;
 
@@ -93,7 +92,7 @@ public class CommercialDialog extends AlertDialog {
             commercialDialogTitleTv.setTextColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColorDark()));
         }
         Glide.with(getContext())
-                .load(currentCommercial.getDialogDetailPicture())
+                .load(currentCommercial.getCommercialDetailPicture())
                 .error(R.drawable.ic_menu_send)
                 .centerCrop()
                 .into(commercialDialogPictureIv);
@@ -101,9 +100,9 @@ public class CommercialDialog extends AlertDialog {
     }
 
     private void checkForDetails() {
-        if (currentCommercial.getDialogDetailTitle() != null &&
-                currentCommercial.getDialogDetailPicture() != null &&
-                currentCommercial.getDialogDetailText() != null) {
+        if (currentCommercial.getCommercialDetailTitle() != null &&
+                currentCommercial.getCommercialDetailPicture() != null &&
+                currentCommercial.getCommercialDetailText() != null) {
             hasDetails = true;
         } else {
             hasDetails = false;

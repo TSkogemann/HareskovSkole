@@ -15,7 +15,6 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 /**
@@ -89,21 +88,21 @@ public class RealmParser {
         List<Message> messages = getMessages(env.getMessages());
 
         Environment environment;
-        if (messages.size()>0){
-         environment = new Environment(name, groups, envType, accBalance,
-                 commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions, messages);
+        if (messages.size() > 0) {
+            environment = new Environment(name, groups, envType, accBalance,
+                    commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions, messages);
         } else {
             environment = new Environment(name, groups, envType, accBalance,
                     commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions);
         }
-            return environment;
+        return environment;
     }
 
     private static List<MoneyTransferItem> getTransactionList(RealmEnvironment env) {
         List<MoneyTransferItem> list = new ArrayList<>();
 
-        if(env.getListOfTransactions().size()>0){
-            for (RealmMoneyTransferItem item : env.getListOfTransactions()){
+        if (env.getListOfTransactions().size() > 0) {
+            for (RealmMoneyTransferItem item : env.getListOfTransactions()) {
                 MoneyTransferItem temp = new MoneyTransferItem(
                         item.getToUserName(),
                         getTransactionType(item.getTransactionType()),
@@ -167,9 +166,10 @@ public class RealmParser {
                 item.getDialogDetailPicture() != null &&
                 item.getDialogDetailText() != null) {
 
-            commercialItem.setDialogDetailTitle(item.getDialogDetailTitle());
-            commercialItem.setDialogDetailPicture(item.getDialogDetailPicture());
-            commercialItem.setDialogDetailText(item.getDialogDetailText());
+            commercialItem.setCommercialDetailTitle(item.getDialogDetailTitle());
+            commercialItem.setCommercialDetailPicture(item.getDialogDetailPicture());
+            commercialItem.setCommercialDetailText(item.getDialogDetailText());
+            commercialItem.setCommercialDetailVideo(item.getDialogDetailVideo());
         }
 
         // check for extra pictures
@@ -232,7 +232,14 @@ public class RealmParser {
             temp.setAllowPayment(group.isAllowPayment());
             temp.setAllowMessages(group.isAllowMessages());
             temp.setName(group.getName());
-            if (group.getMessages().size()>0){
+            temp.setDescription(group.getDescription());
+            temp.setDescriptionPicture(group.getDescriptionPicture());
+            temp.setContactName(group.getContactName());
+            temp.setContactDetails(group.getContactDetails());
+            temp.setLocation(group.getLocation());
+            temp.setShownInOverview(group.isShownInOverview());
+            temp.setLogo(group.getLogo());
+            if (group.getMessages().size() > 0) {
                 List<Message> msgList = new ArrayList<>();
                 for (RealmMessage msg : group.getMessages()) {
                     msgList.add(getMsg(msg));
@@ -300,9 +307,9 @@ public class RealmParser {
     private static RealmList<RealmMessage> getRealmMessages(Realm myRealm, List<Message> msglist) {
         RealmList<RealmMessage> list = new RealmList<>();
 
-            for (Message msg : msglist) {
-                list.add(myRealm.copyToRealm(getRealmMessage(myRealm, msg)));
-            }
+        for (Message msg : msglist) {
+            list.add(myRealm.copyToRealm(getRealmMessage(myRealm, msg)));
+        }
         return list;
     }
 
@@ -332,7 +339,7 @@ public class RealmParser {
         // money transaction list
         RealmList<RealmMoneyTransferItem> realmMoneyTransferItemList = new RealmList<>();
         if (primaryEnvironment.getListOfTransaction().size() > 0) {
-            for(MoneyTransferItem item : primaryEnvironment.getListOfTransaction()){
+            for (MoneyTransferItem item : primaryEnvironment.getListOfTransaction()) {
                 RealmMoneyTransferItem temp = new RealmMoneyTransferItem();
                 temp.setAmount(item.getAmount());
                 temp.setToUserName(item.getToUserName());
@@ -341,7 +348,7 @@ public class RealmParser {
             }
         }
         // Message list
-        if ( primaryEnvironment.getMessages() != null) {
+        if (primaryEnvironment.getMessages() != null) {
             realmPrimaryEnvironment.setMessages(getRealmMessages(myRealm, primaryEnvironment.getMessages()));
         }
         // money transaction list to environment
@@ -373,7 +380,16 @@ public class RealmParser {
                 temp.setAllowMessages(group.getAllowMessages());
                 temp.setAllowPayment(group.getAllowPayment());
                 temp.setName(group.getName());
-                if (group.getMessages() != null && group.getMessages().size()>0){
+                temp.setDescriptionPicture(group.getDescriptionPicture());
+                temp.setDescription(group.getDescription());
+                temp.setContactName(group.getContactName());
+                temp.setLocation(group.getLocation());
+                temp.setContactDetails(group.getContactDetails());
+                if (group.getShownInOverview() != null) {
+                    temp.setShownInOverview(group.getShownInOverview());
+                }
+                temp.setLogo(group.getLogo());
+                if (group.getMessages() != null && group.getMessages().size() > 0) {
                     temp.setMessages(getRealmMessages(myRealm, group.getMessages()));
                 }
                 realmGroups.add(myRealm.copyToRealm(temp));
@@ -400,9 +416,10 @@ public class RealmParser {
             realmCommercialItem.setDialogPicture(item.getDialogPicture());
             realmCommercialItem.setDialogText(item.getDialogText());
 
-            realmCommercialItem.setDialogDetailTitle(item.getDialogDetailTitle());
-            realmCommercialItem.setDialogDetailPicture(item.getDialogDetailPicture());
-            realmCommercialItem.setDialogDetailText(item.getDialogDetailText());
+            realmCommercialItem.setDialogDetailTitle(item.getCommercialDetailTitle());
+            realmCommercialItem.setDialogDetailPicture(item.getCommercialDetailPicture());
+            realmCommercialItem.setDialogDetailText(item.getCommercialDetailText());
+            realmCommercialItem.setDialogDetailVideo(item.getCommercialDetailVideo());
 
 
             // checking for extra pictures

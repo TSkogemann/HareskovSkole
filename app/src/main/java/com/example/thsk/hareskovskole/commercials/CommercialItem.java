@@ -1,6 +1,5 @@
 package com.example.thsk.hareskovskole.commercials;
 
-import com.example.thsk.hareskovskole.news.NewsDetailActivity;
 import com.example.thsk.hareskovskole.news.NewsItem;
 
 import java.io.Serializable;
@@ -17,9 +16,10 @@ public class CommercialItem implements Serializable {
     private String dialogPicture;
     private String dialogText;
 
-    private String dialogDetailTitle;
-    private String dialogDetailPicture;
-    private String dialogDetailText;
+    private String commercialDetailTitle;
+    private String commercialDetailPicture;
+    private String commercialDetailText;
+    private String commercialDetailVideo;
     private List<String> dialogDetailExtraPictures = new ArrayList<>();
 
     private NewsItem newsItem;
@@ -31,34 +31,55 @@ public class CommercialItem implements Serializable {
     }
 
     public CommercialItem(String dialogTitle, String dialogPicture, String dialogText,
-                          String dialogDetailTitle, String dialogDetailPicture, String dialogDetailText) {
+                          String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
-        this.dialogDetailTitle = dialogDetailTitle;
-        this.dialogDetailPicture = dialogDetailPicture;
-        this.dialogDetailText = dialogDetailText;
+        this.commercialDetailTitle = commercialDetailTitle;
+        this.commercialDetailPicture = commercialDetailPicture;
+        this.commercialDetailText = commercialDetailText;
     }
 
-    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String dialogDetailTitle, String dialogDetailPicture, String dialogDetailText, List<String> dialogDetailExtraPictures) {
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText, List<String> dialogDetailExtraPictures) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
-        this.dialogDetailTitle = dialogDetailTitle;
-        this.dialogDetailPicture = dialogDetailPicture;
-        this.dialogDetailText = dialogDetailText;
+        this.commercialDetailTitle = commercialDetailTitle;
+        this.commercialDetailPicture = commercialDetailPicture;
+        this.commercialDetailText = commercialDetailText;
         this.dialogDetailExtraPictures = dialogDetailExtraPictures;
     }
 
-    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String dialogDetailTitle, String dialogDetailPicture, String dialogDetailText, List<String> dialogDetailExtraPictures, NewsItem newsItem) {
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText, List<String> dialogDetailExtraPictures, NewsItem newsItem) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
-        this.dialogDetailTitle = dialogDetailTitle;
-        this.dialogDetailPicture = dialogDetailPicture;
-        this.dialogDetailText = dialogDetailText;
+        this.commercialDetailTitle = commercialDetailTitle;
+        this.commercialDetailPicture = commercialDetailPicture;
+        this.commercialDetailText = commercialDetailText;
         this.dialogDetailExtraPictures = dialogDetailExtraPictures;
         this.newsItem = newsItem;
+    }
+
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText, List<String> dialogDetailExtraPictures, NewsItem newsItem, String commercialDetailVideo) {
+        this.dialogTitle = dialogTitle;
+        this.dialogPicture = dialogPicture;
+        this.dialogText = dialogText;
+        this.commercialDetailTitle = commercialDetailTitle;
+        this.commercialDetailPicture = commercialDetailPicture;
+        this.commercialDetailText = commercialDetailText;
+        this.dialogDetailExtraPictures = dialogDetailExtraPictures;
+        this.newsItem = newsItem;
+        this.commercialDetailVideo = commercialDetailVideo;
+    }
+
+
+    public String getCommercialDetailVideo() {
+        return commercialDetailVideo;
+    }
+
+    public void setCommercialDetailVideo(String commercialDetailVideo) {
+        this.commercialDetailVideo = commercialDetailVideo;
     }
 
     public String getDialogTitle() {
@@ -85,28 +106,28 @@ public class CommercialItem implements Serializable {
         this.dialogText = dialogText;
     }
 
-    public String getDialogDetailTitle() {
-        return dialogDetailTitle;
+    public String getCommercialDetailTitle() {
+        return commercialDetailTitle;
     }
 
-    public void setDialogDetailTitle(String dialogDetailTitle) {
-        this.dialogDetailTitle = dialogDetailTitle;
+    public void setCommercialDetailTitle(String commercialDetailTitle) {
+        this.commercialDetailTitle = commercialDetailTitle;
     }
 
-    public String getDialogDetailPicture() {
-        return dialogDetailPicture;
+    public String getCommercialDetailPicture() {
+        return commercialDetailPicture;
     }
 
-    public void setDialogDetailPicture(String dialogDetailPicture) {
-        this.dialogDetailPicture = dialogDetailPicture;
+    public void setCommercialDetailPicture(String commercialDetailPicture) {
+        this.commercialDetailPicture = commercialDetailPicture;
     }
 
-    public String getDialogDetailText() {
-        return dialogDetailText;
+    public String getCommercialDetailText() {
+        return commercialDetailText;
     }
 
-    public void setDialogDetailText(String dialogDetailText) {
-        this.dialogDetailText = dialogDetailText;
+    public void setCommercialDetailText(String commercialDetailText) {
+        this.commercialDetailText = commercialDetailText;
     }
 
     public List<String> getDialogDetailExtraPictures() {

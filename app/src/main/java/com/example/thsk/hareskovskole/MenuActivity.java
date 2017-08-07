@@ -30,6 +30,7 @@ import com.example.thsk.hareskovskole.commercials.CommercialDialog;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
+import com.example.thsk.hareskovskole.overview.OverviewActivity;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
@@ -64,7 +65,6 @@ public class MenuActivity extends AppCompatActivity
             }
         };
         drawerLayout.setDrawerListener(toggle);
-
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -159,6 +159,9 @@ public class MenuActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_news) {
             Intent intent = new Intent(this, NewsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_overview){
+            Intent intent = new Intent(this, OverviewActivity.class);
             startActivity(intent);
         }
 

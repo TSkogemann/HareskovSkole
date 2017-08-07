@@ -2,17 +2,26 @@ package com.example.thsk.hareskovskole.utils.data;
 
 import android.support.annotation.Nullable;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by thsk on 28/06/2017.
  */
 
-public class Group {
+public class Group implements Serializable {
 
     Boolean allowPayment;
     Boolean allowMessages;
+    //group info
     String name;
+    String description;
+    String location;
+    String descriptionPicture;
+    String contactName;
+    String contactDetails;
+    String logo;
+    Boolean shownInOverview;
     @Nullable
     private List<Message> messages;
 
@@ -32,6 +41,92 @@ public class Group {
         this.allowMessages = allowMessages;
         this.name = name;
         this.messages = messages;
+    }
+
+    public Group(Boolean allowPayment, Boolean allowMessages, String name, List<Message> messages,
+                 String description, String descriptionPicture, String location, String contactName,
+                 String contactDetails, boolean shownInOverview, String logo) {
+        this.allowPayment = allowPayment;
+        this.allowMessages = allowMessages;
+        this.name = name;
+        this.messages = messages;
+        this.description = description;
+        this.descriptionPicture = descriptionPicture;
+        this.location = location;
+        this.contactName = contactName;
+        this.contactDetails = contactDetails;
+        this.shownInOverview = shownInOverview;
+        this.logo = logo;
+    }
+    public Group(Boolean allowPayment, Boolean allowMessages, String name,
+                 String description, String descriptionPicture, String location, String contactName,
+                 String contactDetails, boolean shownInOverview, String logo) {
+        this.allowPayment = allowPayment;
+        this.allowMessages = allowMessages;
+        this.name = name;
+        this.description = description;
+        this.descriptionPicture = descriptionPicture;
+        this.location = location;
+        this.contactName = contactName;
+        this.contactDetails = contactDetails;
+        this.shownInOverview = shownInOverview;
+        this.logo = logo;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public Boolean getShownInOverview() {
+        return shownInOverview;
+    }
+
+    public void setShownInOverview(Boolean shownInOverview) {
+        this.shownInOverview = shownInOverview;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDescriptionPicture() {
+        return descriptionPicture;
+    }
+
+    public void setDescriptionPicture(String descriptionPicture) {
+        this.descriptionPicture = descriptionPicture;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactDetails() {
+        return contactDetails;
+    }
+
+    public void setContactDetails(String contactDetails) {
+        this.contactDetails = contactDetails;
     }
 
     @Nullable

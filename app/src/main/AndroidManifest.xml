@@ -57,6 +57,14 @@
             android:name=".commercials.CommercialDetailActivity"
             android:label="CommercialDetailActivity"
             android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".overview.OverviewActivity"
+            android:label="OverviewActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".overview.OverviewDetailActivity"
+            android:label="OverviewDetailActivity"
+            android:theme="@style/AppTheme"></activity>
 
         <service
             android:name=".fcm.SkoleappFirebaseMessagingService">

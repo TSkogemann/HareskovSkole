@@ -41,6 +41,16 @@
                     android:id="@+id/news_feed_picture"
                     android:layout_width="330dp"
                     android:layout_height="220dp" />
+                <ImageView
+                    android:id="@+id/news_feed_video_available"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/video_available_icon"
+                    android:layout_gravity="bottom|right"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:visibility="gone"
+                    />
             </android.support.v7.widget.CardView>
 
 

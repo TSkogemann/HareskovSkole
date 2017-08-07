@@ -61,6 +61,7 @@ public class NewsListAdapter extends BaseAdapter {
             holder.title = (TextView) convertView.findViewById(R.id.news_titel);
             holder.feedtext = (TextView) convertView.findViewById(R.id.news_feed_text);
             holder.feedpicture = (ImageView) convertView.findViewById(R.id.news_feed_picture);
+            holder.videoavailable = (ImageView) convertView.findViewById(R.id.news_feed_video_available);
 
             convertView.setTag(holder);
         } else {
@@ -93,6 +94,10 @@ public class NewsListAdapter extends BaseAdapter {
                 .centerCrop()
                 .into(holder.feedpicture);
 
+        if (newsItemArrayList.get(position).getMainVideo() != null){
+            holder.videoavailable.setVisibility(View.VISIBLE);
+        }
+
         return convertView;
     }
 
@@ -113,6 +118,6 @@ public class NewsListAdapter extends BaseAdapter {
 
     static class ViewHolder {
         TextView title, feedtext;
-        ImageView feedpicture;
+        ImageView feedpicture,videoavailable;
     }
 }

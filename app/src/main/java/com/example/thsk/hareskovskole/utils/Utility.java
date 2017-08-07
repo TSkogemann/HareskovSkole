@@ -139,6 +139,7 @@ public class Utility {
         List<String> videoLinks = new ArrayList<>();
         //videoLinks.add("https://www.youtube.com/watch?v=INlrea1aDW8");
         videoLinks.add("http://clips.vorwaerts-gmbh.de/VfE_html5.mp4");
+        videoLinks.add(null);
        // videoLinks.add("http://www.skoletube.dk/e/5b600379919c5dbe95f8/1");
        // videoLinks.add("http://hareskovskole.mrburns.webhot.dk/video/gade_hareskov.wmv");
        // videoLinks.add("http://hareskovskole.mrburns.webhot.dk/IMG_0751.MOV");
@@ -166,6 +167,7 @@ public class Utility {
         String dialogDetailTitle = randomText(5, 1);
         String dialogDetailPicture = randomPicture();
         String dialogDetailText = randomText(100, 1);
+        String dialogDetailVideo = getRandomVideo();
         NewsItem newsItem = getRandomNewsItemCommercial();
         List<String> dialogDetailExtraPictures = new ArrayList<>();
         dialogDetailExtraPictures.add(randomPicture());
@@ -174,7 +176,8 @@ public class Utility {
         dialogDetailExtraPictures.add(randomPicture());
         dialogDetailExtraPictures.add(randomPicture());
 
-        return new CommercialItem(dialogTitle, dialogPicture, dialogText, dialogDetailTitle, dialogDetailPicture, dialogDetailText, dialogDetailExtraPictures, newsItem);
+        return new CommercialItem(dialogTitle, dialogPicture, dialogText, dialogDetailTitle,
+                dialogDetailPicture, dialogDetailText, dialogDetailExtraPictures, newsItem, dialogDetailVideo);
     }
 
     public static List<Message> getRandomMessages(int numberOfMessages) {
