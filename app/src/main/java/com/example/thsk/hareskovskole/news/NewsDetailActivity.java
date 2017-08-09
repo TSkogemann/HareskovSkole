@@ -45,8 +45,6 @@ public class NewsDetailActivity extends MenuActivity {
 
     NewsItem currentItem;
 
-    // Layout should not be changed runtime. It needs to look the same every time.
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

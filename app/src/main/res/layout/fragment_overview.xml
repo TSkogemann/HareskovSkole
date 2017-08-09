@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/overview_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="_overview name"/>
+        android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/overview_logo"
-        android:layout_width="80dp"
-        android:layout_height="40dp" />
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/newsItemBackgroundColor">
+
+            <TextView
+                android:id="@+id/overview_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="_overview name"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                android:maxLines="1"/>
+
+            <ImageView
+                android:id="@+id/overview_logo"
+                android:layout_width="80dp"
+                android:layout_height="60dp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 
 </LinearLayout>
