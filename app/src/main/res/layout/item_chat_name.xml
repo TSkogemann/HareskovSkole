@@ -10,18 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="96dp"
         android:background="@color/newsItemBackgroundColor"
-        android:padding="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="8dp">
 
         <android.support.v7.widget.CardView
             android:layout_width="96dp"
             android:layout_height="match_parent"
             card_view:cardCornerRadius="20dp">
-        <ImageView
-            android:id="@+id/message_overview_logo"
-            android:layout_width="96dp"
-            android:layout_height="match_parent"
-            tools:src="@color/blue" />
+
+            <ImageView
+                android:id="@+id/message_overview_logo"
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                tools:src="@color/blue" />
         </android.support.v7.widget.CardView>
 
         <LinearLayout
@@ -48,14 +49,20 @@
                     android:layout_height="match_parent"
                     card_view:cardCornerRadius="20dp">
 
-                    <TextView
-                        android:id="@+id/message_overview_last_chat_msg"
+                    <LinearLayout
+                        android:id="@+id/message_overview_last_chat_msg_window"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="left"
-                        android:padding="8dp"
-                        android:maxLines="1"
-                        tools:text="test test test test" />
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/message_overview_last_chat_msg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:padding="8dp"
+                            tools:text="test test test test" />
+                    </LinearLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>
         </LinearLayout>

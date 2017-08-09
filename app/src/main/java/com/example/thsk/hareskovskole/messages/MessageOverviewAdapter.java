@@ -6,10 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.R;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.User;
 
 import java.util.List;
 
@@ -51,6 +54,7 @@ public class MessageOverviewAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = myLayoutInflater.inflate(R.layout.item_chat_name, null);
             holder = new ViewHolder();
+            holder.chatwindow = (LinearLayout) convertView.findViewById(R.id.message_overview_last_chat_msg_window);
             holder.name = (TextView) convertView.findViewById(R.id.message_overview_name);
             holder.message = (TextView) convertView.findViewById(R.id.message_overview_last_chat_msg);
             holder.logo = (ImageView) convertView.findViewById(R.id.message_overview_logo);
@@ -70,6 +74,11 @@ public class MessageOverviewAdapter extends BaseAdapter {
         // last message
         if(chatObject.getChat().size() > 0) {
             holder.message.setText(chatObject.getChat().get(0).getMessageText());
+            if (chatObject.getChat().get(0).getSenderName() != null){
+                holder.chatwindow.setBackgroundColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
+            } else {
+                holder.chatwindow.setBackgroundColor(context.getResources().getColor(R.color.commercialDialogBackgroundColor));
+            }
         }
 
         // setting picture
@@ -108,6 +117,7 @@ public class MessageOverviewAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView name,message;
         ImageView logo;
+        LinearLayout chatwindow;
     }
     }
 

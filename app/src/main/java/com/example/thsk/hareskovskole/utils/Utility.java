@@ -195,7 +195,7 @@ public class Utility {
         List<Message> messages = new ArrayList<>();
 
         for (int i = 0; i < numberOfMessages; i++) {
-            if (i % 3 == 0) {
+            if (getRandomBoolean()) {
                 messages.add(new Message(randomText(40, 5), null, randomDate(),getRandomWord()));
             } else {
                 messages.add(new Message(randomText(40, 5), getRandomWord(), randomDate(),getRandomWord()));

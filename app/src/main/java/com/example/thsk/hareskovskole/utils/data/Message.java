@@ -10,6 +10,7 @@ import java.util.Date;
 public class Message implements Serializable {
 
    private String messageText;
+    // if sender name = null then its a send message if sender name = "anything" then its recieved
    private String senderName;
     // date format DD-MM-YYYY-hh-mm  - should prob make a better solution. a date object that could be used by commercials and news aswell
    private String dateAndTime;
