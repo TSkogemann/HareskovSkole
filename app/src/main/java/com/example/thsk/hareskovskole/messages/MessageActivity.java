@@ -29,14 +29,12 @@ import butterknife.ButterKnife;
  */
 
 public class MessageActivity extends MenuActivity {
-    @BindView(R.id.message_choose_reciever_spinner)
-    Spinner msgChooseRecieverSpinner;
 
     private int fragmentResource;
 
     User currentUSer;
     List<ChatObject> recieverList;
-    private ChatObject sendToName ;
+    private ChatObject sendToName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,99 +46,112 @@ public class MessageActivity extends MenuActivity {
 
         // init spinner
         initListOfRecievers();
-        MessageAdapter dataAdapter = new MessageAdapter(recieverList,this);
-        msgChooseRecieverSpinner.setAdapter(dataAdapter);
-
-        msgChooseRecieverSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sendToName = recieverList.get(position);
-                System.out.println("name picked " +sendToName);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("chat",sendToName);
-                MessageConversationFragment msgFragment = new MessageConversationFragment();
-                msgFragment.setArguments(bundle);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(fragmentResource, msgFragment);
-                ft.commit();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    applyFirstFragment();
+        applyFirstFragment();
     }
 
     private void applyFirstFragment() {
         //not adding this transaction to backStack
-        sendToName = recieverList.get(0);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("chat",sendToName);
-        MessageConversationFragment msgFragment = new MessageConversationFragment();
+
+        //cannot parse a normal list so we need to convert to arraylist
+        ArrayList<ChatObject> temp = new ArrayList<>();
+        for (ChatObject obj : recieverList) {
+            temp.add(obj);
+        }
+
+        bundle.putSerializable("chatList", temp);
+        MessageOverviewFragment msgFragment = new MessageOverviewFragment();
         msgFragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(fragmentResource, msgFragment);
-        ft.addToBackStack(MessageConversationFragment.class.getSimpleName());
+        ft.addToBackStack(MessageOverviewFragment.class.getSimpleName());
         ft.commit();
     }
 
 
     private void initListOfRecievers() {
         recieverList = new ArrayList<>();
+
         // adding primary env to list
-        String envName =  currentUSer.getPrimaryEnvironment().getEnvironmentName();
+        //name
+        String envName = currentUSer.getPrimaryEnvironment().getEnvironmentName();
+        //messages
         List<Message> messages;
-        if ( currentUSer.getPrimaryEnvironment().getMessages()!= null) {
+        if (currentUSer.getPrimaryEnvironment().getMessages() != null) {
             messages = currentUSer.getPrimaryEnvironment().getMessages();
         } else {
             messages = new ArrayList<>();
         }
-        recieverList.add(new ChatObject(envName,messages));
+        ChatObject obj = new ChatObject(envName,messages);
+        //logo
+        if (currentUSer.getPrimaryEnvironment().getLogo()!= null){
+            obj.setLogo(currentUSer.getPrimaryEnvironment().getLogo());
+        }
+
+        recieverList.add(obj);
 
         // adding primary env groups to list
-        if(currentUSer.getPrimaryEnvironment().getGroups().size()>0){
-            for(Group group : currentUSer.getPrimaryEnvironment().getGroups()){
-                if(group.getAllowMessages()){
+        if (currentUSer.getPrimaryEnvironment().getGroups().size() > 0) {
+            for (Group group : currentUSer.getPrimaryEnvironment().getGroups()) {
+                if (group.getAllowMessages()) {
+                    //name
                     String groupName = group.getName();
+                    //messages
                     List<Message> groupMessages;
-                    if ( group.getMessages()!= null) {
+                    if (group.getMessages() != null) {
                         groupMessages = group.getMessages();
                     } else {
                         groupMessages = new ArrayList<>();
                     }
-                    recieverList.add(new ChatObject(envName,groupName,groupMessages));
+                    ChatObject obj2 = new ChatObject(envName,groupName,groupMessages);
+                    //logo
+                    if (group.getLogo() != null){
+                        obj2.setLogo(group.getLogo());
+                    }
+                    recieverList.add(obj2);
                 }
             }
         }
 
         // secondary env
-        if (currentUSer.getSecondaryEnvironments().size()>0){
-            for (Environment env : currentUSer.getSecondaryEnvironments()){
+        if (currentUSer.getSecondaryEnvironments().size() > 0) {
+            for (Environment env : currentUSer.getSecondaryEnvironments()) {
 
                 // adding secondary env to list
-                String secEnvName =  env.getEnvironmentName();
+                //name
+                String secEnvName = env.getEnvironmentName();
+                //messages
                 List<Message> secMessages;
-                if ( env.getMessages()!= null) {
+                if (env.getMessages() != null) {
                     secMessages = env.getMessages();
                 } else {
                     secMessages = new ArrayList<>();
                 }
-                recieverList.add(new ChatObject(secEnvName,secMessages));
+                ChatObject obj3 = new ChatObject(secEnvName,secMessages);
+                //logo
+                if(env.getLogo() != null){
+                    obj3.setLogo(env.getLogo());
+                }
+                recieverList.add(obj3);
 
                 // adding secondary env groups to list
-                if(env.getGroups().size()>0){
-                    for (Group group : env.getGroups()){
-                        if(group.getAllowMessages()){
+                if (env.getGroups().size() > 0) {
+                    for (Group group : env.getGroups()) {
+                        if (group.getAllowMessages()) {
+                            //name
                             String groupName = group.getName();
+                            //messages
                             List<Message> groupMessages;
-                            if ( group.getMessages()!= null) {
+                            if (group.getMessages() != null) {
                                 groupMessages = group.getMessages();
                             } else {
                                 groupMessages = new ArrayList<>();
                             }
-                            recieverList.add(new ChatObject(secEnvName,groupName,groupMessages));
+                            ChatObject obj4 = new ChatObject(secEnvName,groupName,groupMessages);
+                            if (group.getLogo() != null){
+                                obj4.setLogo(group.getLogo());
+                            }
+                            recieverList.add(obj4);
                         }
                     }
                 }

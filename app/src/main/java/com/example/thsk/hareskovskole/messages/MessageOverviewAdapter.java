@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.R;
 
 import java.util.List;
@@ -15,13 +17,15 @@ import java.util.List;
  * Created by thsk on 02/07/2017.
  */
 
-public class MessageAdapter extends BaseAdapter {
+public class MessageOverviewAdapter extends BaseAdapter {
     private LayoutInflater myLayoutInflater;
     private List<ChatObject> chatObjects;
+    Context context;
 
-    public MessageAdapter(List<ChatObject> chatObjects, Context context) {
+    public MessageOverviewAdapter(List<ChatObject> chatObjects, Context context) {
         myLayoutInflater = LayoutInflater.from(context);
         this.chatObjects = chatObjects;
+        this.context = context;
     }
 
     @Override
@@ -47,18 +51,36 @@ public class MessageAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = myLayoutInflater.inflate(R.layout.item_chat_name, null);
             holder = new ViewHolder();
-            holder.fromUser = (TextView) convertView.findViewById(R.id.chat_name);
+            holder.name = (TextView) convertView.findViewById(R.id.message_overview_name);
+            holder.message = (TextView) convertView.findViewById(R.id.message_overview_last_chat_msg);
+            holder.logo = (ImageView) convertView.findViewById(R.id.message_overview_logo);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        // setting text
         ChatObject chatObject = chatObjects.get(position);
         if (chatObject.getGroupName() != null){
-            holder.fromUser.setText(chatObject.getGroupName());
+            holder.name.setText(chatObject.getGroupName());
         } else {
-            holder.fromUser.setText(chatObject.getEnviromentName());
+            holder.name.setText(chatObject.getEnviromentName());
         }
+
+        // last message
+        if(chatObject.getChat().size() > 0) {
+            holder.message.setText(chatObject.getChat().get(0).getMessageText());
+        }
+
+        // setting picture
+        if(chatObject.getLogo() != null){
+            Glide.with(context)
+                    .load(chatObject.getLogo())
+                    .error(R.drawable.ic_menu_send)
+                    .centerCrop()
+                    .into(holder.logo);
+        }
+
         // Setting text, font and text size
 
 
@@ -84,7 +106,8 @@ public class MessageAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView fromUser;
+        TextView name,message;
+        ImageView logo;
     }
     }
 
