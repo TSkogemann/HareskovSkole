@@ -34,6 +34,14 @@ public class Utility {
     }
 
 
+    public static void logout(){
+
+        //deleting all users
+        deleteAllUsers(Realm.getDefaultInstance());
+
+        //todo Unsubscribe to push tags
+    }
+
     // the Database should only have 1 saved
     public static void saveCurrentUser(User currentUser) {
         // deleting all old users, there should never be more than one in the DB

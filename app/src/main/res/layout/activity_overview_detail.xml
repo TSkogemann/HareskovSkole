@@ -92,9 +92,10 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="80dp"
                                     android:layout_height="match_parent"
-                                    android:text="_lærer" />
+                                    android:text="lærer:"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/overview_detail_contact_name"
@@ -110,15 +111,16 @@
                                 android:paddingTop="4dp">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="80dp"
                                     android:layout_height="match_parent"
-                                    android:text="_kontakt" />
+                                    android:text="kontakt:"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/overview_detail_contact_details"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="kontak info" />
+                                    android:text="_kontak info" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -128,9 +130,10 @@
                                 android:paddingTop="4dp">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="80dp"
                                     android:layout_height="match_parent"
-                                    android:text="_lokation" />
+                                    android:text="lokation:"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/overview_detail_lokation_info"
@@ -160,7 +163,7 @@
 
 
                     <Button
-                        android:id="@+id/news_detail_back_button"
+                        android:id="@+id/overview_detail_back_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimaryDark"

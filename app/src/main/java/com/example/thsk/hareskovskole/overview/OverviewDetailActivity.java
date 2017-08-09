@@ -1,6 +1,7 @@
 package com.example.thsk.hareskovskole.overview;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.example.thsk.hareskovskole.utils.data.Group;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by thsk on 07/08/2017.
@@ -31,6 +33,8 @@ public class OverviewDetailActivity extends MenuActivity {
     TextView contactDetails;
     @BindView(R.id.overview_detail_lokation_info)
     TextView locationInfo;
+    @BindView(R.id.overview_detail_back_button)
+    Button backBtn;
 
     Group currentGroup;
 
@@ -61,5 +65,12 @@ public class OverviewDetailActivity extends MenuActivity {
                 .error(R.drawable.ic_menu_send)
                 .centerCrop()
                 .into(picture);
+
+        // setting backBtn
+    }
+
+    @OnClick(R.id.overview_detail_back_button)
+    public void onclicked(){
+        super.onBackPressed();
     }
 }

@@ -52,7 +52,6 @@
             android:name=".news.NewsDetailActivity"
             android:label="NewsDetailActivity"
             android:theme="@style/AppTheme"></activity>
-
         <activity
             android:name=".commercials.CommercialDetailActivity"
             android:label="CommercialDetailActivity"
@@ -64,6 +63,14 @@
         <activity
             android:name=".overview.OverviewDetailActivity"
             android:label="OverviewDetailActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="SettingsActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".aboutus.AboutUsActivity"
+            android:label="AboutUsActivity"
             android:theme="@style/AppTheme"></activity>
 
         <service

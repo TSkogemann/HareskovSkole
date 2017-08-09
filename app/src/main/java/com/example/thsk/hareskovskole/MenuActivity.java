@@ -26,11 +26,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.thsk.hareskovskole.aboutus.AboutUsActivity;
 import com.example.thsk.hareskovskole.commercials.CommercialDialog;
 import com.example.thsk.hareskovskole.commercials.CommercialItem;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 import com.example.thsk.hareskovskole.overview.OverviewActivity;
+import com.example.thsk.hareskovskole.settings.SettingsActivity;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
@@ -134,9 +136,23 @@ public class MenuActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.nav_top_action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
+
+        if (id == R.id.nav_top_right_AboutUs){
+            Intent intent = new Intent(this, AboutUsActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.nav_top_right_logout){
+            Intent intent = new Intent(this, MainActivity.class);
+            Utility.logout();
+            startActivity(intent);
+        }
+
+
 
         return super.onOptionsItemSelected(item);
     }
