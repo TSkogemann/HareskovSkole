@@ -72,16 +72,17 @@ public class MessageListAdapter extends BaseAdapter {
         holder.other.setBackgroundColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColor()));
         holder.send.setBackgroundColor(context.getResources().getColor(R.color.commercialDialogColor));
 
-        if (messages.get(position).getSenderName() != null ) {
+        // getCount() -1 -position to get reverse order of the list
+        if (messages.get(getCount() -1 - position).getSenderName() != null ) {
             holder.otherll.setVisibility(View.VISIBLE);
             holder.sendll.setVisibility(View.INVISIBLE);
-            holder.recievedMsg.setText(messages.get(position).getMessageText());
-            holder.recievedDate.setText("sendt " + messages.get(position).getDateAndTime());
+            holder.recievedMsg.setText(messages.get(getCount() -1 - position).getMessageText());
+            holder.recievedDate.setText("sendt " + messages.get(getCount() -1 - position).getDateAndTime());
         } else {
            holder.sendll.setVisibility(View.VISIBLE);
             holder.otherll.setVisibility(View.INVISIBLE);
-            holder.sendMsg.setText(messages.get(position).getMessageText());
-            holder.sendDate.setText("sendt " + messages.get(position).getDateAndTime());
+            holder.sendMsg.setText(messages.get(getCount() -1 - position).getMessageText());
+            holder.sendDate.setText("sendt " + messages.get(getCount() -1 - position).getDateAndTime());
         }
 
         // Setting text, font and text size
