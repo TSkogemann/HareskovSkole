@@ -68,10 +68,10 @@ public class MoneyTransactionAdapter extends BaseAdapter {
             holder.amountTransfered.setTextColor(Color.RED);
             holder.fromUser.setText(User.getUser().getName());
             holder.fromUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
-            holder.toUser.setText(moneyTransferItemList.get(position).getToUserName());
+            holder.toUser.setText(moneyTransferItemList.get(position).getGroupName());
         } else {
             holder.amountTransfered.setTextColor(Color.GREEN);
-            holder.fromUser.setText(moneyTransferItemList.get(position).getToUserName());
+            holder.fromUser.setText(moneyTransferItemList.get(position).getGroupName());
             holder.toUser.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
             holder.toUser.setText(User.getUser().getName());
 

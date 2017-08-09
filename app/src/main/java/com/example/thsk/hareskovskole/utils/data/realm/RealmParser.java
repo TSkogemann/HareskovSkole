@@ -2,7 +2,6 @@ package com.example.thsk.hareskovskole.utils.data.realm;
 
 import android.support.annotation.NonNull;
 
-import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.CommercialItem;
 import com.example.thsk.hareskovskole.utils.data.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.Environment;
@@ -352,7 +351,7 @@ public class RealmParser {
             for (MoneyTransferItem item : primaryEnvironment.getListOfTransaction()) {
                 RealmMoneyTransferItem temp = new RealmMoneyTransferItem();
                 temp.setAmount(item.getAmount());
-                temp.setToUserName(item.getToUserName());
+                temp.setToUserName(item.getGroupName());
                 temp.setTransactionType(item.getTransactionType().toString());
                 temp.setId(item.getId());
                 realmMoneyTransferItemList.add(myRealm.copyToRealm(temp));

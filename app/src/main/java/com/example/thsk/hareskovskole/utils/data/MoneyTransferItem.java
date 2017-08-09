@@ -9,15 +9,15 @@ import java.io.Serializable;
 public class MoneyTransferItem implements Serializable {
 
 
-    private String toUserName;
+    private String groupName;
     private TransactionType transactionType;
     int amount;
     private String id;
 
     public enum TransactionType {SEND,RECEIVED}
 
-    public MoneyTransferItem(String toUserName, TransactionType transactionType, int amount, String id) {
-        this.toUserName = toUserName;
+    public MoneyTransferItem(String groupName, TransactionType transactionType, int amount, String id) {
+        this.groupName = groupName;
         this.transactionType = transactionType;
         this.amount = amount;
         this.id = id;
@@ -31,12 +31,12 @@ public class MoneyTransferItem implements Serializable {
         this.id = id;
     }
 
-    public String getToUserName() {
-        return toUserName;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setToUserName(String toUserName) {
-        this.toUserName = toUserName;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public TransactionType getTransactionType() {
