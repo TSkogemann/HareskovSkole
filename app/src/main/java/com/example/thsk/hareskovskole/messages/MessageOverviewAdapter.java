@@ -1,6 +1,7 @@
 package com.example.thsk.hareskovskole.messages;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,8 +78,12 @@ public class MessageOverviewAdapter extends BaseAdapter {
             if (chatObject.getChat().get(0).getSenderName() != null){
                 holder.chatwindow.setBackgroundColor(Utility.stringToColor(User.getUser().getPrimaryEnvironment().getPrimaryColor()));
             } else {
-                holder.chatwindow.setBackgroundColor(context.getResources().getColor(R.color.commercialDialogBackgroundColor));
+                holder.chatwindow.setBackgroundColor(context.getResources().getColor(R.color.commercialDialogColor));
             }
+        } else {
+            holder.message.setText("Ingen tidligere beskeder");
+            holder.message.setTypeface(null,Typeface.ITALIC);
+            holder.chatwindow.setBackgroundColor(context.getResources().getColor(R.color.white));
         }
 
         // setting picture
