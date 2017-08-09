@@ -9,36 +9,29 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.aboutus.AboutUsActivity;
 import com.example.thsk.hareskovskole.commercials.CommercialDialog;
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
+import com.example.thsk.hareskovskole.utils.data.CommercialItem;
 import com.example.thsk.hareskovskole.messages.MessageActivity;
 import com.example.thsk.hareskovskole.moneytransfer.MoneyTransferActivity;
 import com.example.thsk.hareskovskole.overview.OverviewActivity;
 import com.example.thsk.hareskovskole.settings.SettingsActivity;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
-import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,7 +85,7 @@ public class MenuActivity extends AppCompatActivity
         ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setText(currentUser.getPrimaryEnvironment().getEnvironmentName());
         ((TextView) findViewById(R.id.nav_top_left_secondary_text)).setTextColor(Utility.stringToColor(currentUser.getPrimaryEnvironment().getPrimaryColorDark()));
         Glide.with(this)
-                .load(currentUser.getPrimaryEnvironment().getSmallLogo())
+                .load(currentUser.getPrimaryEnvironment().getLogo())
                 .error(R.drawable.ic_menu_camera)
                 .fitCenter()
                 .into(((ImageView) findViewById(R.id.nav_top_left_icon)));

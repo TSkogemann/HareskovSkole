@@ -34,7 +34,7 @@ public class OverviewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, view);
 
-        currentUser = Utility.loadCurrentUser();
+        currentUser = User.getUser();
         setupGroupList();
 
         ListView newsView = (ListView) getActivity().findViewById(R.id.overview_list);

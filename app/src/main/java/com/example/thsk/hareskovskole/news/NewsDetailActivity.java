@@ -3,7 +3,6 @@ package com.example.thsk.hareskovskole.news;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,13 +14,11 @@ import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.example.thsk.hareskovskole.news.NewsItem.NewsItemType.ARTICLE;
-import static com.example.thsk.hareskovskole.news.NewsItem.NewsItemType.COMMERCIAL;
 
 public class NewsDetailActivity extends MenuActivity {
 

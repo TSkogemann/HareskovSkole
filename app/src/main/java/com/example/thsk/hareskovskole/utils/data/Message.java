@@ -13,15 +13,25 @@ public class Message implements Serializable {
    private String senderName;
     // date format DD-MM-YYYY-hh-mm  - should prob make a better solution. a date object that could be used by commercials and news aswell
    private String dateAndTime;
+    private String id;
 
     public Message() {
     //required empty constructor
     }
 
-    public Message(String messageText, String senderName, String dateAndTime) {
+    public Message(String messageText, String senderName, String dateAndTime, String id) {
         this.messageText = messageText;
         this.senderName = senderName;
         this.dateAndTime = dateAndTime;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMessageText() {

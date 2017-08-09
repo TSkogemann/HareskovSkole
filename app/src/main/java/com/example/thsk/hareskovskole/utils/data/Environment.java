@@ -2,9 +2,6 @@ package com.example.thsk.hareskovskole.utils.data;
 
 import android.support.annotation.Nullable;
 
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
-import com.example.thsk.hareskovskole.news.NewsItem;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,6 +11,7 @@ import java.util.List;
 
 public class Environment implements Serializable {
 
+    private String id;
     private String environmentName;
     private List<Group> groups;
     private EnvironmentType environmentType;
@@ -29,7 +27,6 @@ public class Environment implements Serializable {
 
     // Styling
     private String logo;
-    private String smallLogo;
     private String primaryColor;
     private String primaryColorDark;
     private String accentColor;
@@ -38,9 +35,9 @@ public class Environment implements Serializable {
 
     public Environment(String environmentName, List<Group> groups, EnvironmentType environmentType,
                        int accountBalance, List<CommercialItem> commercials,
-                       String logo, String smallLogo, String primaryColor,
+                       String logo, String primaryColor,
                        String primaryColorDark, String accentColor, List<NewsItem> newsItems,
-                       List<MoneyTransferItem> listOfTransaction) {
+                       List<MoneyTransferItem> listOfTransaction, String id) {
 
         this.environmentName = environmentName;
         this.groups = groups;
@@ -48,19 +45,19 @@ public class Environment implements Serializable {
         this.accountBalance = accountBalance;
         this.commercials = commercials;
         this.logo = logo;
-        this.smallLogo = smallLogo;
         this.primaryColor = primaryColor;
         this.primaryColorDark = primaryColorDark;
         this.accentColor = accentColor;
         this.newsItemList = newsItems;
         this.listOfTransaction = listOfTransaction;
+        this.id = id;
     }
 
     public Environment(String environmentName, List<Group> groups, EnvironmentType environmentType,
                        int accountBalance, List<CommercialItem> commercials,
-                       String logo, String smallLogo, String primaryColor,
+                       String logo, String primaryColor,
                        String primaryColorDark, String accentColor, List<NewsItem> newsItems,
-                       List<MoneyTransferItem> listOfTransaction, List<Message> messages) {
+                       List<MoneyTransferItem> listOfTransaction, List<Message> messages, String id) {
 
         this.environmentName = environmentName;
         this.groups = groups;
@@ -68,16 +65,23 @@ public class Environment implements Serializable {
         this.accountBalance = accountBalance;
         this.commercials = commercials;
         this.logo = logo;
-        this.smallLogo = smallLogo;
         this.primaryColor = primaryColor;
         this.primaryColorDark = primaryColorDark;
         this.accentColor = accentColor;
         this.newsItemList = newsItems;
         this.listOfTransaction = listOfTransaction;
         this.messages = messages;
+        this.id = id;
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @Nullable
     public List<MoneyTransferItem> getListOfTransaction() {
@@ -151,14 +155,6 @@ public class Environment implements Serializable {
 
     public void setLogo(String logo) {
         this.logo = logo;
-    }
-
-    public String getSmallLogo() {
-        return smallLogo;
-    }
-
-    public void setSmallLogo(String smallLogo) {
-        this.smallLogo = smallLogo;
     }
 
     public String getPrimaryColor() {

@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.thsk.hareskovskole.R;
-import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.MoneyTransferItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 

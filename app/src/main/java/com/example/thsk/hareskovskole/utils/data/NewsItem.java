@@ -1,4 +1,4 @@
-package com.example.thsk.hareskovskole.news;
+package com.example.thsk.hareskovskole.utils.data;
 
 import java.io.Serializable;
 
@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class NewsItem implements Serializable {
 
     private NewsItemType newsItemType;
+    private String id;
     private String title;
     private String author;
     // Used in the news feed along with the title
@@ -25,7 +26,7 @@ public class NewsItem implements Serializable {
     public NewsItem(String title, String feedText, String feedpicture,
                     String mainText, String mainPicture, String mainPictureText,
                     String headline, String author, NewsItemType newsItemType,
-                    String mainVideo) {
+                    String mainVideo, String id) {
         this.title = title;
         this.feedText = feedText;
         this.feedpicture = feedpicture;
@@ -36,6 +37,15 @@ public class NewsItem implements Serializable {
         this.author = author;
         this.newsItemType = newsItemType;
         this.mainVideo = mainVideo;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMainVideo() {

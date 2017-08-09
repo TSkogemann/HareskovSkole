@@ -13,6 +13,7 @@ import android.widget.VideoView;
 import com.example.thsk.hareskovskole.MenuActivity;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.CommercialItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 
 import java.util.ArrayList;

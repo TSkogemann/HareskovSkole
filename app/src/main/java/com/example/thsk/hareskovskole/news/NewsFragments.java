@@ -12,14 +12,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.thsk.hareskovskole.NewsActivity;
 import com.example.thsk.hareskovskole.R;
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
+import com.example.thsk.hareskovskole.utils.data.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +45,7 @@ public class NewsFragments extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, view);
 
-        User currentUser = Utility.loadCurrentUser();
+        User currentUser = User.getUser();
         newsList.addAll(currentUser.getMergedNewsAndCommercialList());
 
         ListView newsView = (ListView) getActivity().findViewById(R.id.news_list);

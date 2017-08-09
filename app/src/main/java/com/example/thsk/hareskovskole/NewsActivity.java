@@ -4,22 +4,17 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thsk.hareskovskole.commercials.CommercialDialog;
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
+import com.example.thsk.hareskovskole.utils.data.CommercialItem;
 import com.example.thsk.hareskovskole.login.LoginFragment;
 import com.example.thsk.hareskovskole.news.NewsFragments;
-import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.User;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.webservice.ApiClient;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import swagger.model.NewsItem;
 import retrofit2.Call;

@@ -2,8 +2,9 @@ package com.example.thsk.hareskovskole.utils.data.realm;
 
 import android.support.annotation.NonNull;
 
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
-import com.example.thsk.hareskovskole.news.NewsItem;
+import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.CommercialItem;
+import com.example.thsk.hareskovskole.utils.data.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.Group;
 import com.example.thsk.hareskovskole.utils.data.Message;
@@ -36,7 +37,8 @@ public class RealmParser {
         User.UserType userType = getUserTypeEnum(realmUser.get(0).getUsertype());
         String loginToken = realmUser.get(0).getLoginToken();
         Environment primaryEnv = getPrimaryEnv(realmUser.get(0).getPrimaryEnvironment());
-        User user = new User(userName, userType, loginToken, primaryEnv);
+        String id = realmUser.get(0).getId();
+        User user = new User(userName, userType, loginToken, primaryEnv,id);
 
         //get secondary env
         if (realmUser.get(0).getSecondaryEnvironments() != null && realmUser.get(0).getSecondaryEnvironments().size() > 0) {
@@ -86,14 +88,15 @@ public class RealmParser {
         String accentColor = env.getAccentColor();
         List<NewsItem> newsItems = getNewsList(env.getNewsItemList());
         List<Message> messages = getMessages(env.getMessages());
+        String id = env.getId();
 
         Environment environment;
         if (messages.size() > 0) {
             environment = new Environment(name, groups, envType, accBalance,
-                    commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions, messages);
+                    commercials, logo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions, messages,id);
         } else {
             environment = new Environment(name, groups, envType, accBalance,
-                    commercials, logo, smallLogo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions);
+                    commercials, logo, primaryColor, primaryColorDark, accentColor, newsItems, listOfTransactions,id);
         }
         return environment;
     }
@@ -106,7 +109,8 @@ public class RealmParser {
                 MoneyTransferItem temp = new MoneyTransferItem(
                         item.getToUserName(),
                         getTransactionType(item.getTransactionType()),
-                        item.getAmount());
+                        item.getAmount(),
+                        item.getId());
                 list.add(temp);
 
             }
@@ -151,7 +155,8 @@ public class RealmParser {
         String title = item.getDialogTitle();
         String picture = item.getDialogPicture();
         String text = item.getDialogText();
-        CommercialItem commercialItem = new CommercialItem(title, picture, text);
+        String id = item.getId();
+        CommercialItem commercialItem = new CommercialItem(title, picture, text, id);
 
         //check for newsItem
         if (item.getNewsItem() != null) {
@@ -196,9 +201,10 @@ public class RealmParser {
         String author = item.getAuthor();
         NewsItem.NewsItemType newsItemType = getNewsType(item.getNewsItemType());
         String mainVideo = item.getMainVideo();
+        String id = item.getId();
 
         return new NewsItem(newsTitle, feedText, feedPicture, mainText,
-                mainPicture, mainPictureText, headline, author, newsItemType, mainVideo);
+                mainPicture, mainPictureText, headline, author, newsItemType, mainVideo,id);
     }
 
     private static NewsItem.NewsItemType getNewsType(String newsItemType) {
@@ -239,6 +245,7 @@ public class RealmParser {
             temp.setLocation(group.getLocation());
             temp.setShownInOverview(group.isShownInOverview());
             temp.setLogo(group.getLogo());
+            temp.setId(group.getId());
             if (group.getMessages().size() > 0) {
                 List<Message> msgList = new ArrayList<>();
                 for (RealmMessage msg : group.getMessages()) {
@@ -284,6 +291,7 @@ public class RealmParser {
         realmUser.setName(currentUser.getName());
         realmUser.setUsertype(currentUser.getUserType().toString());
         realmUser.setLoginToken(currentUser.getLoginToken());
+        realmUser.setId(currentUser.getId());
         RealmEnvironment realmPrimaryEnvironment = getRealmEnvironment(myRealm, primaryEnvironment);
 
 
@@ -319,6 +327,7 @@ public class RealmParser {
         realmMessage.setMessageText(msg.getMessageText());
         realmMessage.setSenderName(msg.getSenderName());
         realmMessage.setDateAndTime(msg.getDateAndTime());
+        realmMessage.setId(msg.getId());
 
         return realmMessage;
     }
@@ -331,6 +340,7 @@ public class RealmParser {
 
         //environment info
         realmPrimaryEnvironment.setEnvironmentName(primaryEnvironment.getEnvironmentName());
+        realmPrimaryEnvironment.setId(primaryEnvironment.getId());
         realmPrimaryEnvironment.setEnvironmentType(primaryEnvironment.getEnvironmentType().toString());
 
         // account balance
@@ -344,6 +354,7 @@ public class RealmParser {
                 temp.setAmount(item.getAmount());
                 temp.setToUserName(item.getToUserName());
                 temp.setTransactionType(item.getTransactionType().toString());
+                temp.setId(item.getId());
                 realmMoneyTransferItemList.add(myRealm.copyToRealm(temp));
             }
         }
@@ -356,7 +367,6 @@ public class RealmParser {
 
         //primary environment styles
         realmPrimaryEnvironment.setLogo(primaryEnvironment.getLogo());
-        realmPrimaryEnvironment.setSmallLogo(primaryEnvironment.getSmallLogo());
         realmPrimaryEnvironment.setPrimaryColor(primaryEnvironment.getPrimaryColor());
         realmPrimaryEnvironment.setPrimaryColorDark(primaryEnvironment.getPrimaryColorDark());
         realmPrimaryEnvironment.setAccentColor(primaryEnvironment.getAccentColor());
@@ -385,6 +395,7 @@ public class RealmParser {
                 temp.setContactName(group.getContactName());
                 temp.setLocation(group.getLocation());
                 temp.setContactDetails(group.getContactDetails());
+                temp.setId(group.getId());
                 if (group.getShownInOverview() != null) {
                     temp.setShownInOverview(group.getShownInOverview());
                 }
@@ -412,6 +423,7 @@ public class RealmParser {
         RealmList<RealmCommercialItem> realmCommercialItemsList = new RealmList<>();
         for (CommercialItem item : primaryEnvironment.getCommercials()) {
             RealmCommercialItem realmCommercialItem = myRealm.createObject(RealmCommercialItem.class);
+            realmCommercialItem.setId(item.getId());
             realmCommercialItem.setDialogTitle(item.getDialogTitle());
             realmCommercialItem.setDialogPicture(item.getDialogPicture());
             realmCommercialItem.setDialogText(item.getDialogText());
@@ -448,6 +460,7 @@ public class RealmParser {
         RealmNewsItem realmItem = myRealm.createObject(RealmNewsItem.class);
         realmItem.setNewsItemType(newsTypeToString(item.getNewsItemType()));
         realmItem.setTitle(item.getTitle());
+        realmItem.setId(item.getId());
         realmItem.setAuthor(item.getAuthor());
         //feed
         realmItem.setFeedText(item.getFeedText());

@@ -42,7 +42,7 @@ public class MessageActivity extends MenuActivity {
         setContentView(R.layout.activity_message);
         ButterKnife.bind(this);
         fragmentResource = R.id.message_conversation;
-        currentUSer = Utility.loadCurrentUser();
+        currentUSer = User.getUser();
 
         // init spinner
         initListOfRecievers();

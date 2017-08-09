@@ -9,6 +9,7 @@ import io.realm.RealmObject;
 
 public class RealmGroup extends RealmObject {
 
+    private String id;
     private boolean allowPayment;
     private boolean allowMessages;
     private String name;
@@ -24,6 +25,14 @@ public class RealmGroup extends RealmObject {
 
     public RealmGroup() {
         //required empty constructor
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getLogo() {

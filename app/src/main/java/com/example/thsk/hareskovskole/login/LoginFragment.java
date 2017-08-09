@@ -18,19 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.example.thsk.hareskovskole.MainActivity;
 import com.example.thsk.hareskovskole.NewsActivity;
 import com.example.thsk.hareskovskole.R;
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
-import com.example.thsk.hareskovskole.news.NewsItem;
+import com.example.thsk.hareskovskole.utils.data.CommercialItem;
+import com.example.thsk.hareskovskole.utils.data.NewsItem;
 import com.example.thsk.hareskovskole.utils.Utility;
 import com.example.thsk.hareskovskole.utils.data.Environment;
 import com.example.thsk.hareskovskole.utils.data.Group;
-import com.example.thsk.hareskovskole.utils.data.Message;
 import com.example.thsk.hareskovskole.utils.data.User;
-import com.example.thsk.hareskovskole.utils.data.realm.RealmEnvironment;
-import com.example.thsk.hareskovskole.utils.data.realm.RealmString;
-import com.example.thsk.hareskovskole.utils.data.realm.RealmUser;
 import com.example.thsk.hareskovskole.webservice.ApiClient;
 
 import java.util.ArrayList;
@@ -38,8 +33,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
-import io.realm.RealmList;
 import swagger.model.Credentials;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -177,22 +170,22 @@ public class LoginFragment extends Fragment {
         String accentColor ="#66ff66";
         // secondary env use same random groups
         List<Group> groups = new ArrayList<>();
-        groups.add(new Group(true,true,"AlwaysTrue",Utility.getRandomMessages(10),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture()));
-        groups.add(new Group(false,false,"AlwaysFalse"));
-        groups.add(new Group(true,false,"TruePaymentFalseMsg"));
-        groups.add(new Group(false,true,"FalsePaymentTrueMsg",Utility.getRandomMessages(3),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture()));
-        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord(),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture()));
-        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord(),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture()));
-        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord(),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture()));
+        groups.add(new Group(true,true,"AlwaysTrue",Utility.getRandomMessages(10),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture(),Utility.getRandomWord()));
+        groups.add(new Group(false,false,"AlwaysFalse",Utility.getRandomWord()));
+        groups.add(new Group(true,false,"TruePaymentFalseMsg",Utility.getRandomWord()));
+        groups.add(new Group(false,true,"FalsePaymentTrueMsg",Utility.getRandomMessages(3),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture(),Utility.getRandomWord()));
+        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord(),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture(),Utility.getRandomWord()));
+        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord(),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture(),Utility.getRandomWord()));
+        groups.add(new Group(Utility.getRandomBoolean(), Utility.getRandomBoolean(),Utility.getRandomWord(),Utility.randomText(10,2),Utility.randomPicture(),Utility.randomText(5,1),Utility.randomText(3,1),Utility.getRandomWord(),true,Utility.randomPicture(),Utility.getRandomWord()));
         List<NewsItem> newslist = Utility.getRandomNewsList(15);
         Environment env = new Environment("Hareskov skole",groups, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,
-                primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5),Utility.getRandomMessages(10));
-        User user = new User("Thomas Skogemann", User.UserType.STUDENT,null,env);
+                150,setupCommercials(), Utility.randomPicture(),primaryColor,
+                primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5),Utility.getRandomMessages(10),Utility.getRandomWord());
+        User user = new User("Thomas Skogemann", User.UserType.STUDENT,null,env,Utility.getRandomWord());
         Environment env2 = new Environment("Hareskov skole2",groups, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5));
+                150,setupCommercials(), Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5),Utility.getRandomWord());
         Environment env3 = new Environment("Hareskov skole3",groups, Environment.EnvironmentType.SCHOOL,
-                150,setupCommercials(), Utility.randomPicture(),Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5));
+                150,setupCommercials(), Utility.randomPicture(),primaryColor,primaryColorDark,accentColor,newslist,Utility.getRandomTransactionList(5),Utility.getRandomWord());
         List<Environment> secondaryEnv = new ArrayList<>();
         secondaryEnv.add(env2);
         secondaryEnv.add(env3);
@@ -216,6 +209,7 @@ public class LoginFragment extends Fragment {
 
     private void cheatLogin(){
         Utility.saveCurrentUser(currentUser);
+        currentUser = null;
         Intent intent = new Intent(getActivity(), NewsActivity.class);
         startActivity(intent);
     }

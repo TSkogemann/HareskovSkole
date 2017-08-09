@@ -58,7 +58,7 @@ public class MoneyTransferActivity extends MenuActivity {
         setContentView(R.layout.activity_moneytransfer);
         ButterKnife.bind(this);
 
-        currentUser = Utility.loadCurrentUser();
+        currentUser = User.getUser();
         listOfTransactions.addAll(currentUser.getPrimaryEnvironment().getListOfTransaction());
 
         ListView newsView = (ListView) findViewById(R.id.money_transfer_previous_transfers);
@@ -108,7 +108,7 @@ public class MoneyTransferActivity extends MenuActivity {
             public void onClick(View v) {
                 if (!amountEditText.getText().toString().equals("")) {
                     int amount = Integer.parseInt(amountEditText.getText().toString());
-                    MoneyTransferItem itemToSend = new MoneyTransferItem(sendToName, MoneyTransferItem.TransactionType.SEND, amount);
+                    MoneyTransferItem itemToSend = new MoneyTransferItem(sendToName, MoneyTransferItem.TransactionType.SEND, amount, null);
                     System.out.println("Send button clicked with amount: " + itemToSend.getAmount());
                 } else {
                     Toast.makeText(getApplicationContext(), "Vælg et beløb",

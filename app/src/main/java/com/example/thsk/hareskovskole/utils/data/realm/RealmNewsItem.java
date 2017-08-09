@@ -1,7 +1,5 @@
 package com.example.thsk.hareskovskole.utils.data.realm;
 
-import com.example.thsk.hareskovskole.news.NewsItem;
-
 import io.realm.RealmObject;
 
 /**
@@ -10,6 +8,7 @@ import io.realm.RealmObject;
 
 public class RealmNewsItem extends RealmObject {
 
+    private String id;
     private String newsItemType;
     private String title;
     private String author;
@@ -24,6 +23,14 @@ public class RealmNewsItem extends RealmObject {
     private String mainVideo;
 
     public RealmNewsItem() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMainVideo() {

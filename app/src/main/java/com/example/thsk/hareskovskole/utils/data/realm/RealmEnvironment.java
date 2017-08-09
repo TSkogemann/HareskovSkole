@@ -1,7 +1,5 @@
 package com.example.thsk.hareskovskole.utils.data.realm;
 
-import com.example.thsk.hareskovskole.news.NewsItem;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -11,6 +9,7 @@ import io.realm.RealmObject;
 
 public class RealmEnvironment extends RealmObject {
 
+    private String id;
     private String environmentName;
     private RealmList<RealmGroup> groups;
     private String environmentType;
@@ -30,6 +29,14 @@ public class RealmEnvironment extends RealmObject {
 
     // must have empty constructor
     public RealmEnvironment() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public RealmList<RealmMessage> getMessages() {

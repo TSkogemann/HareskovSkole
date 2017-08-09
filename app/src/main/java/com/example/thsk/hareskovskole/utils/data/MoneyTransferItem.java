@@ -12,13 +12,23 @@ public class MoneyTransferItem implements Serializable {
     private String toUserName;
     private TransactionType transactionType;
     int amount;
+    private String id;
 
     public enum TransactionType {SEND,RECEIVED}
 
-    public MoneyTransferItem(String toUserName, TransactionType transactionType, int amount) {
+    public MoneyTransferItem(String toUserName, TransactionType transactionType, int amount, String id) {
         this.toUserName = toUserName;
         this.transactionType = transactionType;
         this.amount = amount;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getToUserName() {

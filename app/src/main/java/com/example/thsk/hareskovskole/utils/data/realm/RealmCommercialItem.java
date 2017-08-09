@@ -8,6 +8,7 @@ import io.realm.RealmObject;
  */
 
 public class RealmCommercialItem extends RealmObject {
+    private String id;
     private String dialogTitle;
     private String dialogPicture;
     private String dialogText;
@@ -21,6 +22,15 @@ public class RealmCommercialItem extends RealmObject {
     private RealmNewsItem newsItem;
 
     public RealmCommercialItem() {
+    //required empty constructor
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDialogDetailVideo() {

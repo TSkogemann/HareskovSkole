@@ -3,8 +3,8 @@ package com.example.thsk.hareskovskole.utils;
 import android.content.Context;
 import android.graphics.Color;
 
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
-import com.example.thsk.hareskovskole.news.NewsItem;
+import com.example.thsk.hareskovskole.utils.data.CommercialItem;
+import com.example.thsk.hareskovskole.utils.data.NewsItem;
 import com.example.thsk.hareskovskole.utils.data.Message;
 import com.example.thsk.hareskovskole.utils.data.MoneyTransferItem;
 import com.example.thsk.hareskovskole.utils.data.User;
@@ -116,7 +116,8 @@ public class Utility {
         String headline = Utility.randomText(6, 2);
         String author = Utility.randomText(8, 2);
         String mainVideo = Utility.getRandomVideo();
-        return new NewsItem(title, feedText, picture, mainText, mainPicture, mainPictureText, headline, author, NewsItem.NewsItemType.ARTICLE, mainVideo);
+        String id = Utility.getRandomWord();
+        return new NewsItem(title, feedText, picture, mainText, mainPicture, mainPictureText, headline, author, NewsItem.NewsItemType.ARTICLE, mainVideo, id);
     }
 
     public static List<MoneyTransferItem> getRandomTransactionList(int numberOfTransactions) {
@@ -130,7 +131,7 @@ public class Utility {
     }
 
     private static MoneyTransferItem getRandomMoneyTransferItem() {
-    MoneyTransferItem item = new MoneyTransferItem(getRandomWord(),getRandomTransactionType(),randomNumber(9999,0));
+    MoneyTransferItem item = new MoneyTransferItem(getRandomWord(),getRandomTransactionType(),randomNumber(9999,0), getRandomWord());
     return item;
     }
 
@@ -165,7 +166,8 @@ public class Utility {
         String headline = Utility.randomText(6, 2);
         String author = "SPONSORERET";
         String mainVideo = getRandomVideo();
-        return new NewsItem(title, feedText, picture, mainText, mainPicture, mainPictureText, headline, author, NewsItem.NewsItemType.COMMERCIAL, mainVideo);
+        String id = getRandomWord();
+        return new NewsItem(title, feedText, picture, mainText, mainPicture, mainPictureText, headline, author, NewsItem.NewsItemType.COMMERCIAL, mainVideo, id);
     }
 
     public static CommercialItem getCommercial() {
@@ -183,9 +185,10 @@ public class Utility {
         dialogDetailExtraPictures.add(randomPicture());
         dialogDetailExtraPictures.add(randomPicture());
         dialogDetailExtraPictures.add(randomPicture());
+        String id = getRandomWord();
 
         return new CommercialItem(dialogTitle, dialogPicture, dialogText, dialogDetailTitle,
-                dialogDetailPicture, dialogDetailText, dialogDetailExtraPictures, newsItem, dialogDetailVideo);
+                dialogDetailPicture, dialogDetailText, dialogDetailExtraPictures, newsItem, dialogDetailVideo, id);
     }
 
     public static List<Message> getRandomMessages(int numberOfMessages) {
@@ -193,9 +196,9 @@ public class Utility {
 
         for (int i = 0; i < numberOfMessages; i++) {
             if (i % 3 == 0) {
-                messages.add(new Message(randomText(40, 5), null, randomDate()));
+                messages.add(new Message(randomText(40, 5), null, randomDate(),getRandomWord()));
             } else {
-                messages.add(new Message(randomText(40, 5), getRandomWord(), randomDate()));
+                messages.add(new Message(randomText(40, 5), getRandomWord(), randomDate(),getRandomWord()));
             }
         }
         return messages;

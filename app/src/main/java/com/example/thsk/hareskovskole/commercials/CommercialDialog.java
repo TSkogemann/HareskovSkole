@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.thsk.hareskovskole.R;
 import com.example.thsk.hareskovskole.utils.Utility;
+import com.example.thsk.hareskovskole.utils.data.CommercialItem;
 import com.example.thsk.hareskovskole.utils.data.User;
 
 import butterknife.BindView;

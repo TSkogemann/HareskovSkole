@@ -1,9 +1,5 @@
 package com.example.thsk.hareskovskole.utils.data;
 
-import android.support.annotation.Nullable;
-
-import com.example.thsk.hareskovskole.commercials.CommercialItem;
-import com.example.thsk.hareskovskole.news.NewsItem;
 import com.example.thsk.hareskovskole.utils.Utility;
 
 import java.io.Serializable;
@@ -20,6 +16,7 @@ public class User implements Serializable {
     private String name;
     private UserType userType;
     private String loginToken;
+    private String id;
 
     // Environments are school, clubs etc. Primary environment styles will be used in the app.
     private Environment primaryEnvironment;
@@ -40,11 +37,12 @@ public class User implements Serializable {
         // required empty constructor
     }
 
-    public User(String name, UserType userType,String loginToken, Environment primaryEnvironment) {
+    public User(String name, UserType userType,String loginToken, Environment primaryEnvironment, String id) {
         this.name = name;
         this.userType = userType;
         this.primaryEnvironment = primaryEnvironment;
         this.loginToken = loginToken;
+        this.id = id;
         //logic in the constructor. It merges all commercials and newsItems from all environments
         setMergedLists();
     }
@@ -54,6 +52,14 @@ public class User implements Serializable {
             instance = Utility.loadCurrentUser();
         }
         return instance;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getLoginToken() {

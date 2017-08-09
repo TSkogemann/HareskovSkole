@@ -8,12 +8,21 @@ import io.realm.RealmObject;
 
 public class RealmMessage extends RealmObject {
 
+    private String id;
     private String messageText;
     private String senderName;
     private String dateAndTime;
 
     public RealmMessage() {
         //required empty constructor
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMessageText() {

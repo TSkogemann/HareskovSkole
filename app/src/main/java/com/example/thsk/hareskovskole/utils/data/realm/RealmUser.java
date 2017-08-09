@@ -15,6 +15,7 @@ public class RealmUser extends RealmObject {
     private RealmList<RealmMessage> messages;
     private RealmEnvironment primaryEnvironment;
     private RealmList<RealmEnvironment> secondaryEnvironments;
+    private String id;
 
 
 
@@ -22,6 +23,14 @@ public class RealmUser extends RealmObject {
 
     public RealmUser() {
         // Empty constructor required in realm
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public RealmList<RealmMessage> getMessages() {

@@ -29,7 +29,7 @@ public class MessageListAdapter extends BaseAdapter {
         myLayoutInflater = LayoutInflater.from(context);
         this.messages = messages;
         this.context = context;
-        this.currentUser = Utility.loadCurrentUser();
+        this.currentUser = User.getUser();
     }
 
     @Override

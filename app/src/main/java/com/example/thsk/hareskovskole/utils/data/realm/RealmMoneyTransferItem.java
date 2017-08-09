@@ -10,6 +10,7 @@ import io.realm.RealmObject;
 
 public class RealmMoneyTransferItem extends RealmObject {
 
+    private String id;
     private String toUserName;
     private String transactionType;
     private int amount;
@@ -18,6 +19,14 @@ public class RealmMoneyTransferItem extends RealmObject {
 
     public RealmMoneyTransferItem() {
         //required empty constructor
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getToUserName() {

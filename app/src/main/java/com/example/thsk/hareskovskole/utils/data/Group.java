@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Group implements Serializable {
 
+    private String id;
     Boolean allowPayment;
     Boolean allowMessages;
     //group info
@@ -30,22 +31,24 @@ public class Group implements Serializable {
         //Required empty constructor
     }
 
-    public Group(Boolean allowPayment, Boolean allowMessages, String name) {
+    public Group(Boolean allowPayment, Boolean allowMessages, String name, String id) {
         this.allowPayment = allowPayment;
         this.allowMessages = allowMessages;
         this.name = name;
+        this.id = id;
     }
 
-    public Group(Boolean allowPayment, Boolean allowMessages, String name, List<Message> messages) {
+    public Group(Boolean allowPayment, Boolean allowMessages, String name, List<Message> messages,String id) {
         this.allowPayment = allowPayment;
         this.allowMessages = allowMessages;
         this.name = name;
         this.messages = messages;
+        this.id = id;
     }
 
     public Group(Boolean allowPayment, Boolean allowMessages, String name, List<Message> messages,
                  String description, String descriptionPicture, String location, String contactName,
-                 String contactDetails, boolean shownInOverview, String logo) {
+                 String contactDetails, boolean shownInOverview, String logo, String id) {
         this.allowPayment = allowPayment;
         this.allowMessages = allowMessages;
         this.name = name;
@@ -57,10 +60,11 @@ public class Group implements Serializable {
         this.contactDetails = contactDetails;
         this.shownInOverview = shownInOverview;
         this.logo = logo;
+        this.id = id;
     }
     public Group(Boolean allowPayment, Boolean allowMessages, String name,
                  String description, String descriptionPicture, String location, String contactName,
-                 String contactDetails, boolean shownInOverview, String logo) {
+                 String contactDetails, boolean shownInOverview, String logo, String id) {
         this.allowPayment = allowPayment;
         this.allowMessages = allowMessages;
         this.name = name;
@@ -71,6 +75,15 @@ public class Group implements Serializable {
         this.contactDetails = contactDetails;
         this.shownInOverview = shownInOverview;
         this.logo = logo;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getLogo() {

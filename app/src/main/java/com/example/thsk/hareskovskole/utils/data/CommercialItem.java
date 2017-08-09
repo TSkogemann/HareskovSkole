@@ -1,6 +1,4 @@
-package com.example.thsk.hareskovskole.commercials;
-
-import com.example.thsk.hareskovskole.news.NewsItem;
+package com.example.thsk.hareskovskole.utils.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +9,8 @@ import java.util.List;
  */
 
 public class CommercialItem implements Serializable {
+
+    private String id;
 
     private String dialogTitle;
     private String dialogPicture;
@@ -24,23 +24,27 @@ public class CommercialItem implements Serializable {
 
     private NewsItem newsItem;
 
-    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText) {
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String id) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
+        this.id = id;
     }
 
     public CommercialItem(String dialogTitle, String dialogPicture, String dialogText,
-                          String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText) {
+                          String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText, String id) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
         this.commercialDetailTitle = commercialDetailTitle;
         this.commercialDetailPicture = commercialDetailPicture;
         this.commercialDetailText = commercialDetailText;
+        this.id = id;
     }
 
-    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText, List<String> dialogDetailExtraPictures) {
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText,
+                          String commercialDetailTitle, String commercialDetailPicture,
+                          String commercialDetailText, List<String> dialogDetailExtraPictures, String id) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
@@ -48,9 +52,13 @@ public class CommercialItem implements Serializable {
         this.commercialDetailPicture = commercialDetailPicture;
         this.commercialDetailText = commercialDetailText;
         this.dialogDetailExtraPictures = dialogDetailExtraPictures;
+        this.id = id;
     }
 
-    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText, List<String> dialogDetailExtraPictures, NewsItem newsItem) {
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText,
+                          String commercialDetailTitle, String commercialDetailPicture,
+                          String commercialDetailText, List<String> dialogDetailExtraPictures,
+                          NewsItem newsItem, String id) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
@@ -59,9 +67,13 @@ public class CommercialItem implements Serializable {
         this.commercialDetailText = commercialDetailText;
         this.dialogDetailExtraPictures = dialogDetailExtraPictures;
         this.newsItem = newsItem;
+        this.id = id;
     }
 
-    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText, String commercialDetailTitle, String commercialDetailPicture, String commercialDetailText, List<String> dialogDetailExtraPictures, NewsItem newsItem, String commercialDetailVideo) {
+    public CommercialItem(String dialogTitle, String dialogPicture, String dialogText,
+                          String commercialDetailTitle, String commercialDetailPicture,
+                          String commercialDetailText, List<String> dialogDetailExtraPictures,
+                          NewsItem newsItem, String commercialDetailVideo, String id) {
         this.dialogTitle = dialogTitle;
         this.dialogPicture = dialogPicture;
         this.dialogText = dialogText;
@@ -71,8 +83,16 @@ public class CommercialItem implements Serializable {
         this.dialogDetailExtraPictures = dialogDetailExtraPictures;
         this.newsItem = newsItem;
         this.commercialDetailVideo = commercialDetailVideo;
+        this.id = id;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCommercialDetailVideo() {
         return commercialDetailVideo;
